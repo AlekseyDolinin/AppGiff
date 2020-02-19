@@ -9,22 +9,32 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var placeholderSaerch: UILabel!
     @IBOutlet weak var inputSearch: UITextField!
     
+    
+    
+    let headesCell: [String] = ["Popular GIF", "Popular Stickers", "Any"]
+    
+    var indexTableCell = 0
+    
+    var arrayCurrentData = [Data]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        inputSearch.addTarget(self, action: #selector(HomeViewController.textFieldDidChangeq(_:)), for: UIControl.Event.editingChanged)
+
         
         
     }
-    
-//    @objc func textFieldDidChangeq(_ textField: UITextField) {
-//
-//    }
-    
+
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         placeholderSaerch.isHidden = true
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = ""
+        placeholderSaerch.isHidden = false
     }
     
     func textFieldDidChange(textField: UITextField) {
@@ -54,12 +64,24 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
 extension HomeViewController: UITabBarDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let homeCell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableViewCell
+        homeCell.headerCellTable.text = headesCell[indexPath.row]
         
+        indexTableCell = indexPath.row
+        
+        arrayCurrentData = []
+        
+        homeCell.homeGifCollectionView.accessibilityIdentifier = String(indexPath.row)
+        
+        if indexPath.row == 0 {
+            arrayCurrentData = arrayTrandingGifData
+        } else if indexPath.row == 1 {
+            arrayCurrentData = arrayTrandingStickerData
+        }
         
         return homeCell
     }
@@ -74,11 +96,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let gifHomeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifHomeCell", for: indexPath) as! GifHomeCollectionViewCell
-        gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
+        
+//        if indexTableCell == 0 {
+//            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
+//        } else if indexTableCell == 1 {
+//            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])
+//        }
+        
+//        print(indexPath)
+        gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayCurrentData[indexPath.row])
+        
         return gifHomeCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "allGifVC")
         vc?.modalPresentationStyle = .fullScreen
         present(vc!, animated: true, completion: nil)
@@ -87,9 +119,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
         let ratio: CGFloat = (image!.size.width) / (image!.size.height)
-        print("ratio:\(ratio)")
+//        print("ratio:\(ratio)")
         let newWidthImage = 120 * ratio
-        print("newWidthImage:\(newWidthImage)")
+//        print("newWidthImage:\(newWidthImage)")
         
         return CGSize(width: newWidthImage, height: 120)
     }

@@ -2,6 +2,7 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var headerCellTable: UILabel!
     @IBOutlet weak var homeGifCollectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -15,13 +16,12 @@ class HomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setCollectionCiewDataSourseDelegate
+    func setCollectionViewDataSourseDelegate
         <D: UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout>
         (_ dataSourceDelegate: D, forRow row: Int) {
         
         homeGifCollectionView.delegate = dataSourceDelegate
         homeGifCollectionView.dataSource = dataSourceDelegate
-        
         homeGifCollectionView.reloadData()
     }
 }

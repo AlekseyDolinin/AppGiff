@@ -85,7 +85,6 @@
                                             <fontDescription key="fontDescription" name="SFProDisplay-Ultralight" family="SF Pro Display" pointSize="36"/>
                                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
                                             <connections>
-                                                <action selector="inputSearch:" destination="FOR-d8-jrB" eventType="editingDidEnd" id="351-jX-o7q"/>
                                                 <outlet property="delegate" destination="FOR-d8-jrB" id="qSE-U2-UY4"/>
                                             </connections>
                                         </textField>
@@ -197,6 +196,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="headerCellTable" destination="jva-WU-NHz" id="4wx-WA-zEf"/>
                                             <outlet property="homeGifCollectionView" destination="xG2-Wr-Ok5" id="UvR-ma-J4I"/>
                                         </connections>
                                     </tableViewCell>

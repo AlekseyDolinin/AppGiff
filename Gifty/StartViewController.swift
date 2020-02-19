@@ -1,7 +1,7 @@
 import UIKit
 
 var arrayTrandingGifData = [Data]()
-var arrayURL = [String]()
+var arrayTrandingStickerData = [Data]()
 
 class StartViewController: UIViewController {
     
@@ -12,20 +12,32 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         
         let metod: String = "https://"
-        let endPoint: String = "api.giphy.com/v1/gifs/trending"
+        let endPointGif: String = "api.giphy.com/v1/gifs/trending"
+        let endPointStickers: String = "api.giphy.com/v1/stickers/trending"
         let apiKey: String = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
-        let countGif = "50"
-        let rating = "R"
+        let countGif = "25"
+        let rating = "G"
+        let requestURLGIF = metod + endPointGif + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
+        let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         
-        let requestURL = metod + endPoint + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
+//        DispatchQueue.main.async {
+            API.shared.loadTrendingGif(requestURL: requestURLGIF)
+            API.shared.loadTrendingSticker(requestURL: requestURLStickers)
+//        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(loadContent(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
+
+    }
+
+    @objc func loadContent(notification: NSNotification) {
         
-        loadTrendingGif(requestURL: requestURL)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
+            vc?.modalPresentationStyle = .fullScreen
+            self.present(vc!, animated: true, completion: nil)
+//        }
+
     }
-    
-    func nextVC() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "homeVC")
-        vc?.modalPresentationStyle = .fullScreen
-        present(vc!, animated: true, completion: nil)
-    }
+
   
 }
