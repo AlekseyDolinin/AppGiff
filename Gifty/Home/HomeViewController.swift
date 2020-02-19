@@ -53,37 +53,32 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
-    
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 }
 
 
-extension HomeViewController: UITabBarDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let homeCell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableViewCell
-        homeCell.headerCellTable.text = headesCell[indexPath.row]
+        let homeCellGif = tableView.dequeueReusableCell(withIdentifier: "homeCellGif", for: indexPath) as! HomeTableViewCell
+        let homeCellSticker = tableView.dequeueReusableCell(withIdentifier: "homeCellSticker", for: indexPath) as! HomeTableViewCell
         
-        indexTableCell = indexPath.row
-        
-        arrayCurrentData = []
-        
-        homeCell.homeGifCollectionView.accessibilityIdentifier = String(indexPath.row)
+        homeCellGif.headerCellTable.text = "Popular GIF"
+        homeCellSticker.headerCellTable.text = "Popular Stickers"
         
         if indexPath.row == 0 {
-            arrayCurrentData = arrayTrandingGifData
+            homeCellGif.homeGifCollectionView.accessibilityIdentifier = "Gif"
+            return homeCellGif
         } else if indexPath.row == 1 {
-            arrayCurrentData = arrayTrandingStickerData
+            homeCellSticker.homeGifCollectionView.accessibilityIdentifier = "Sticker"
+            return homeCellSticker
         }
-        
-        return homeCell
+        return UITableViewCell()
     }
     
     
@@ -97,33 +92,31 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let gifHomeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifHomeCell", for: indexPath) as! GifHomeCollectionViewCell
         
-//        if indexTableCell == 0 {
-//            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
-//        } else if indexTableCell == 1 {
-//            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])
-//        }
-        
-//        print(indexPath)
-        gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayCurrentData[indexPath.row])
-        
+        if collectionView.accessibilityIdentifier == "Gif" {
+            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
+        } else if collectionView.accessibilityIdentifier == "Sticker" {
+            gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])
+        }
         return gifHomeCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "allGifVC")
         vc?.modalPresentationStyle = .fullScreen
         present(vc!, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
-        let ratio: CGFloat = (image!.size.width) / (image!.size.height)
-//        print("ratio:\(ratio)")
-        let newWidthImage = 120 * ratio
-//        print("newWidthImage:\(newWidthImage)")
         
-        return CGSize(width: newWidthImage, height: 120)
+        var image = UIImage()
+        if collectionView.accessibilityIdentifier == "Gif" {
+            image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])!
+        } else if collectionView.accessibilityIdentifier == "Sticker" {
+            image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])!
+        }
+        let ratio: CGFloat = (image.size.width) / (image.size.height)
+        let newWidthImage = 140 * ratio
+        return CGSize(width: newWidthImage, height: 140)
     }
     
 

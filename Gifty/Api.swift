@@ -55,15 +55,14 @@ class API {
             }
             if typeContent == "Sticker" {
                 arrayTrandingStickerData.append(data)
-//                print(data)
             } else {
                 arrayTrandingGifData.append(data)
             }
             
-//            print("arrayTrandingGifData: \(arrayTrandingGifData.count)")
-//            print("arrayTrandingStickerData: \(arrayTrandingStickerData.count)")
+            print("arrayTrandingGifData: \(arrayTrandingGifData.count)")
+            print("arrayTrandingStickerData: \(arrayTrandingStickerData.count)")
             
-            if arrayTrandingGifData.count == 25 && arrayTrandingStickerData.count == 25 {
+            if arrayTrandingGifData.count == 50 && arrayTrandingStickerData.count == 50 {
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }
         }
