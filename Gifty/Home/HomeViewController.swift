@@ -1,15 +1,10 @@
 import UIKit
 
-class HomeViewController: UIViewController, UITextFieldDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     static let shared = HomeViewController()
     
     @IBOutlet weak var homeTableView: UITableView!
-
-    @IBOutlet weak var placeholderSaerch: UILabel!
-    @IBOutlet weak var inputSearch: UITextField!
-    
-    
     
     let headesCell: [String] = ["Popular GIF", "Popular Stickers", "Any"]
     
@@ -19,45 +14,27 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        
         
     }
-
     
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        placeholderSaerch.isHidden = true
+    @objc func seeAllPopularGifAction() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
+        vc.currentCollection = arrayTrandingGifData
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.text = ""
-        placeholderSaerch.isHidden = false
-    }
-    
-    func textFieldDidChange(textField: UITextField) {
-        print(22222)
-    }
-    
-    
-    
-    //    контроль ввода символов в инпуты
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    
-        let search = inputSearch.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        print(search)
-        
-        return true
+    @objc func seeAllPopularStickerAction() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
+        vc.currentCollection = arrayTrandingStickerData
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 }
-
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,6 +48,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         homeCellGif.headerCellTable.text = "Popular GIF"
         homeCellSticker.headerCellTable.text = "Popular Stickers"
         
+        homeCellGif.seeAllPopularGif.addTarget(self, action: #selector(seeAllPopularGifAction), for: .touchUpInside)
+        homeCellSticker.seeAllPopularSticker.addTarget(self, action: #selector(seeAllPopularStickerAction), for: .touchUpInside)
+        
         if indexPath.row == 0 {
             homeCellGif.homeGifCollectionView.accessibilityIdentifier = "Gif"
             return homeCellGif
@@ -80,18 +60,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayTrandingGifData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let gifHomeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifHomeCell", for: indexPath) as! GifHomeCollectionViewCell
         
+        let gifHomeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifHomeCell", for: indexPath) as! GifHomeCollectionViewCell
         if collectionView.accessibilityIdentifier == "Gif" {
             gifHomeCell.imageGif.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
         } else if collectionView.accessibilityIdentifier == "Sticker" {
@@ -101,24 +79,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "allGifVC")
-        vc?.modalPresentationStyle = .fullScreen
-        present(vc!, animated: true, completion: nil)
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var image = UIImage()
+        var newWidthImage = CGFloat()
+        
         if collectionView.accessibilityIdentifier == "Gif" {
             image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])!
+            let ratio: CGFloat = (image.size.width) / (image.size.height)
+            newWidthImage = 120 * ratio
+            return CGSize(width: newWidthImage, height: 120)
         } else if collectionView.accessibilityIdentifier == "Sticker" {
             image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])!
+            let ratio: CGFloat = (image.size.width) / (image.size.height)
+            newWidthImage = 80 * ratio
+            return CGSize(width: newWidthImage + 30, height: 80)
         }
-        let ratio: CGFloat = (image.size.width) / (image.size.height)
-        let newWidthImage = 140 * ratio
-        return CGSize(width: newWidthImage, height: 140)
+        return CGSize()
     }
-    
-
-    
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class AllGifCollectionViewCell: UICollectionViewCell {
+class AllPopularCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageGif: UIImageView!
     

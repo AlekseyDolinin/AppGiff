@@ -30,7 +30,7 @@ class StartViewController: UIViewController {
         print("go to HomeController")
         let vc = storyboard?.instantiateViewController(withIdentifier: "homeVC")
         vc?.modalPresentationStyle = .fullScreen
-        present(vc!, animated: true, completion: nil)
+        present(vc!, animated: false, completion: nil)
     }
 
   

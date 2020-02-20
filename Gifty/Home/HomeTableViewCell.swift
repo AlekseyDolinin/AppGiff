@@ -4,6 +4,8 @@ class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var headerCellTable: UILabel!
     @IBOutlet weak var homeGifCollectionView: UICollectionView!
+    @IBOutlet weak var seeAllPopularGif: UIButton!
+    @IBOutlet weak var seeAllPopularSticker: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
