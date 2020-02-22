@@ -4,41 +4,53 @@ class MainViewController: UIViewController {
     
     static let shared = MainViewController()
     
-    @IBOutlet weak var tagCollection: UICollectionView!
     @IBOutlet weak var popularGifCollection: UICollectionView!
     @IBOutlet weak var popularStickerCollection: UICollectionView!
     @IBOutlet weak var titleIImageGif: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
-    let popularTag: [String] = ["#thumbs up", "#the bachelor", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
+    @IBOutlet weak var backImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(111111)
         
-        if let flowLayout = tagCollection?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
+        backImage.image = UIImage.gifImageWithName("back")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         popularGifCollection.reloadData()
         popularStickerCollection.reloadData()
-        tagCollection.reloadData()
+    }
+    
+    @IBAction func seeAll(_ sender: UIButton) {
+        
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
+        if sender.restorationIdentifier == "gif" {
+            vc.currentCollection = arrayTrandingGifData
+        } else if sender.restorationIdentifier == "sticker" {
+            vc.currentCollection = arrayTrandingStickerData
+        }
+        
+        view.window!.layer.add(transition, forKey: kCATransition)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false, completion: nil)
+    }
+    
+    @IBAction func selectTag(_ sender: UIButton) {
+//        print(sender.titleLabel?.text)
     }
 }
 
 //MARK: Set Collection
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case tagCollection:
-            print(popularTag.count)
-            return popularTag.count
         case popularGifCollection:
             print(arrayTrandingGifData.count)
             return arrayTrandingGifData.count
@@ -50,26 +62,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if collectionView == tagCollection {
-            let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as! TagCollectionViewCell
-            tagCell.label.text = popularTag[indexPath.row]
-            return tagCell
-        }
-        
         if collectionView == popularGifCollection {
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularGifCollectionViewCell
             gifCell.imageForGIF.layer.cornerRadius = 5
             gifCell.imageForGIF.clipsToBounds = true
-            gifCell.imageForGIF.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
+            DispatchQueue.main.async {
+                gifCell.imageForGIF.image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])
+            }
+            
             return gifCell
         }
         
         if collectionView == popularStickerCollection {
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularStickerCollectionViewCell
-            stickerCell.imageForSticker.image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])
+            DispatchQueue.main.async {
+                stickerCell.imageForSticker.image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])
+            }
             return stickerCell
         }
         
@@ -77,33 +86,26 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if collectionView == tagCollection {
-            let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as! TagCollectionViewCell
-            let widthCell = (tagCell.label.text?.count)!
-            return CGSize(width: widthCell, height: 36)
-        }
-    
         var image = UIImage()
         var newWidthImage = CGFloat()
         
         if collectionView == popularGifCollection {
-            image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])!
+//            DispatchQueue.main.async {
+                image = UIImage.gifImageWithData(arrayTrandingGifData[indexPath.row])!
+//            }
             let ratio: CGFloat = (image.size.width) / (image.size.height)
             newWidthImage = 120 * ratio
             return CGSize(width: newWidthImage, height: 120)
         }
         
         if collectionView == popularStickerCollection {
-            image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])!
+//            DispatchQueue.main.async {
+                image = UIImage.gifImageWithData(arrayTrandingStickerData[indexPath.row])!
+//            }
             let ratio: CGFloat = (image.size.width) / (image.size.height)
             newWidthImage = 120 * ratio
             return CGSize(width: newWidthImage, height: 120)
         }
         return CGSize()
     }
-    
-    
-    
-    
 }

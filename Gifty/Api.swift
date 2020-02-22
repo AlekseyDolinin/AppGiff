@@ -55,14 +55,11 @@ class API {
             }
             if typeContent == "Sticker" {
                 arrayTrandingStickerData.append(data)
-            } else {
+            } else if typeContent == "Gif" {
                 arrayTrandingGifData.append(data)
             }
             
-            print("arrayTrandingGifData: \(arrayTrandingGifData.count)")
-            print("arrayTrandingStickerData: \(arrayTrandingStickerData.count)")
-            
-            if arrayTrandingGifData.count == 10 && arrayTrandingStickerData.count == 10 {
+            if arrayTrandingGifData.count > 5 && arrayTrandingStickerData.count > 5 {
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }
         }

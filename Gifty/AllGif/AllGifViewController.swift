@@ -6,11 +6,15 @@ class AllPopularViewController: UIViewController, UICollectionViewDelegateFlowLa
 
     @IBOutlet weak var allPopularCollectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backImage: UIImageView!
     
     var currentCollection = [Data]()
+    let transition = CATransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backImage.image = UIImage.gifImageWithName("back")
         
         if currentCollection == arrayTrandingGifData {
             titleLabel.text = "Popular GIF"
@@ -21,20 +25,25 @@ class AllPopularViewController: UIViewController, UICollectionViewDelegateFlowLa
         if let layout = allPopularCollectionView.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
-        allPopularCollectionView.contentInset = UIEdgeInsets(top: 130, left: 8, bottom: 70, right: 8)
+        allPopularCollectionView.contentInset = UIEdgeInsets(top: 76, left: 8, bottom: 70, right: 8)
     }
     
-    @IBAction func backAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func backAction(_ sender: UIButton) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        dismiss(animated: false, completion: nil)
     }
+
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 }
 
 //MARK: Flow layout delegate
 extension AllPopularViewController: PinterestLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let image = UIImage.gifImageWithData(currentCollection[indexPath.row])
         let ratio: CGFloat = (image!.size.width) / (image!.size.height)
@@ -44,7 +53,6 @@ extension AllPopularViewController: PinterestLayoutDelegate, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(currentCollection.count)
         return currentCollection.count
     }
     
