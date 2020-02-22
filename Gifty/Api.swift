@@ -62,7 +62,7 @@ class API {
             print("arrayTrandingGifData: \(arrayTrandingGifData.count)")
             print("arrayTrandingStickerData: \(arrayTrandingStickerData.count)")
             
-            if arrayTrandingGifData.count == 50 && arrayTrandingStickerData.count == 50 {
+            if arrayTrandingGifData.count == 10 && arrayTrandingStickerData.count == 10 {
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }
         }
