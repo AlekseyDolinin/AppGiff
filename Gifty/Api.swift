@@ -2,67 +2,65 @@ import UIKit
 import SwiftyJSON
 
 class API {
-
+    
     static let shared = API()
+    
+    let task = URLSession.shared
     
     func loadTrendingGif(requestURL: String) {
         guard let stringURL = URL(string: requestURL) else { return }
-        let task = URLSession.shared.dataTask(with: stringURL) { data, response, error in
+        task.dataTask(with: stringURL) { data, response, error in
             guard let data = data, error == nil else {
                 print(error ?? "error")
                 return
             }
             do {
                 let json = try JSON(data: data)
-                let arrayUrlTraidingGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
-                for stringUrl in arrayUrlTraidingGif {
+                let arrayUrlPopularGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+                for stringUrl in arrayUrlPopularGif {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Gif")
                 }
             } catch {
                 print(error)
             }
-        }
-        task.resume()
+            }.resume()
     }
     
     func loadTrendingSticker(requestURL: String) {
-        
         guard let stringURL = URL(string: requestURL) else { return }
-        let task = URLSession.shared.dataTask(with: stringURL) { data, response, error in
+        task.dataTask(with: stringURL) { data, response, error in
             guard let data = data, error == nil else {
                 print(error ?? "error")
                 return
             }
             do {
                 let json = try JSON(data: data)
-                let arrayUrlTraidingSticker = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
-                for stringUrl in arrayUrlTraidingSticker {
+                let arrayUrlPopularSticker = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+                for stringUrl in arrayUrlPopularSticker {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Sticker")
                 }
             } catch {
                 print(error)
             }
-        }
-        task.resume()
+            }.resume()
     }
     
     func loadImageData(stringUrl: String, typeContent: String) {
-        let url = URL(string: stringUrl)!
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        guard let url = URL(string: stringUrl) else { return }
+        task.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
                 print(error ?? "error")
                 return
             }
             if typeContent == "Sticker" {
-                arrayTrandingStickerData.append(data)
+                arrayPopularStickerData.append(data)
             } else if typeContent == "Gif" {
-                arrayTrandingGifData.append(data)
+                arrayPopularGifData.append(data)
             }
-            
-            if arrayTrandingGifData.count > 5 && arrayTrandingStickerData.count > 5 {
+            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 {
+                self.task.finishTasksAndInvalidate()
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }
-        }
-        task.resume()
+            }.resume()
     }
 }

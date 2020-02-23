@@ -1,15 +1,13 @@
 import UIKit
 
-var arrayTrandingGifData = [Data]()
-var arrayTrandingStickerData = [Data]()
-
-var arrayTrandingGif = [UIImage]()
-var arrayTrandingSticker = [UIImage]()
+var arrayPopularGifData = [Data]()
+var arrayPopularStickerData = [Data]()
 
 class StartViewController: UIViewController {
     
     static let shared = StartViewController()
     
+    @IBOutlet weak var versionLabel: UILabel!
     let metod: String = "https://"
     let endPointGif: String = "api.giphy.com/v1/gifs/trending"
     let endPointStickers: String = "api.giphy.com/v1/stickers/trending"
@@ -33,10 +31,10 @@ class StartViewController: UIViewController {
 
     @objc func loadContent(notification: NSNotification) {
         print("go to MainViewController")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
         vc?.modalPresentationStyle = .fullScreen
-        present(vc!, animated: false, completion: nil)
+        DispatchQueue.main.async {
+            self.present(vc!, animated: false, completion: nil)
+        }
     }
-    
-  
 }
