@@ -29,18 +29,12 @@ class AllPopularViewController: UIViewController, UIScrollViewDelegate {
         loadGif()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     func setGestureBack() {
         var swipeRight = UISwipeGestureRecognizer()
         swipeRight.direction = .right
         swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(back))
         self.view.addGestureRecognizer(swipeRight)
     }
-    
-    
     
     func loadGif() {
         let metod: String = "https://"

@@ -34,7 +34,6 @@
 		109154D623FC991E0007702E /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1074A86923FC860D008E5300 /* SF-Pro-Display-Ultralight.otf */; };
 		109199E224011B6100613388 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109199E124011B6100613388 /* MainViewController.swift */; };
 		10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D582403FD4F002A3F95 /* SearchViewController.swift */; };
-		10C06D5C2403FE74002A3F95 /* HeaderSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5B2403FE74002A3F95 /* HeaderSearchView.swift */; };
 		10C06D5E2403FE77002A3F95 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */; };
 		10C06D6024046A65002A3F95 /* ApiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5F24046A65002A3F95 /* ApiSearch.swift */; };
 		12B96D22F0FBAFF784336666 /* Pods_Gifty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F57D17F998F4E5E3C05239B /* Pods_Gifty.framework */; };
@@ -70,7 +69,6 @@
 		1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPopularCollectionViewCell.swift; sourceTree = "<group>"; };
 		109199E124011B6100613388 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		10C06D582403FD4F002A3F95 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		10C06D5B2403FE74002A3F95 /* HeaderSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSearchView.swift; sourceTree = "<group>"; };
 		10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		10C06D5F24046A65002A3F95 /* ApiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSearch.swift; sourceTree = "<group>"; };
 		4F57D17F998F4E5E3C05239B /* Pods_Gifty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gifty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				10C06D582403FD4F002A3F95 /* SearchViewController.swift */,
-				10C06D5B2403FE74002A3F95 /* HeaderSearchView.swift */,
 				10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */,
 			);
 			path = Search;
@@ -348,7 +345,6 @@
 				1002E38F23FC639E008EF322 /* Gifty.xcdatamodeld in Sources */,
 				1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */,
 				1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */,
-				10C06D5C2403FE74002A3F95 /* HeaderSearchView.swift in Sources */,
 				1002E38723FC639E008EF322 /* AppDelegate.swift in Sources */,
 				1002E3B423FC811B008EF322 /* PinterestLayout.swift in Sources */,
 				1002E3B223FC7B70008EF322 /* Api.swift in Sources */,

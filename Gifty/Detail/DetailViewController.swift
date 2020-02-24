@@ -24,9 +24,11 @@ class DetailViewController: UIViewController {
         if nameCurrentCollection == "PopularGif" {
             currentData = arrayPopularGifData
             currentArrayTitles = arrayTitleGif
-        } else {
+        } else if nameCurrentCollection == "PopularSticker" {
             currentData = arrayPopularStickerData
             currentArrayTitles = arrayTitleSticker
+        } else if nameCurrentCollection == "Search" {
+            currentData = arraySearchData
         }
     }
     
@@ -87,7 +89,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 fatalError("Invalid view type")
         }
         
-        headerView.titleLabel.text = currentArrayTitles[currentIndex]
+//        headerView.titleLabel.text = currentArrayTitles[currentIndex]
 
         
         headerView.imgView.image = UIImage.gifImageWithData(currentData[currentIndex])
