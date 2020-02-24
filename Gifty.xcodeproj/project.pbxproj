@@ -36,6 +36,7 @@
 		10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D582403FD4F002A3F95 /* SearchViewController.swift */; };
 		10C06D5E2403FE77002A3F95 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */; };
 		10C06D6024046A65002A3F95 /* ApiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5F24046A65002A3F95 /* ApiSearch.swift */; };
+		10C06D6224048DD9002A3F95 /* ApiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D6124048DD9002A3F95 /* ApiRandom.swift */; };
 		12B96D22F0FBAFF784336666 /* Pods_Gifty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F57D17F998F4E5E3C05239B /* Pods_Gifty.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		10C06D582403FD4F002A3F95 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		10C06D5F24046A65002A3F95 /* ApiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSearch.swift; sourceTree = "<group>"; };
+		10C06D6124048DD9002A3F95 /* ApiRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRandom.swift; sourceTree = "<group>"; };
 		4F57D17F998F4E5E3C05239B /* Pods_Gifty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gifty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		993787BFED39B0F90D76558B /* Pods-Gifty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gifty.debug.xcconfig"; path = "Target Support Files/Pods-Gifty/Pods-Gifty.debug.xcconfig"; sourceTree = "<group>"; };
 		FDF548A5C96AFF91E85E2477 /* Pods-Gifty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gifty.release.xcconfig"; path = "Target Support Files/Pods-Gifty/Pods-Gifty.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				10C06D5A2403FD55002A3F95 /* Search */,
 				1002E3B123FC7B70008EF322 /* Api.swift */,
 				10C06D5F24046A65002A3F95 /* ApiSearch.swift */,
+				10C06D6124048DD9002A3F95 /* ApiRandom.swift */,
 				10C06D572403FD3B002A3F95 /* HelpClasses */,
 				1002E39023FC63A1008EF322 /* Assets.xcassets */,
 				10442CA82401BAE800A97E10 /* back.gif */,
@@ -347,6 +350,7 @@
 				1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */,
 				1002E38723FC639E008EF322 /* AppDelegate.swift in Sources */,
 				1002E3B423FC811B008EF322 /* PinterestLayout.swift in Sources */,
+				10C06D6224048DD9002A3F95 /* ApiRandom.swift in Sources */,
 				1002E3B223FC7B70008EF322 /* Api.swift in Sources */,
 				10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */,
 			);

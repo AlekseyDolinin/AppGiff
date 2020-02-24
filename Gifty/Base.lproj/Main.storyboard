@@ -430,6 +430,12 @@
                                             <action selector="seeAll:" destination="43W-hC-26x" eventType="touchUpInside" id="mOY-7G-RFr"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMr-hG-jAx">
+                                        <rect key="frame" x="260" y="290" width="28" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                        <color key="textColor" name="White_"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -438,10 +444,12 @@
                                     <constraint firstItem="4oM-Gg-Btp" firstAttribute="top" secondItem="Y4N-jB-0gS" secondAttribute="bottom" constant="16" id="5hd-na-tYh"/>
                                     <constraint firstItem="Y4N-jB-0gS" firstAttribute="leading" secondItem="pJG-c7-YU9" secondAttribute="leading" id="5io-0h-biZ"/>
                                     <constraint firstItem="b3x-b9-lMg" firstAttribute="leading" secondItem="pJG-c7-YU9" secondAttribute="leading" constant="16" id="7Ew-YY-dPz"/>
+                                    <constraint firstItem="UMr-hG-jAx" firstAttribute="trailing" secondItem="4oM-Gg-Btp" secondAttribute="trailing" constant="-16" id="7v4-nx-PLK"/>
                                     <constraint firstAttribute="trailing" secondItem="BaY-yg-8Nr" secondAttribute="trailing" id="9KZ-xr-Ty0"/>
                                     <constraint firstItem="Juu-wx-W22" firstAttribute="trailing" secondItem="BaY-yg-8Nr" secondAttribute="trailing" id="9e8-Cm-GY4"/>
                                     <constraint firstItem="8Y5-ZF-Zdl" firstAttribute="leading" secondItem="pJG-c7-YU9" secondAttribute="leading" constant="16" id="ATq-zw-XN4"/>
                                     <constraint firstItem="CuP-Jc-3dG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="b3x-b9-lMg" secondAttribute="trailing" constant="8" symbolic="YES" id="B68-Wo-nyX"/>
+                                    <constraint firstItem="UMr-hG-jAx" firstAttribute="top" secondItem="4oM-Gg-Btp" secondAttribute="bottom" constant="-20" id="BDa-Vo-h2K"/>
                                     <constraint firstItem="b3x-b9-lMg" firstAttribute="top" secondItem="CuP-Jc-3dG" secondAttribute="bottom" constant="-33" id="BX9-wa-cJg"/>
                                     <constraint firstAttribute="trailing" secondItem="1m2-xS-mLB" secondAttribute="trailing" id="Nde-dh-1Wa"/>
                                     <constraint firstItem="BaY-yg-8Nr" firstAttribute="top" secondItem="4oM-Gg-Btp" secondAttribute="bottom" constant="24" id="OOE-Ht-oVd"/>
@@ -558,6 +566,7 @@
                         <outlet property="backImage" destination="XZ2-yX-gwS" id="hvG-xy-GgC"/>
                         <outlet property="popularGifCollection" destination="1m2-xS-mLB" id="jeK-ir-YDZ"/>
                         <outlet property="popularStickerCollection" destination="tjc-E0-Ukf" id="a9b-Cd-HH5"/>
+                        <outlet property="randomTitleLabel" destination="UMr-hG-jAx" id="IzN-Ps-n2b"/>
                         <outlet property="searchBar" destination="BaY-yg-8Nr" id="jvQ-xx-Uug"/>
                         <outlet property="titleIImageGif" destination="4oM-Gg-Btp" id="BJd-0P-8r4"/>
                     </connections>

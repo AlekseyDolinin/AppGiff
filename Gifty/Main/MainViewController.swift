@@ -9,12 +9,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var titleIImageGif: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var backImage: UIImageView!
+    @IBOutlet weak var randomTitleLabel: UILabel!
+    
+    var titles = ["#thumbs up", "#the bachelor", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         backImage.image = UIImage.gifImageWithName("back")
         
+        let number = Int.random(in: 1 ..< titles.count)
+        randomTitleLabel.text = titles[number]
+        var wordForRequest: String = titles[number]
+        wordForRequest.removeFirst()
+        
+        let url = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=" + wordForRequest + "&rating=G"
+        ApiRandom.shared.loadImageData(stringUrl: url)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
