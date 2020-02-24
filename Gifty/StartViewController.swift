@@ -3,11 +3,15 @@ import UIKit
 var arrayPopularGifData = [Data]()
 var arrayPopularStickerData = [Data]()
 
+var arrayTitleGif = [String]()
+var arrayTitleSticker = [String]()
+
 class StartViewController: UIViewController {
     
     static let shared = StartViewController()
     
     @IBOutlet weak var versionLabel: UILabel!
+    
     let metod: String = "https://"
     let endPointGif: String = "api.giphy.com/v1/gifs/trending"
     let endPointStickers: String = "api.giphy.com/v1/stickers/trending"
@@ -22,6 +26,8 @@ class StartViewController: UIViewController {
         let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         API.shared.loadTrendingGif(requestURL: requestURLGIF)
         API.shared.loadTrendingSticker(requestURL: requestURLStickers)
+        
+        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,6 +35,31 @@ class StartViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadContent(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
     }
 
+    // получение номера версии приложения
+    func getVersionApp() -> String {
+        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
+        let version = nsObject as! String
+        return version
+    }
+    
+    func getSystemLanguage() -> String {
+        
+        var systemLanguage = String()
+        let preferredLanguage = NSLocale.preferredLanguages[0]
+        
+        switch preferredLanguage {
+        case "ru-RU":
+            systemLanguage = "Russia"
+        case "en":
+            systemLanguage = "England"
+        case "zh-Hans":
+            systemLanguage = "China"
+        default:
+            systemLanguage = "England"
+        }
+        return systemLanguage
+    }
+    
     @objc func loadContent(notification: NSNotification) {
         print("go to MainViewController")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")

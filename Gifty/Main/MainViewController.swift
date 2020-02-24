@@ -21,6 +21,12 @@ class MainViewController: UIViewController {
         popularGifCollection.reloadData()
         popularStickerCollection.reloadData()
     }
+    @IBAction func openSearchAction(_ sender: Any) {
+
+        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false, completion: nil)
+    }
     
     @IBAction func seeAll(_ sender: UIButton) {
         

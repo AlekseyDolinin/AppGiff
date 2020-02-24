@@ -3,15 +3,13 @@ import SwiftyJSON
 
 var currentCollection = [Data]()
 
-class AllPopularViewController: UIViewController, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+class AllPopularViewController: UIViewController, UIScrollViewDelegate {
     
     static let shared = AllPopularViewController()
     
     @IBOutlet weak var allPopularCollectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backImage: UIImageView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

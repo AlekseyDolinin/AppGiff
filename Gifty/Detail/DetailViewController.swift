@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
     var nameCurrentCollection = String()
     var currentIndex = Int()
     var currentData = [Data]()
+    var currentArrayTitles = [String]()
     
     fileprivate let headerID = "headerID"
     
@@ -22,8 +23,10 @@ class DetailViewController: UIViewController {
 
         if nameCurrentCollection == "PopularGif" {
             currentData = arrayPopularGifData
+            currentArrayTitles = arrayTitleGif
         } else {
             currentData = arrayPopularStickerData
+            currentArrayTitles = arrayTitleSticker
         }
     }
     
@@ -78,10 +81,15 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return detailCell
     }
     
+    // HeaderView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerViewCell", for: indexPath) as? HeaderView else {
                 fatalError("Invalid view type")
         }
+        
+        headerView.titleLabel.text = currentArrayTitles[currentIndex]
+
+        
         headerView.imgView.image = UIImage.gifImageWithData(currentData[currentIndex])
         headerView.imgView.layer.cornerRadius = 5
         headerView.imgView.clipsToBounds = true
@@ -92,17 +100,35 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return headerView
     }
     
+    // Height Header
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         let image = UIImage.gifImageWithData(currentData[currentIndex])
         let ratio: CGFloat = (image!.size.width) / (image!.size.height)
-        let newWidthImage = self.view.frame.width - 32
+        let newWidthImage = self.view.frame.width - 16
         let newHeightImage = newWidthImage / ratio
         return CGSize(width: newWidthImage, height: newHeightImage + 76)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let numberOfColums: CGFloat = 2
+        let width = collectionView.frame.size.width
+        let xInsets: CGFloat = 8
+        let cellSpacing: CGFloat = 4
+        let image = UIImage.gifImageWithData(currentData[indexPath.row])
+        let height: CGFloat = (image?.size.height)!
+        let widthColum = (width / numberOfColums) - (xInsets + cellSpacing)
+        
+        return CGSize(width: widthColum, height: widthColum * 2 / 3)
+    }
+    // Did Select Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentIndex = indexPath.row
         detailCollectionView.reloadData()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.detailCollectionView.contentOffset.y = 0
+        }
+        
     }
 }
