@@ -79,7 +79,6 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4oM-Gg-Btp">
                                         <rect key="frame" x="16" y="144" width="288" height="166"/>
-                                        <color key="backgroundColor" name="Pink_"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4oM-Gg-Btp" secondAttribute="height" multiplier="144:83" id="wds-L2-FMW"/>
                                         </constraints>
@@ -746,6 +745,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0VT-1L-bV4">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                             </subviews>
                                         </view>

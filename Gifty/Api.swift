@@ -59,7 +59,7 @@ class API {
             } else if typeContent == "Gif" {
                 arrayPopularGifData.append(data)
             }
-            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 {
+            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandom == true {
                 self.task.finishTasksAndInvalidate()
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }

@@ -15,6 +15,8 @@ class DetailViewController: UIViewController {
     
     fileprivate let headerID = "headerID"
     
+    var curentGIFForSend = Data()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +41,10 @@ class DetailViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
     }
     
+    
+    
+    
+    
     @objc func back() {
         let transition = CATransition()
         transition.duration = 0.3
@@ -55,6 +61,19 @@ class DetailViewController: UIViewController {
     
     @objc func sendGifAction() {
         print("sendGIF")
+        let shareController = UIActivityViewController(activityItems: [curentGIFForSend], applicationActivities: nil)
+        shareController.completionWithItemsHandler = {_, bool, _, _ in
+            if bool {
+                print(self.curentGIFForSend)
+                // показываю анимацию
+//                self.viewForAnimation.isHidden = false
+                print("it is done!")
+//                self.startCheckAnimation()
+            } else {
+                print("error send")
+            }
+        }
+        present(shareController, animated: true, completion: nil)
     }
     
     @IBAction func backAction(_ sender: UIButton) {
@@ -91,7 +110,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
 //        headerView.titleLabel.text = currentArrayTitles[currentIndex]
 
-        
+        curentGIFForSend = currentData[currentIndex]
         headerView.imgView.image = UIImage.gifImageWithData(currentData[currentIndex])
         headerView.imgView.layer.cornerRadius = 5
         headerView.imgView.clipsToBounds = true

@@ -32,6 +32,7 @@ class ApiRandom {
                 return
             }
             randomDataGif = data
+            loadRandom = true
             }.resume()
     }
 }

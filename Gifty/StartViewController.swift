@@ -9,6 +9,8 @@ var arrayTitleSticker = [String]()
 var randomDataGif = Data()
 var randomTitle = ""
 
+var loadRandom = Bool()
+
 class StartViewController: UIViewController {
     
     static let shared = StartViewController()
