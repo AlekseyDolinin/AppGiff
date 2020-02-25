@@ -1,0 +1,6 @@
+framework module Pods_AppGiff {
+  umbrella header "Pods-AppGiff-umbrella.h"
+
+  export *
+  module * { export * }
+}
