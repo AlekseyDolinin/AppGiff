@@ -23,6 +23,7 @@
 		102DBB8E2405C2B7004B80D2 /* MainControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB8D2405C2B7004B80D2 /* MainControllerGoogleAds.swift */; };
 		102DBB912405C48D004B80D2 /* DetailControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB902405C48D004B80D2 /* DetailControllerGoogleAds.swift */; };
 		102DBB932405C4E2004B80D2 /* SearchControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */; };
+		102DBBB72405E61C004B80D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */; };
 		10442CA92401BAE900A97E10 /* back.gif in Resources */ = {isa = PBXBuildFile; fileRef = 10442CA82401BAE800A97E10 /* back.gif */; };
 		1074A87D23FC8930008E5300 /* AllGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87C23FC8930008E5300 /* AllGifViewController.swift */; };
 		1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */; };
@@ -96,6 +97,7 @@
 		102DBBB32405CAE0004B80D2 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
 		102DBBB42405CAE4004B80D2 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
 		102DBBB52405CAEA004B80D2 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
+		102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10442CA82401BAE800A97E10 /* back.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = back.gif; sourceTree = "<group>"; };
 		1074A86923FC860D008E5300 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		1074A86D23FC860D008E5300 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				1002E38A23FC639E008EF322 /* Main.storyboard */,
 				1002E39223FC63A1008EF322 /* LaunchScreen.storyboard */,
 				1002E39523FC63A1008EF322 /* Info.plist */,
+				102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */,
 				102DBB8F2405C327004B80D2 /* StartViewController */,
 				109199E32401360D00613388 /* Main */,
 				1074A88023FC89DE008E5300 /* AllGif */,
@@ -370,6 +373,7 @@
 				1002E39123FC63A1008EF322 /* Assets.xcassets in Resources */,
 				1002E38C23FC639E008EF322 /* Main.storyboard in Resources */,
 				109154CE23FC990F0007702E /* SF-Pro-Display-Black.otf in Resources */,
+				102DBBB72405E61C004B80D2 /* GoogleService-Info.plist in Resources */,
 				109154D323FC99180007702E /* SF-Pro-Display-Regular.otf in Resources */,
 				109154D023FC99120007702E /* SF-Pro-Display-Heavy.otf in Resources */,
 				10442CA92401BAE900A97E10 /* back.gif in Resources */,

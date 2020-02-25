@@ -1,6 +1,7 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,9 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-//        setStatusBarBackgroundColor(color: UIColor(named: "Pink_")!)
-        // Override point for customization after application launch.
+
+        FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }

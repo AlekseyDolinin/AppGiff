@@ -4,8 +4,8 @@ extension DetailViewController {
     
     func setGadBanner() {
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //demo
-//        bannerView.adUnitID = "ca-app-pub-8093774413708674/4677789374"
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //demo
+        bannerView.adUnitID = "ca-app-pub-8093774413708674/3125868704"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
