@@ -9,4 +9,6 @@ target 'Gifty' do
 
 pod 'SwiftyJSON', '~> 4.0'
 
+pod 'Google-Mobile-Ads-SDK'
+
 end

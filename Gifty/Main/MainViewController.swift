@@ -1,6 +1,7 @@
 import UIKit
+import GoogleMobileAds
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, GADBannerViewDelegate {
     
     static let shared = MainViewController()
     
@@ -11,13 +12,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var randomTitleLabel: UILabel!
     
+    var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setGadBanner()
+        setTitleImage()
+        
         backImage.image = UIImage.gifImageWithName("back")
         randomTitleLabel.text = "#" + randomTitle
-        
-        setTitleImage()
     }
     
     override func viewDidAppear(_ animated: Bool) {

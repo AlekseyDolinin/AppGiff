@@ -1,12 +1,15 @@
 import UIKit
 import SwiftyJSON
+import GoogleMobileAds
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, GADBannerViewDelegate {
     
     static let shared = DetailViewController()
     
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var backImage: UIImageView!
+    
+    var bannerView: GADBannerView!
     
     var nameCurrentCollection = String()
     var currentIndex = Int()
@@ -19,7 +22,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setGadBanner()
         setGestureBack()
         backImage.image = UIImage.gifImageWithName("back")
 

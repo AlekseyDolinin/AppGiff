@@ -20,6 +20,9 @@
 		1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */; };
 		1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1023DE6F2402D6F500A5590F /* DetailViewController.swift */; };
 		1023DE782402EAFD00A5590F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1023DE772402EAFD00A5590F /* HeaderView.swift */; };
+		102DBB8E2405C2B7004B80D2 /* MainControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB8D2405C2B7004B80D2 /* MainControllerGoogleAds.swift */; };
+		102DBB912405C48D004B80D2 /* DetailControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB902405C48D004B80D2 /* DetailControllerGoogleAds.swift */; };
+		102DBB932405C4E2004B80D2 /* SearchControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */; };
 		10442CA92401BAE900A97E10 /* back.gif in Resources */ = {isa = PBXBuildFile; fileRef = 10442CA82401BAE800A97E10 /* back.gif */; };
 		1074A87D23FC8930008E5300 /* AllGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87C23FC8930008E5300 /* AllGifViewController.swift */; };
 		1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */; };
@@ -56,6 +59,9 @@
 		1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		1023DE6F2402D6F500A5590F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1023DE772402EAFD00A5590F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		102DBB8D2405C2B7004B80D2 /* MainControllerGoogleAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerGoogleAds.swift; sourceTree = "<group>"; };
+		102DBB902405C48D004B80D2 /* DetailControllerGoogleAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailControllerGoogleAds.swift; sourceTree = "<group>"; };
+		102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerGoogleAds.swift; sourceTree = "<group>"; };
 		10442CA82401BAE800A97E10 /* back.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = back.gif; sourceTree = "<group>"; };
 		1074A86923FC860D008E5300 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		1074A86D23FC860D008E5300 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
@@ -115,7 +121,7 @@
 				1002E38A23FC639E008EF322 /* Main.storyboard */,
 				1002E39223FC63A1008EF322 /* LaunchScreen.storyboard */,
 				1002E39523FC63A1008EF322 /* Info.plist */,
-				1002E38823FC639E008EF322 /* StartViewController.swift */,
+				102DBB8F2405C327004B80D2 /* StartViewController */,
 				109199E32401360D00613388 /* Main */,
 				1074A88023FC89DE008E5300 /* AllGif */,
 				1023DE6A2402BF9C00A5590F /* Detail */,
@@ -138,8 +144,17 @@
 				1023DE6F2402D6F500A5590F /* DetailViewController.swift */,
 				1023DE772402EAFD00A5590F /* HeaderView.swift */,
 				1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */,
+				102DBB902405C48D004B80D2 /* DetailControllerGoogleAds.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		102DBB8F2405C327004B80D2 /* StartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1002E38823FC639E008EF322 /* StartViewController.swift */,
+			);
+			path = StartViewController;
 			sourceTree = "<group>";
 		};
 		1074A87B23FC8617008E5300 /* Fonts */ = {
@@ -172,6 +187,7 @@
 			children = (
 				109199E124011B6100613388 /* MainViewController.swift */,
 				1002E3AD23FC7627008EF322 /* PopularCollectionViewCell.swift */,
+				102DBB8D2405C2B7004B80D2 /* MainControllerGoogleAds.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -190,6 +206,7 @@
 			children = (
 				10C06D582403FD4F002A3F95 /* SearchViewController.swift */,
 				10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */,
+				102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -338,12 +355,14 @@
 			files = (
 				1002E3AE23FC7627008EF322 /* PopularCollectionViewCell.swift in Sources */,
 				1002E38923FC639E008EF322 /* StartViewController.swift in Sources */,
+				102DBB932405C4E2004B80D2 /* SearchControllerGoogleAds.swift in Sources */,
 				1002E3B023FC7AF6008EF322 /* GIFAnimation.swift in Sources */,
 				10C06D5E2403FE77002A3F95 /* SearchCollectionViewCell.swift in Sources */,
 				1023DE782402EAFD00A5590F /* HeaderView.swift in Sources */,
 				109199E224011B6100613388 /* MainViewController.swift in Sources */,
 				10C06D6024046A65002A3F95 /* ApiSearch.swift in Sources */,
 				1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */,
+				102DBB912405C48D004B80D2 /* DetailControllerGoogleAds.swift in Sources */,
 				1074A87D23FC8930008E5300 /* AllGifViewController.swift in Sources */,
 				1002E38F23FC639E008EF322 /* Gifty.xcdatamodeld in Sources */,
 				1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */,
@@ -352,6 +371,7 @@
 				1002E3B423FC811B008EF322 /* PinterestLayout.swift in Sources */,
 				10C06D6224048DD9002A3F95 /* ApiRandom.swift in Sources */,
 				1002E3B223FC7B70008EF322 /* Api.swift in Sources */,
+				102DBB8E2405C2B7004B80D2 /* MainControllerGoogleAds.swift in Sources */,
 				10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

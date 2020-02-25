@@ -1,13 +1,6 @@
-//
-//  AppDelegate.swift
-//  Gifty
-//
-//  Created by Aleksey Dolinin on 18.02.2020.
-//  Copyright © 2020 com.AlekseyDolinin. All rights reserved.
-//
-
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        setStatusBarBackgroundColor(color: UIColor(named: "Pink_")!)
         // Override point for customization after application launch.
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 

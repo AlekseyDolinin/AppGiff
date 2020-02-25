@@ -1,23 +1,23 @@
 import UIKit
 import SwiftyJSON
+import GoogleMobileAds
 
 var inputSearchText = ""
 var arraySearchData = [Data]()
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerViewDelegate {
     
     static let shared = SearchViewController()
     
     @IBOutlet weak var searchCollectionView: UICollectionView!
     @IBOutlet weak var backImage: UIImageView!
-    
     @IBOutlet weak var viewForTabBar: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var tabButtonGif: UIButton!
     @IBOutlet weak var tabButtonSticker: UIButton!
-    
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    
+    var bannerView: GADBannerView!
     
     var typeContentSearch = "Gif"
     var typeSearch = ""
@@ -26,7 +26,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         loadIndicator.stopAnimating()
-        
+        setGadBanner()
         setTabBar()
         setGestureBack()
         setLayoutGrid()
