@@ -13,7 +13,7 @@ extension DetailViewController {
         self.view.addSubview(bannerView)
         
         bannerView.translatesAutoresizingMaskIntoConstraints = false
-        bannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        bannerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         bannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         bannerView.widthAnchor.constraint(equalToConstant: 320).isActive = true
