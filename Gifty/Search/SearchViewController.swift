@@ -6,7 +6,7 @@ var arraySearchData = [Data]()
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
-    static let shared = DetailViewController()
+    static let shared = SearchViewController()
     
     @IBOutlet weak var searchCollectionView: UICollectionView!
     @IBOutlet weak var backImage: UIImageView!
@@ -17,20 +17,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var tabButtonGif: UIButton!
     @IBOutlet weak var tabButtonSticker: UIButton!
     
+    @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    
     var typeContentSearch = "Gif"
-
+    var typeSearch = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadIndicator.stopAnimating()
+        
         setTabBar()
         setGestureBack()
         setLayoutGrid()
         backImage.image = UIImage.gifImageWithName("back")
+        
+        if typeSearch == "tag" {
+            loadIndicator.startAnimating()
+            searchBar.resignFirstResponder()
+        } else {
+            loadIndicator.stopAnimating()
+            searchBar.becomeFirstResponder()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            self?.searchBar.becomeFirstResponder()
-        }
+        searchBar.text = inputSearchText
         NotificationCenter.default.addObserver(self, selector: #selector(loadContentSearch(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
     }
     
@@ -56,7 +68,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func selectTab(_ sender: UIButton) {
-        arraySearchData = []
+//        arraySearchData = []
         if sender.restorationIdentifier! == "Gif" {
             typeContentSearch = "Gif"
             tabButtonGif.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.15)
@@ -68,11 +80,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
         searchBar.text = ""
         searchBar.becomeFirstResponder()
-//        searchCollectionView.reloadData()
     }
     
     @objc func loadContentSearch(notification: NSNotification) {
         DispatchQueue.main.async { [weak self] in
+            self?.loadIndicator.stopAnimating()
             self?.searchCollectionView.reloadData()
         }
     }
@@ -106,7 +118,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arraySearchData.count
+        if !arraySearchData.isEmpty {
+            return arraySearchData.count
+        }
+        return Int()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -146,13 +161,16 @@ extension SearchViewController {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        loadIndicator.startAnimating()
+        searchRequest(searchText: inputSearchText)
+    }
+    
+    func searchRequest(searchText: String) {
         DispatchQueue.main.async { [weak self] in
+            self?.searchCollectionView.reloadData()
             self?.searchBar.resignFirstResponder()
+            
         }
-        
-        arraySearchData = []
-        
         let metod: String = "https://"
         let endPointSearchGif: String = "api.giphy.com/v1/gifs/search?"
         let endPointSearchStickers: String = "api.giphy.com/v1/stickers/search?"
@@ -161,8 +179,8 @@ extension SearchViewController {
         let rating = "G"
         let language = "en"
         
-        let requestURLGIF = metod + endPointSearchGif + "api_key=" + apiKey + "&q=" + inputSearchText + "&limit=" + countGif + "&offset=0&rating=" + rating + "&lang=" + language
-        let requestURLSticker = metod + endPointSearchStickers + "api_key=" + apiKey + "&q=" + inputSearchText + "&limit=" + countGif + "&offset=0&rating=" + rating + "&lang=" + language
+        let requestURLGIF = metod + endPointSearchGif + "api_key=" + apiKey + "&q=" + searchText + "&limit=" + countGif + "&offset=0&rating=" + rating + "&lang=" + language
+        let requestURLSticker = metod + endPointSearchStickers + "api_key=" + apiKey + "&q=" + searchText + "&limit=" + countGif + "&offset=0&rating=" + rating + "&lang=" + language
         
         if typeContentSearch == "Gif" {
             ApiSearch.shared.searchData(requestURL: requestURLGIF)

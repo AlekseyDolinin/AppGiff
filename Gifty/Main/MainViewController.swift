@@ -11,36 +11,35 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var randomTitleLabel: UILabel!
     
-    var titles = ["#thumbs up", "#the bachelor", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         backImage.image = UIImage.gifImageWithName("back")
+        randomTitleLabel.text = "#" + randomTitle
         
-        let number = Int.random(in: 1 ..< titles.count)
-        randomTitleLabel.text = titles[number]
-        var wordForRequest: String = titles[number]
-        wordForRequest.removeFirst()
-        
-        let url = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=" + wordForRequest + "&rating=G"
-        ApiRandom.shared.loadImageData(stringUrl: url)
-
+        setTitleImage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         popularGifCollection.reloadData()
         popularStickerCollection.reloadData()
+        titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
     }
+    
+    func setTitleImage() {
+        titleIImageGif.layer.cornerRadius = 5
+        titleIImageGif.clipsToBounds = true
+        titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
+    }
+    
+    
     @IBAction func openSearchAction(_ sender: Any) {
-
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false, completion: nil)
     }
     
     @IBAction func seeAll(_ sender: UIButton) {
-        
         let transition = CATransition()
         transition.duration = 0.3
         transition.type = CATransitionType.push
@@ -58,7 +57,26 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func selectTag(_ sender: UIButton) {
-//        print(sender.titleLabel?.text)
+        var tagText = (sender.titleLabel?.text)!
+        inputSearchText = tagText
+        tagText.removeFirst()
+        
+        let searchTag: String = tagText
+        let metod: String = "https://"
+        let endPointSearchGif: String = "api.giphy.com/v1/gifs/search?"
+        let apiKey: String = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
+        let countGif = "50"
+        let rating = "G"
+        let language = "en"
+        
+        let requestURLGIF = metod + endPointSearchGif + "api_key=" + apiKey + "&q=" + searchTag + "&limit=" + countGif + "&offset=0&rating=" + rating + "&lang=" + language
+        
+        ApiSearch.shared.searchData(requestURL: requestURLGIF)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        vc.typeSearch = "tag"
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false, completion: nil)
     }
 }
 

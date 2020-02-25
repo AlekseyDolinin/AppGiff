@@ -16,7 +16,6 @@ class API {
             }
             do {
                 let json = try JSON(data: data)
-                //                print(json)
                 let arrayUrlPopularGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
                 arrayTitleGif = json["data"].arrayValue.map({$0["title"].string!})
                 for stringUrl in arrayUrlPopularGif {

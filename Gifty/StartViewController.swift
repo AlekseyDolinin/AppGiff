@@ -6,6 +6,9 @@ var arrayPopularStickerData = [Data]()
 var arrayTitleGif = [String]()
 var arrayTitleSticker = [String]()
 
+var randomDataGif = Data()
+var randomTitle = ""
+
 class StartViewController: UIViewController {
     
     static let shared = StartViewController()
@@ -19,20 +22,27 @@ class StartViewController: UIViewController {
     let countGif = "15"
     let rating = "G"
     
+    var titles = ["#thumbs up", "#the bachelor", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
+        getRandomGif()
         let requestURLGIF = metod + endPointGif + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         API.shared.loadTrendingGif(requestURL: requestURLGIF)
         API.shared.loadTrendingSticker(requestURL: requestURLStickers)
-        
-        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
         NotificationCenter.default.addObserver(self, selector: #selector(loadContent(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
+    }
+    
+    func getRandomGif() {
+        randomTitle = titles.randomElement()!
+        randomTitle.removeFirst()
+        let url = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=" + randomTitle + "&rating=G"
+        ApiRandom.shared.randomData(requestURL: url)
     }
 
     // получение номера версии приложения
@@ -43,10 +53,8 @@ class StartViewController: UIViewController {
     }
     
     func getSystemLanguage() -> String {
-        
         var systemLanguage = String()
         let preferredLanguage = NSLocale.preferredLanguages[0]
-        
         switch preferredLanguage {
         case "ru-RU":
             systemLanguage = "Russia"

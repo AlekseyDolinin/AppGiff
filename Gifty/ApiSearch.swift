@@ -8,7 +8,9 @@ class ApiSearch {
     let task = URLSession.shared
     
     func searchData(requestURL: String) {
+        print(requestURL)
         guard let stringURL = URL(string: requestURL) else { return }
+        print(stringURL)
         task.dataTask(with: stringURL) { data, response, error in
             guard let data = data, error == nil else {
                 print(error ?? "error")
@@ -17,7 +19,7 @@ class ApiSearch {
             do {
                 let json = try JSON(data: data)
                 let arrayUrlSearchGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
-                
+                print(json)
                 arraySearchData = []
                 
                 for stringUrl in arrayUrlSearchGif {
