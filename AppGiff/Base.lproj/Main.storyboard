@@ -83,6 +83,9 @@
                                             <constraint firstAttribute="width" secondItem="4oM-Gg-Btp" secondAttribute="height" multiplier="144:83" id="wds-L2-FMW"/>
                                         </constraints>
                                     </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="eb0-Ji-LW5">
+                                        <rect key="frame" x="150" y="217" width="20" height="20"/>
+                                    </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4N-jB-0gS">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <subviews>
@@ -454,7 +457,9 @@
                                     <constraint firstItem="BaY-yg-8Nr" firstAttribute="top" secondItem="4oM-Gg-Btp" secondAttribute="bottom" constant="24" id="OOE-Ht-oVd"/>
                                     <constraint firstItem="Juu-wx-W22" firstAttribute="bottom" secondItem="BaY-yg-8Nr" secondAttribute="bottom" id="Pwl-BB-FwX"/>
                                     <constraint firstAttribute="trailing" secondItem="k4r-bj-Cbq" secondAttribute="trailing" constant="16" id="Q6F-hd-gxk"/>
+                                    <constraint firstItem="eb0-Ji-LW5" firstAttribute="centerY" secondItem="4oM-Gg-Btp" secondAttribute="centerY" id="USW-D8-0oQ"/>
                                     <constraint firstItem="8Y5-ZF-Zdl" firstAttribute="top" secondItem="d6o-ut-lhW" secondAttribute="bottom" constant="-33" id="Uzb-8K-E1H"/>
+                                    <constraint firstItem="eb0-Ji-LW5" firstAttribute="centerX" secondItem="4oM-Gg-Btp" secondAttribute="centerX" id="VNi-DE-XCy"/>
                                     <constraint firstItem="b3x-b9-lMg" firstAttribute="top" secondItem="BaY-yg-8Nr" secondAttribute="bottom" constant="32" id="Wa6-Wz-mr5"/>
                                     <constraint firstItem="1m2-xS-mLB" firstAttribute="top" secondItem="b3x-b9-lMg" secondAttribute="bottom" constant="4" id="Wkm-MP-HMC"/>
                                     <constraint firstItem="k4r-bj-Cbq" firstAttribute="top" secondItem="BaY-yg-8Nr" secondAttribute="bottom" constant="-16" id="XEi-qP-vmV"/>
@@ -471,6 +476,7 @@
                                     <constraint firstItem="4oM-Gg-Btp" firstAttribute="leading" secondItem="pJG-c7-YU9" secondAttribute="leading" constant="16" id="pWF-HP-Ank"/>
                                     <constraint firstAttribute="trailing" secondItem="tjc-E0-Ukf" secondAttribute="trailing" id="rvf-Aq-0fR"/>
                                     <constraint firstAttribute="bottom" secondItem="tjc-E0-Ukf" secondAttribute="bottom" constant="88" id="sH3-aZ-mFF"/>
+                                    <constraint firstItem="UMr-hG-jAx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pJG-c7-YU9" secondAttribute="leading" constant="20" symbolic="YES" id="vTJ-80-sin"/>
                                     <constraint firstItem="tjc-E0-Ukf" firstAttribute="top" secondItem="8Y5-ZF-Zdl" secondAttribute="bottom" constant="4" id="xi5-CD-S1s"/>
                                     <constraint firstItem="Y4N-jB-0gS" firstAttribute="centerX" secondItem="pJG-c7-YU9" secondAttribute="centerX" id="yLP-e6-j0O"/>
                                     <constraint firstAttribute="trailing" secondItem="4oM-Gg-Btp" secondAttribute="trailing" constant="16" id="zbT-6g-qtk"/>
@@ -553,6 +559,7 @@
                     <size key="freeformSize" width="320" height="890"/>
                     <connections>
                         <outlet property="backImage" destination="XZ2-yX-gwS" id="hvG-xy-GgC"/>
+                        <outlet property="loadIndicator" destination="eb0-Ji-LW5" id="oHP-GB-gwz"/>
                         <outlet property="popularGifCollection" destination="1m2-xS-mLB" id="jeK-ir-YDZ"/>
                         <outlet property="popularStickerCollection" destination="tjc-E0-Ukf" id="a9b-Cd-HH5"/>
                         <outlet property="randomTitleLabel" destination="UMr-hG-jAx" id="IzN-Ps-n2b"/>
@@ -1003,6 +1010,11 @@
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="mNU-Va-n1T"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="AnH-HQ-4oc"/>
+                                        <exclude reference="HaI-8d-y3j"/>
+                                        <exclude reference="zJ3-mo-0Qe"/>
                                     </mask>
                                 </variation>
                             </view>

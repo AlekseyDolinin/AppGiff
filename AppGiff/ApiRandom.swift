@@ -33,8 +33,9 @@ class ApiRandom {
                 return
             }
             randomDataGif = data
+            NotificationCenter.default.post(name: NSNotification.Name("updateImageTitle"), object: true)
             print("load random gif for title")
-            loadRandom = true
+            loadRandomGif = true
             }.resume()
     }
 }

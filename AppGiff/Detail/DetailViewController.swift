@@ -2,14 +2,12 @@ import UIKit
 import SwiftyJSON
 import GoogleMobileAds
 
-class DetailViewController: UIViewController, GADBannerViewDelegate {
+class DetailViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     
     static let shared = DetailViewController()
     
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var backImage: UIImageView!
-    
-    var bannerView: GADBannerView!
     
     var nameCurrentCollection = String()
     var currentIndex = Int()
@@ -20,10 +18,16 @@ class DetailViewController: UIViewController, GADBannerViewDelegate {
     
     var curentGIFForSend = Data()
     
+    // Рекламные банеры
+    var interstitial: GADInterstitial!
+    var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setGadBanner()
+        setGadFullView()
+        
         setGestureBack()
         backImage.image = UIImage.gifImageWithName("back")
 
@@ -65,14 +69,21 @@ class DetailViewController: UIViewController, GADBannerViewDelegate {
     
     @objc func sendGifAction() {
         print("sendGIF")
+        
+        if interstitial.isReady == true /*&& countShowFullViewAds % 3 == 0 */{
+            print("ролик готов")
+            interstitial.present(fromRootViewController: self)
+        } else {
+            showControllerShare()
+        }
+    }
+    
+    func showControllerShare() {
         let shareController = UIActivityViewController(activityItems: [curentGIFForSend], applicationActivities: nil)
         shareController.completionWithItemsHandler = {_, bool, _, _ in
             if bool {
-                print(self.curentGIFForSend)
-                // показываю анимацию
-//                self.viewForAnimation.isHidden = false
+                
                 print("it is done!")
-//                self.startCheckAnimation()
             } else {
                 print("error send")
             }

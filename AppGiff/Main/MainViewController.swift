@@ -11,11 +11,15 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var randomTitleLabel: UILabel!
+    @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
     var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadIndicator.startAnimating()
+        randomTitleLabel.isHidden = true
         
         setGadBanner()
         setTitleImage()
@@ -27,7 +31,25 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         popularGifCollection.reloadData()
         popularStickerCollection.reloadData()
-        titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContent(notification:)), name: NSNotification.Name(rawValue: "updateContent"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateImageTitle(notification:)), name: NSNotification.Name(rawValue: "updateImageTitle"), object: nil)
+    }
+    
+    @objc func updateContent(notification: NSNotification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.popularGifCollection.reloadData()
+            self?.popularStickerCollection.reloadData()
+        }
+    }
+    
+    @objc func updateImageTitle(notification: NSNotification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.loadIndicator.stopAnimating()
+            self?.randomTitleLabel.isHidden = false
+            self?.titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
+        }
     }
     
     func setTitleImage() {
@@ -87,18 +109,25 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
 //MARK: Set Collection
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        
+        if collectionView == popularGifCollection {
+            return arrayPopularGifData.count
+        }
+        if collectionView == popularStickerCollection {
+            return arrayPopularStickerData.count
+        }
+        return Int()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == popularGifCollection {
+        if collectionView == popularGifCollection && !arrayPopularGifData.isEmpty {
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularGifCollectionViewCell
             gifCell.imageForGIF.layer.cornerRadius = 5
             gifCell.imageForGIF.clipsToBounds = true
             gifCell.imageForGIF.image = UIImage.gifImageWithData(arrayPopularGifData[indexPath.row])
             return gifCell
         }
-        if collectionView == popularStickerCollection {
+        if collectionView == popularStickerCollection && !arrayPopularStickerData.isEmpty {
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularStickerCollectionViewCell
             stickerCell.imageForSticker.image = UIImage.gifImageWithData(arrayPopularStickerData[indexPath.row])
             return stickerCell
@@ -107,17 +136,21 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var image = UIImage()
-        var newWidthImage = CGFloat()
-        if collectionView == self.popularGifCollection {
-            image = UIImage.gifImageWithData(arrayPopularGifData[indexPath.row])!
-        } else if collectionView == self.popularStickerCollection {
-            image = UIImage.gifImageWithData(arrayPopularStickerData[indexPath.row])!
+        if !arrayPopularGifData.isEmpty && !arrayPopularStickerData.isEmpty {
+            var image = UIImage()
+            var newWidthImage = CGFloat()
+            if collectionView == self.popularGifCollection {
+                image = UIImage.gifImageWithData(arrayPopularGifData[indexPath.row])!
+                } else if collectionView == self.popularStickerCollection {
+                image = UIImage.gifImageWithData(arrayPopularStickerData[indexPath.row])!
+            }
+            let ratio: CGFloat = (image.size.width) / (image.size.height)
+            newWidthImage = 120 * ratio
+            return CGSize(width: newWidthImage, height: 120)
         }
-        let ratio: CGFloat = (image.size.width) / (image.size.height)
-        newWidthImage = 120 * ratio
-        return CGSize(width: newWidthImage, height: 120)
+        return CGSize()
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let transition = CATransition()

@@ -7,6 +7,9 @@ class API {
     
     let task = URLSession.shared
     
+    var arrayUrlPopularGif = [String]()
+    var arrayUrlPopularSticker = [String]()
+    
     func loadTrendingGif(requestURL: String) {
         guard let stringURL = URL(string: requestURL) else { return }
         task.dataTask(with: stringURL) { data, response, error in
@@ -16,9 +19,9 @@ class API {
             }
             do {
                 let json = try JSON(data: data)
-                let arrayUrlPopularGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+                self.arrayUrlPopularGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
                 arrayTitleGif = json["data"].arrayValue.map({$0["title"].string!})
-                for stringUrl in arrayUrlPopularGif {
+                for stringUrl in self.arrayUrlPopularGif {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Gif")
                 }
                 print("load data popular gif")
@@ -37,9 +40,9 @@ class API {
             }
             do {
                 let json = try JSON(data: data)
-                let arrayUrlPopularSticker = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+                self.arrayUrlPopularSticker = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
                 arrayTitleSticker = json["data"].arrayValue.map({$0["title"].string!})
-                for stringUrl in arrayUrlPopularSticker {
+                for stringUrl in self.arrayUrlPopularSticker {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Sticker")
                 }
                 print("load data popular stickers")
@@ -50,6 +53,11 @@ class API {
     }
     
     func loadImageData(stringUrl: String, typeContent: String) {
+        
+        if arrayUrlPopularGif.count == 50 && arrayUrlPopularSticker.count == 50 {
+            NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
+        }
+        
         guard let url = URL(string: stringUrl) else { return }
         task.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -61,11 +69,11 @@ class API {
             } else if typeContent == "Gif" {
                 arrayPopularGifData.append(data)
             }
-            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandom == true {
-                self.task.finishTasksAndInvalidate()
-                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
-            }
-            print("load popular gif")
+            NotificationCenter.default.post(name: NSNotification.Name("updateContent"), object: true)
+            
+//            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandomGif == true {
+//                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
+//            }
             }.resume()
     }
 }

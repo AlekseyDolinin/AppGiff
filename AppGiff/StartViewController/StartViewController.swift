@@ -9,7 +9,7 @@ var arrayTitleSticker = [String]()
 var randomDataGif = Data()
 var randomTitle = ""
 
-var loadRandom = Bool()
+var loadRandomGif = Bool()
 
 class StartViewController: UIViewController {
     
@@ -21,7 +21,7 @@ class StartViewController: UIViewController {
     let endPointGif: String = "api.giphy.com/v1/gifs/trending"
     let endPointStickers: String = "api.giphy.com/v1/stickers/trending"
     let apiKey: String = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
-    let countGif = "15"
+    let countGif = "50"
     let rating = "G"
     
     var titles = ["#thumbs up", "#the bachelor", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
@@ -30,15 +30,20 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
 //        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
         versionLabel.text = "Version " + String(getVersionApp())
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getRandomGif()
+        getPopular()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadContent(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
+    }
+    
+    func getPopular() {
         let requestURLGIF = metod + endPointGif + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         API.shared.loadTrendingGif(requestURL: requestURLGIF)
         API.shared.loadTrendingSticker(requestURL: requestURLStickers)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadContent(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
     }
     
     func getRandomGif() {
@@ -72,7 +77,6 @@ class StartViewController: UIViewController {
     }
     
     @objc func loadContent(notification: NSNotification) {
-        print("go to MainViewController")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
         vc?.modalPresentationStyle = .fullScreen
         DispatchQueue.main.async {
