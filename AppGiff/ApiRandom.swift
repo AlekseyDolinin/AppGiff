@@ -15,6 +15,7 @@ class ApiRandom {
                 return
             }
             do {
+                print("load data random gif for title")
                 let json = try JSON(data: data)
                 let randomURL = (json["data"]["images"]["fixed_width_downsampled"]["url"].string!)
                 self.loadImageData(randomURL: randomURL)
@@ -32,6 +33,7 @@ class ApiRandom {
                 return
             }
             randomDataGif = data
+            print("load random gif for title")
             loadRandom = true
             }.resume()
     }

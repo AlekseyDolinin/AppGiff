@@ -21,6 +21,7 @@ class API {
                 for stringUrl in arrayUrlPopularGif {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Gif")
                 }
+                print("load data popular gif")
             } catch {
                 print(error)
             }
@@ -41,6 +42,7 @@ class API {
                 for stringUrl in arrayUrlPopularSticker {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Sticker")
                 }
+                print("load data popular stickers")
             } catch {
                 print(error)
             }
@@ -63,6 +65,7 @@ class API {
                 self.task.finishTasksAndInvalidate()
                 NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
             }
+            print("load popular gif")
             }.resume()
     }
 }

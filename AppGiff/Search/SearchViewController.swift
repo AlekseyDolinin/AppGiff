@@ -68,15 +68,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
     }
     
     @IBAction func selectTab(_ sender: UIButton) {
-//        arraySearchData = []
         if sender.restorationIdentifier! == "Gif" {
             typeContentSearch = "Gif"
             tabButtonGif.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.15)
-            tabButtonSticker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.07)
+            tabButtonSticker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.05)
         } else if sender.restorationIdentifier! == "Sticker"{
             typeContentSearch = "Sticker"
-            tabButtonGif.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.07)
-            tabButtonSticker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1494553257)
+            tabButtonGif.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.05)
+            tabButtonSticker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.15)
         }
         searchBar.text = ""
         searchBar.becomeFirstResponder()
@@ -84,6 +83,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
     
     @objc func loadContentSearch(notification: NSNotification) {
         DispatchQueue.main.async { [weak self] in
+            self?.searchCollectionView.isUserInteractionEnabled = true
+            self?.searchCollectionView.alpha = 1.0
             self?.loadIndicator.stopAnimating()
             self?.searchCollectionView.reloadData()
         }
@@ -156,13 +157,11 @@ extension SearchViewController {
         searchBar.text = ""
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        inputSearchText = searchText
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchCollectionView.isUserInteractionEnabled = false
+        searchCollectionView.alpha = 0.1
         loadIndicator.startAnimating()
-        searchRequest(searchText: inputSearchText)
+        searchRequest(searchText: searchBar.text!)
     }
     
     func searchRequest(searchText: String) {

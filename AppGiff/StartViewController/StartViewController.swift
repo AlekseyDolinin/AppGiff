@@ -28,7 +28,8 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
+//        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
+        versionLabel.text = "Version " + String(getVersionApp())
         getRandomGif()
         let requestURLGIF = metod + endPointGif + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
         let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
