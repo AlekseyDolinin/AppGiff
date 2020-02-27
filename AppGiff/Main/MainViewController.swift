@@ -1,6 +1,8 @@
 import UIKit
 import GoogleMobileAds
 
+
+
 class MainViewController: UIViewController, GADBannerViewDelegate {
     
     static let shared = MainViewController()
@@ -12,6 +14,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var randomTitleLabel: UILabel!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var reloadImageTitle: UIButton!
     
     var bannerView: GADBannerView!
     
@@ -25,7 +28,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         setTitleImage()
         
         backImage.image = UIImage.gifImageWithName("back")
-        randomTitleLabel.text = "#" + randomTitle
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +48,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     
     @objc func updateImageTitle(notification: NSNotification) {
         DispatchQueue.main.async { [weak self] in
+            self?.randomTitleLabel.text = "#" + randomTitle
             self?.loadIndicator.stopAnimating()
             self?.randomTitleLabel.isHidden = false
             self?.titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
@@ -58,6 +61,9 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
     }
     
+    @IBAction func reloadImageTitleAction(_ sender: UIButton) {
+        StartViewController.shared.getRandomGif()
+    }
     
     @IBAction func openSearchAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController

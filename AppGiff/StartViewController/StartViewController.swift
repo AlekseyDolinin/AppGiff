@@ -28,9 +28,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        versionLabel.text = "Version " + String(getVersionApp()) + " " + getSystemLanguage()
         versionLabel.text = "Version " + String(getVersionApp())
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
