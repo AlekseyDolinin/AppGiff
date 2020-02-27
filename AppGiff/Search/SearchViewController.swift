@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
     @IBOutlet weak var tabButtonGif: UIButton!
     @IBOutlet weak var tabButtonSticker: UIButton!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchLabel: UILabel!
     
     var bannerView: GADBannerView!
     
@@ -24,8 +25,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadIndicator.stopAnimating()
+ 
+//        loadIndicator.stopAnimating()
+//        searchLabel.isHidden = true
         setGadBanner()
         setTabBar()
         setGestureBack()
@@ -34,9 +36,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
         
         if typeSearch == "tag" {
             loadIndicator.startAnimating()
+            searchLabel.isHidden = false
             searchBar.resignFirstResponder()
         } else {
             loadIndicator.stopAnimating()
+            searchLabel.isHidden = true
             searchBar.becomeFirstResponder()
         }
     }
@@ -86,6 +90,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
             self?.searchCollectionView.isUserInteractionEnabled = true
             self?.searchCollectionView.alpha = 1.0
             self?.loadIndicator.stopAnimating()
+            self?.searchLabel.isHidden = true
             self?.searchCollectionView.reloadData()
         }
     }
@@ -161,6 +166,7 @@ extension SearchViewController {
         searchCollectionView.isUserInteractionEnabled = false
         searchCollectionView.alpha = 0.1
         loadIndicator.startAnimating()
+        searchLabel.isHidden = false
         searchRequest(searchText: searchBar.text!)
     }
     

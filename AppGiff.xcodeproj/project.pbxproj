@@ -42,6 +42,7 @@
 		10C06D5E2403FE77002A3F95 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */; };
 		10C06D6024046A65002A3F95 /* ApiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5F24046A65002A3F95 /* ApiSearch.swift */; };
 		10C06D6224048DD9002A3F95 /* ApiRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D6124048DD9002A3F95 /* ApiRandom.swift */; };
+		10D9FC1B24079C7F00038D5E /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D9FC1A24079C7F00038D5E /* UIViewX.swift */; };
 		1456A1B413A477B74B7E94A3 /* Pods_AppGiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E547836178B8DC2D40DD576B /* Pods_AppGiff.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		10C06D5F24046A65002A3F95 /* ApiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSearch.swift; sourceTree = "<group>"; };
 		10C06D6124048DD9002A3F95 /* ApiRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRandom.swift; sourceTree = "<group>"; };
+		10D9FC1A24079C7F00038D5E /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
 		6197F9BB20B061760B203E85 /* Pods-AppGiff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppGiff.release.xcconfig"; path = "Target Support Files/Pods-AppGiff/Pods-AppGiff.release.xcconfig"; sourceTree = "<group>"; };
 		689CAEE219C09763AC486813 /* Pods-AppGiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppGiff.debug.xcconfig"; path = "Target Support Files/Pods-AppGiff/Pods-AppGiff.debug.xcconfig"; sourceTree = "<group>"; };
 		993787BFED39B0F90D76558B /* Pods-Gifty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gifty.debug.xcconfig"; path = "Target Support Files/Pods-Gifty/Pods-Gifty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				1002E3AF23FC7AF6008EF322 /* GIFAnimation.swift */,
 				1002E3B323FC811B008EF322 /* PinterestLayout.swift */,
+				10D9FC1A24079C7F00038D5E /* UIViewX.swift */,
 			);
 			path = HelpClasses;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				102DBB912405C48D004B80D2 /* DetailControllerGoogleAds.swift in Sources */,
 				1074A87D23FC8930008E5300 /* AllGifViewController.swift in Sources */,
 				1002E38F23FC639E008EF322 /* Gifty.xcdatamodeld in Sources */,
+				10D9FC1B24079C7F00038D5E /* UIViewX.swift in Sources */,
 				1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */,
 				1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */,
 				1002E38723FC639E008EF322 /* AppDelegate.swift in Sources */,
