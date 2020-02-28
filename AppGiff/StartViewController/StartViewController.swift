@@ -75,10 +75,10 @@ class StartViewController: UIViewController {
     }
     
     @objc func loadContent(notification: NSNotification) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
-        vc?.modalPresentationStyle = .fullScreen
-        DispatchQueue.main.async {
-            self.present(vc!, animated: false, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+            vc?.modalPresentationStyle = .fullScreen
+            self?.present(vc!, animated: false, completion: nil)
         }
     }
 }

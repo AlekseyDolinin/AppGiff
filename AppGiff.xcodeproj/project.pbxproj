@@ -640,6 +640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = MKHF2R38BL;
 				INFOPLIST_FILE = AppGiff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -650,7 +651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlekseyDolinin.AppGiff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -660,6 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = MKHF2R38BL;
 				INFOPLIST_FILE = AppGiff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -670,7 +672,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlekseyDolinin.AppGiff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
