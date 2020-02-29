@@ -25,9 +25,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-//        loadIndicator.stopAnimating()
-//        searchLabel.isHidden = true
+
         setGadBanner()
         setTabBar()
         setGestureBack()
@@ -43,11 +41,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
             searchLabel.isHidden = true
             searchBar.becomeFirstResponder()
         }
+        setSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         searchBar.text = inputSearchText
         NotificationCenter.default.addObserver(self, selector: #selector(loadContentSearch(notification:)), name: NSNotification.Name(rawValue: "Load"), object: nil)
+    }
+    
+    func setSearchBar() {
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = UIColor(named: "White_")
+        textFieldInsideSearchBar?.font = UIFont(name: "SFProDisplay-Light", size: 26.0)
+        searchBar.setImage(UIImage(named: "iconSearch"), for: .search, state: .normal)
     }
     
     func setTabBar() {
