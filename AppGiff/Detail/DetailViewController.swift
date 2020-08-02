@@ -39,6 +39,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
             currentArrayTitles = arrayTitleSticker
         } else if nameCurrentCollection == "Search" {
             currentData = arraySearchData
+        } else if nameCurrentCollection == "popular" {
         }
     }
     
@@ -130,7 +131,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         headerView.imgView.layer.cornerRadius = 5
         headerView.imgView.clipsToBounds = true
         
-        headerView.addToFavoritesButton.addTarget(self, action: #selector(addToFavoritesAction), for: .touchUpInside)
         headerView.sendButton.addTarget(self, action: #selector(sendGifAction), for: .touchUpInside)
         
         return headerView
@@ -143,7 +143,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let ratio: CGFloat = (image!.size.width) / (image!.size.height)
         let newWidthImage = self.view.frame.width - 16
         let newHeightImage = newWidthImage / ratio
-        return CGSize(width: newWidthImage, height: newHeightImage + 76)
+        return CGSize(width: newWidthImage, height: newHeightImage + 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -155,8 +155,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let image = UIImage.gifImageWithData(currentData[indexPath.row])
         let height: CGFloat = (image?.size.height)!
         let widthColum = (width / numberOfColums) - (xInsets + cellSpacing)
-        
+
         return CGSize(width: widthColum, height: widthColum * 2 / 3)
+        
     }
     // Did Select Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

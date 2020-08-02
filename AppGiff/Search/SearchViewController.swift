@@ -55,14 +55,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, GADBannerView
         textFieldInsideSearchBar?.font = UIFont(name: "SFProDisplay-Light", size: 20.0)
         textFieldInsideSearchBar?.backgroundColor = .clear
         textFieldInsideSearchBar?.textAlignment = .center
-        
         searchBar.barTintColor = .clear
         
 //        searchBar.setImage(UIImage(), for: .search, state: .normal)
-
-        
     }
-    
     
     func setTabBar() {
         tabButtonGif.layer.cornerRadius = 20

@@ -1,6 +1,6 @@
 import GoogleMobileAds
 
-extension MainViewController {
+extension AllPopularViewController {
     
     func setGadBanner() {
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)

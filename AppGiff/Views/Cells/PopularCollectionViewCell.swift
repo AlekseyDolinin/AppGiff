@@ -6,6 +6,8 @@ class PopularGifCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageForGIF.layer.cornerRadius = 5
+        imageForGIF.clipsToBounds = true
     }
 }
 
@@ -15,5 +17,8 @@ class PopularStickerCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageForSticker.layer.cornerRadius = 5
+        imageForSticker.clipsToBounds = true
     }
+
 }

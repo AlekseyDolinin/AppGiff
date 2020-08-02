@@ -1,8 +1,6 @@
 import UIKit
 import GoogleMobileAds
 
-
-
 class MainViewController: UIViewController, GADBannerViewDelegate {
     
     static let shared = MainViewController()
@@ -78,11 +76,13 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         transition.subtype = CATransitionSubtype.fromRight
         transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
         let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
-        if sender.restorationIdentifier == "gif" {
-            currentCollection = arrayPopularGifData
-        } else if sender.restorationIdentifier == "sticker" {
-            currentCollection = arrayPopularStickerData
+        
+        if sender.restorationIdentifier == "gifs" {
+            vc.typeContent = "gifs"
+        } else if sender.restorationIdentifier == "stickers" {
+            vc.typeContent = "stickers"
         }
+        
         view.window!.layer.add(transition, forKey: kCATransition)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false, completion: nil)
@@ -158,7 +158,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let transition = CATransition()
         transition.duration = 0.3
         transition.type = CATransitionType.push

@@ -8,6 +8,7 @@ target 'AppGiff' do
   # Pods for Gifty
 
 pod 'SwiftyJSON', '~> 4.0'
+pod 'Alamofire', '~> 4.0'
 
 pod 'Firebase/Analytics'
 pod 'Google-Mobile-Ads-SDK'
