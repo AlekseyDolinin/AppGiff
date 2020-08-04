@@ -38,7 +38,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
             currentData = arrayPopularStickerData
             currentArrayTitles = arrayTitleSticker
         } else if nameCurrentCollection == "Search" {
-            currentData = arraySearchData
+//            currentData = arraySearchData
         } else if nameCurrentCollection == "popular" {
         }
     }
@@ -159,13 +159,12 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: widthColum, height: widthColum * 2 / 3)
         
     }
-    // Did Select Item
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        currentIndex = indexPath.row
-        detailCollectionView.reloadData()
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.detailCollectionView.contentOffset.y = 0
-        }
-        
-    }
+
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        currentIndex = indexPath.row
+//        detailCollectionView.reloadData()
+//        UIView.animate(withDuration: 0.3) { [weak self] in
+//            self?.detailCollectionView.contentOffset.y = 0
+//        }
+//    }
 }
