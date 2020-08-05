@@ -8,9 +8,10 @@ class MainView: UIView {
     @IBOutlet weak var randomTitleLabel: UILabel!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadImageTitle: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     func configure() {
-        backImage.image = UIImage.gifImageWithName("back")
+        backImage.image = UIImage.gifImageWithName("back")     
     }
     
     func setTitle(title: String, randomDataGif: Data) {

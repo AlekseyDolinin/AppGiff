@@ -33,8 +33,15 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         getRndGif()
     }
     
-    @IBAction func openSearchAction(_ sender: Any) {
+    @IBAction func searchAction(_ sender: Any) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        vc.typeSearch = TypeSearch.searchGifs
+        view.window!.layer.add(transition, forKey: kCATransition)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false, completion: nil)
     }
@@ -59,12 +66,23 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction func selectTag(_ sender: UIButton) {
-        var tagText = (sender.titleLabel?.text)!
-        tagText.removeFirst()
+        var tag = sender.titleLabel!.text!
+        tag.removeFirst()
+        
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.searchText = tagText
+        vc.typeSearch = "tag"
+        vc.searchText = tag
+        view.window!.layer.add(transition, forKey: kCATransition)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false, completion: nil)
+        
+        
+        
     }
 }
 

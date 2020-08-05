@@ -1,12 +1,12 @@
-import UIKit
-import SwiftyJSON
-
-class ApiSearch {
-    
+//import UIKit
+//import SwiftyJSON
+//
+//class ApiSearch {
+//
 //    static let shared = ApiSearch()
-//    
+//
 //    let task = URLSession.shared
-//    
+//
 //    func searchData(requestURL: String) {
 //        guard let stringURL = URL(string: requestURL) else { return }
 //        task.dataTask(with: stringURL) { data, response, error in
@@ -26,7 +26,7 @@ class ApiSearch {
 //            }
 //            }.resume()
 //    }
-//    
+//
 //    func loadImageData(stringUrl: String) {
 //        guard let url = URL(string: stringUrl) else { return }
 //        task.dataTask(with: url) { (data, response, error) in
@@ -35,10 +35,10 @@ class ApiSearch {
 //                return
 //            }
 //            arraySearchData.append(data)
-//            
+//
 //            if arraySearchData.count == 50  {
 //                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
 //            }
 //            }.resume()
 //    }
-}
+//}

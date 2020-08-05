@@ -6,8 +6,6 @@ class ApiRandom {
     
     static let shared = ApiRandom()
     
-    let type = "gifs"
-    
     let metod = "https://"
     let path = "api.giphy.com/v1/gifs/"
     let endPoint = "search?"
@@ -26,8 +24,7 @@ class ApiRandom {
         }
     }
     
-    
-    func search(searchText: String, count: String, completion: @escaping ([String]) -> ()) {
+    func search(searchText: String, count: String, type: String, completion: @escaping ([String]) -> ()) {
         let stringURL = metod + "api.giphy.com/v1/\(type)/search?" + "api_key=\(apiKey)" + "&q=" + searchText + "&limit=" + count + "&offset=0&rating=G&lang=en"
         loadJSON(urlString: stringURL) { (json) in
             if json["meta"]["status"].intValue != 200 {
@@ -41,8 +38,6 @@ class ApiRandom {
             }
         }
     }
-    
-    
     
     func loadJSON(urlString: String, completion: @escaping (JSON) -> ()) {
         request(urlString).responseData { response in
@@ -62,40 +57,4 @@ class ApiRandom {
             completion(response.data!)
         }
     }
-    
-    
-    
-//    let task = URLSession.shared
-//
-//    func randomData(requestURL: String) {
-//        guard let stringURL = URL(string: requestURL) else { return }
-//        task.dataTask(with: stringURL) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error ?? "error")
-//                return
-//            }
-//            do {
-//                print("load data random gif for title")
-//                let json = try JSON(data: data)
-//
-//                self.loadImageData(randomURL: randomURL)
-//            } catch {
-//                print(error)
-//            }
-//            }.resume()
-//    }
-    
-//    func loadImageData(randomURL: String) {
-//        guard let url = URL(string: randomURL) else { return }
-//        task.dataTask(with: url) { (data, response, error) in
-//            guard let data = data, error == nil else {
-//                print(error ?? "error")
-//                return
-//            }
-//            randomDataGif = data
-//            NotificationCenter.default.post(name: NSNotification.Name("updateImageTitle"), object: true)
-//            print("load random gif for title")
-//            loadRandomGif = true
-//            }.resume()
-//    }
 }
