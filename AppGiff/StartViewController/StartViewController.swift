@@ -24,7 +24,7 @@ class StartViewController: UIViewController {
     func getVersionApp() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         let version = nsObject as! String
-        startView.versionLabel.text = "Version " + String(version)
+        startView.setVersionLabel(value: version)
     }
     
     deinit {

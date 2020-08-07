@@ -27,18 +27,18 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     
     func getRndGif() {
         let randomTitle = titles.randomElement()!
-        ApiRandom.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
+        Api.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
             self.mainView.setTitle(title: randomTitle, randomDataGif: data)
             self.mainView.showLabel()
         }
     }
     
     func getPopular() {
-        ApiRandom.shared.loadPopularGifs {(arrayUrlGifs) in
+        Api.shared.loadPopularGifs {(arrayUrlGifs) in
             self.arrayPopularGifsLinks = arrayUrlGifs
             self.mainView.popularGifCollection.reloadData()
         }
-        ApiRandom.shared.loadPopularStickers {(arrayUrlStickers) in
+        Api.shared.loadPopularStickers {(arrayUrlStickers) in
             self.arrayPopularStickersLinks = arrayUrlStickers
             self.mainView.popularStickerCollection.reloadData()
         }

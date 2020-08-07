@@ -1,85 +1,75 @@
 import UIKit
 import SwiftyJSON
+import Alamofire
 
-
-var arrayPopularGifData = [Data]()
-var arrayPopularStickerData = [Data]()
-
-var arrayTitleGif = [String]()
-var arrayTitleSticker = [String]()
-
-var randomDataGif = Data()
-var randomTitle = ""
-
-var loadRandomGif = Bool()
-
-class API {
+class Api {
     
-    static let shared = API()
+    static let shared = Api()
     
-    let task = URLSession.shared
+    let metod = "https://"
+    let path = "api.giphy.com/v1/gifs/"
+    let endPoint = "search?"
+    let apiKey = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
+    let rating = "&rating=G"
     
-    var arrayUrlPopularGif = [String]()
-    var arrayUrlPopularSticker = [String]()
-    
-    
-    func loadPopular(type: String) {
-        
-        var requestURL = ""
-        
-        if type == "gifs" {
-            requestURL = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=150&rating=G"
-        } else if type == "stickers" {
-            requestURL = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=150&rating=G"
+    func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
+        let stringURL = metod + path + "random?api_key=" + apiKey + "&tag=\(randomTitle)" + rating
+        loadJSON(urlString: stringURL) { (json) in
+            if let stringUrl = (json["data"]["images"]["fixed_width_downsampled"]["url"].string) {
+                self.loadData(urlString: stringUrl, completion: { (dataGif) in
+                    completion(dataGif)
+                })
+            }
         }
-        
-        guard let stringURL = URL(string: requestURL) else { return }
-        task.dataTask(with: stringURL) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error ?? "error")
-                return
-            }
-            do {
-                let json = try JSON(data: data)
-                self.arrayUrlPopularGif = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
-                arrayTitleGif = json["data"].arrayValue.map({$0["title"].string!})
-                for stringUrl in self.arrayUrlPopularGif {
-                    self.loadImageData(stringUrl: stringUrl, typeContent: "Gif")
-                }
-                print("load data popular gif")
-            } catch {
-                print(error)
-            }
-            }.resume()
     }
     
-    func loadImageData(stringUrl: String, typeContent: String) {
-        
-        if arrayUrlPopularGif.count == 50 && arrayUrlPopularSticker.count == 50 {
-            NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
-        }
-        
-        guard let url = URL(string: stringUrl) else { return }
-        task.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else {
-                print(error ?? "error")
+    func search(searchText: String, count: String, type: String, completion: @escaping ([String]) -> ()) {
+        let stringURL = metod + "api.giphy.com/v1/\(type)/search?" + "api_key=\(apiKey)" + "&q=" + searchText + "&limit=" + count + "&offset=0&rating=G&lang=en"
+        loadJSON(urlString: stringURL) { (json) in
+            if json["meta"]["status"].intValue != 200 {
                 return
             }
-            if typeContent == "Sticker" {
-                arrayPopularStickerData.append(data)
-            } else if typeContent == "Gif" {
-                arrayPopularGifData.append(data)
+            var arrayLinks = [String]()
+            for i in 0...Int(count)! - 1 {
+                let link: String = json["data"][i]["images"]["fixed_width_downsampled"]["url"].stringValue
+                arrayLinks.append(link)
+                completion(arrayLinks)
             }
-            NotificationCenter.default.post(name: NSNotification.Name("updateContent"), object: true)
-            
-            //            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandomGif == true {
-            //                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
-            //            }
-            }.resume()
+        }
     }
     
+    func loadJSON(urlString: String, completion: @escaping (JSON) -> ()) {
+        request(urlString).responseData { response in
+            if response.error != nil {
+                return
+            }
+            let json = JSON(response.value as Any)
+            completion(json)
+        }
+    }
+
+    func loadData(urlString: String, completion: @escaping (Data) -> ()) {
+        request(urlString).responseData { response in
+            if response.error != nil {
+                return
+            }
+            completion(response.data!)
+        }
+    }
     
+    func loadPopularGifs(completion: @escaping ([String]) -> ()) {
+        let urlGifs = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        loadJSON(urlString: urlGifs) { (json) in
+            let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+            completion(arrayUrls)
+        }
+    }
     
-    
-    
+    func loadPopularStickers(completion: @escaping ([String]) -> ()) {
+        let urlStickers = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        loadJSON(urlString: urlStickers) { (json) in
+            let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+            completion(arrayUrls)
+        }
+    }
 }

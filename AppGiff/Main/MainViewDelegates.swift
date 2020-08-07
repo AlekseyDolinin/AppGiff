@@ -5,7 +5,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func configureCollection() {
         mainView.popularGifCollection.delegate = self
         mainView.popularGifCollection.dataSource = self
-        
         mainView.popularStickerCollection.delegate = self
         mainView.popularStickerCollection.dataSource = self
     }
@@ -27,9 +26,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if let dataImage = imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
                 gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
             } else {
-                //если не нашлась data в кэше
-                //скачиваем по ссылке
-                ApiRandom.shared.loadData(urlString: arrayPopularGifsLinks[indexPath.row]) { [weak self] (dataImage) in
+                //если не нашлась data в кэше - скачиваем по ссылке
+                Api.shared.loadData(urlString: arrayPopularGifsLinks[indexPath.row]) { [weak self] (dataImage) in
                     // кэширование data
                     self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularGifsLinks[indexPath.row])! as NSString)
                     gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)
@@ -45,9 +43,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if let dataImage = imageCachData.object(forKey: arrayPopularStickersLinks[indexPath.row] as NSString) {
                 stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
             } else {
-                //если не нашлась data в кэше
-                //скачиваем по ссылке
-                ApiRandom.shared.loadData(urlString: arrayPopularStickersLinks[indexPath.row]) { [weak self] (dataImage) in
+                //если не нашлась data в кэше - скачиваем по ссылке
+                Api.shared.loadData(urlString: arrayPopularStickersLinks[indexPath.row]) { [weak self] (dataImage) in
                     // кэширование data
                     self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularStickersLinks[indexPath.row])! as NSString)
                     stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)

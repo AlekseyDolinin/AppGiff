@@ -32,11 +32,11 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         backImage.image = UIImage.gifImageWithName("back")
 
         if nameCurrentCollection == "PopularGif" {
-            currentData = arrayPopularGifData
-            currentArrayTitles = arrayTitleGif
+//            currentData = arrayPopularGifData
+//            currentArrayTitles = arrayTitleGif
         } else if nameCurrentCollection == "PopularSticker" {
-            currentData = arrayPopularStickerData
-            currentArrayTitles = arrayTitleSticker
+//            currentData = arrayPopularStickerData
+//            currentArrayTitles = arrayTitleSticker
         } else if nameCurrentCollection == "Search" {
 //            currentData = arraySearchData
         } else if nameCurrentCollection == "popular" {
