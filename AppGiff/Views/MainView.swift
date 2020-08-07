@@ -11,7 +11,8 @@ class MainView: UIView {
     @IBOutlet weak var searchButton: UIButton!
     
     func configure() {
-        backImage.image = UIImage.gifImageWithName("back")     
+        backImage.image = UIImage.gifImageWithName("back")
+        hideLabel()
     }
     
     func setTitle(title: String, randomDataGif: Data) {
@@ -27,4 +28,15 @@ class MainView: UIView {
         loadIndicator.startAnimating()
     }
     
+    func hideLabel() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.randomTitleLabel.alpha = 0
+        }
+    }
+    
+    func showLabel() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.randomTitleLabel.alpha = 1
+        }
+    }
 }

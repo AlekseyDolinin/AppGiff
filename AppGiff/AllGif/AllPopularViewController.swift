@@ -60,7 +60,7 @@ class AllPopularViewController: UIViewController, UIScrollViewDelegate, GADBanne
                 if response.error != nil {
                     return
                 }
-                print(response.data)
+//                print(response.data)
                 if response.value != nil {
                     self.currentCollection.append(response.value!)
                     completion(true)

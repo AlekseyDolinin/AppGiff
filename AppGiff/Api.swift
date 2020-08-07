@@ -22,33 +22,17 @@ class API {
     var arrayUrlPopularGif = [String]()
     var arrayUrlPopularSticker = [String]()
     
-    let metod: String = "https://"
-    let endPointGif: String = "api.giphy.com/v1/gifs/trending"
-    let endPointStickers: String = "api.giphy.com/v1/stickers/trending"
-    let apiKey: String = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
-    let countGif = "50"
-    let rating = "G"
     
-    
-    
-    //    func getPopular() {
-    //        let requestURLGIF = metod + endPointGif + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
-    //        let requestURLStickers = metod + endPointStickers + "?api_key=" + apiKey + "&limit=" + countGif + "&rating=" + rating
-    //        API.shared.loadTrendingGif(requestURL: requestURLGIF)
-    //        API.shared.loadTrendingSticker(requestURL: requestURLStickers)
-    //    }
-    
-    func getPopular() {
+    func loadPopular(type: String) {
         
-        print("getPopular")
+        var requestURL = ""
         
+        if type == "gifs" {
+            requestURL = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=150&rating=G"
+        } else if type == "stickers" {
+            requestURL = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=150&rating=G"
+        }
         
-    }
-    
-    
-    
-    
-    func loadTrendingGif(requestURL: String) {
         guard let stringURL = URL(string: requestURL) else { return }
         task.dataTask(with: stringURL) { data, response, error in
             guard let data = data, error == nil else {
@@ -63,27 +47,6 @@ class API {
                     self.loadImageData(stringUrl: stringUrl, typeContent: "Gif")
                 }
                 print("load data popular gif")
-            } catch {
-                print(error)
-            }
-            }.resume()
-    }
-    
-    func loadTrendingSticker(requestURL: String) {
-        guard let stringURL = URL(string: requestURL) else { return }
-        task.dataTask(with: stringURL) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error ?? "error")
-                return
-            }
-            do {
-                let json = try JSON(data: data)
-                self.arrayUrlPopularSticker = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
-                arrayTitleSticker = json["data"].arrayValue.map({$0["title"].string!})
-                for stringUrl in self.arrayUrlPopularSticker {
-                    self.loadImageData(stringUrl: stringUrl, typeContent: "Sticker")
-                }
-                print("load data popular stickers")
             } catch {
                 print(error)
             }
@@ -109,14 +72,14 @@ class API {
             }
             NotificationCenter.default.post(name: NSNotification.Name("updateContent"), object: true)
             
-//            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandomGif == true {
-//                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
-//            }
+            //            if arrayPopularGifData.count == 15 && arrayPopularStickerData.count == 15 && loadRandomGif == true {
+            //                NotificationCenter.default.post(name: NSNotification.Name("Load"), object: true)
+            //            }
             }.resume()
     }
     
     
-
+    
     
     
 }

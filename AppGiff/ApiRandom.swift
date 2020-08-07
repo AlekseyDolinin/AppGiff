@@ -15,7 +15,6 @@ class ApiRandom {
     func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
         let stringURL = metod + path + "random?api_key=" + apiKey + "&tag=\(randomTitle)" + rating
         loadJSON(urlString: stringURL) { (json) in
-            print(json)
             if let stringUrl = (json["data"]["images"]["fixed_width_downsampled"]["url"].string) {
                 self.loadData(urlString: stringUrl, completion: { (dataGif) in
                     completion(dataGif)
@@ -55,6 +54,22 @@ class ApiRandom {
                 return
             }
             completion(response.data!)
+        }
+    }
+    
+    func loadPopularGifs(completion: @escaping ([String]) -> ()) {
+        let urlGifs = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        loadJSON(urlString: urlGifs) { (json) in
+            let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+            completion(arrayUrls)
+        }
+    }
+    
+    func loadPopularStickers(completion: @escaping ([String]) -> ()) {
+        let urlStickers = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        loadJSON(urlString: urlStickers) { (json) in
+            let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+            completion(arrayUrls)
         }
     }
 }

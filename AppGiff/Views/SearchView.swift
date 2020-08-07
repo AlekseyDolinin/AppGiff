@@ -12,7 +12,7 @@ class SearchView: UIView {
     @IBOutlet weak var searchLabel: UILabel!
     
     var arraySearchData = [Data]()
-    var arrayLinks = [String]()
+    
     
     func configure(typeSearch: String, searchText: String) {
         
@@ -31,13 +31,11 @@ class SearchView: UIView {
         setRefreshControl()
     }
     
-    func setAfterRequest(_ arrayUrlString: [String]) {
-        arrayLinks = arrayUrlString
+    func setAfterRequest() {
         searchCollectionView.isUserInteractionEnabled = true
         searchCollectionView.alpha = 1
         hideAnimateSearch()
         searchCollectionView.reloadData()
-        
     }
     
     // MARK: - setTabBar
@@ -86,6 +84,7 @@ class SearchView: UIView {
     }
     
     func setTab(nameTab: String) {
+        searchCollectionView.scrollRectToVisible(CGRect.zero, animated: true)
         if nameTab == "gifs" {
             tabButtonGif.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.15)
             tabButtonSticker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.05)
@@ -96,8 +95,6 @@ class SearchView: UIView {
     }
     
     func hideCollectionForSearch() {
-        arraySearchData = []
-        arrayLinks = []
         showAnimateSearch()
         searchCollectionView.alpha = 0
         searchCollectionView.isUserInteractionEnabled = false

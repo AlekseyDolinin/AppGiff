@@ -1,5 +1,4 @@
 import UIKit
-import SwiftyJSON
 import GoogleMobileAds
 
 struct TypeSearch {
@@ -16,6 +15,8 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
         return (view as! SearchView)
     }
     
+    var arrayLinks = [String]()
+    
     var bannerView: GADBannerView!
     var typeSearch = String()
     var searchText = String()
@@ -24,9 +25,11 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchView.configure(typeSearch: typeSearch, searchText: searchText)
+        
         if typeSearch == "tag" {
             request(searchText: searchText, typeSearch: TypeSearch.searchGifs)
         }
+        
         setGadBanner()
         setGestureBack()
     }
@@ -41,19 +44,23 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
     
     func request(searchText: String, typeSearch: String) {
         searchView.hideCollectionForSearch()
-        ApiRandom.shared.search(searchText: searchText, count: "75", type: typeSearch) { [weak self] (arrayLinks) in
-            self?.searchView.setAfterRequest(arrayLinks)
+        ApiRandom.shared.search(searchText: searchText, count: "80", type: typeSearch) { [weak self] (arrayLinks) in
+            
+            self?.arrayLinks = arrayLinks
+            self?.searchView.setAfterRequest()
         }
     }
     
     // MARK: - selectTab
     @IBAction func selectTab(_ sender: UIButton) {
+        searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         searchView.setTab(nameTab: sender.restorationIdentifier!)
         typeSearch = sender.restorationIdentifier!
         if !trimingText(inputText: searchText).isEmpty {
             request(searchText: searchText, typeSearch: typeSearch)
         }
     }
+    
     
     func trimingText(inputText: String) -> String {
         return inputText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -78,24 +85,25 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchView.arrayLinks.count
+        return arrayLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCollectionViewCell
         
-        if let data = imageCachData.object(forKey: searchView.arrayLinks[indexPath.row] as NSString) {
-            searchCell.imageGif.image = UIImage.gifImageWithData(data as Data)
-            searchCell.loadIndicator.stopAnimating()
+        //если нашлась data в кэше
+        if let dataImage = imageCachData.object(forKey: arrayLinks[indexPath.row] as NSString) {
+            searchCell.imageGif.image = UIImage.gifImageWithData(dataImage as Data)
         } else {
-            ApiRandom.shared.loadData(urlString: searchView.arrayLinks[indexPath.row]) { (data) in
-                self.imageCachData.setObject(data as NSData, forKey: self.searchView.arrayLinks[indexPath.row] as NSString)
-                searchCell.imageGif.image = UIImage.gifImageWithData(data)
-                searchCell.loadIndicator.startAnimating()
-                self.searchView.searchCollectionView.reloadData()
+            //если не нашлась data в кэше
+            //скачиваем по ссылке
+            ApiRandom.shared.loadData(urlString: arrayLinks[indexPath.row]) { [weak self] (dataImage) in
+                // кэширование data
+                self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayLinks[indexPath.row])! as NSString)
+                searchCell.imageGif.image = UIImage.gifImageWithData(dataImage)
             }
         }
-        
+        searchCell.loadIndicator.stopAnimating()
         return searchCell
     }
 
