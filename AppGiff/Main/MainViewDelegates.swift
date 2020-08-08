@@ -23,13 +23,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == mainView.popularGifCollection {
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
             //если нашлась data в кэше
-            if let dataImage = imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
+            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
                 gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
             } else {
                 //если не нашлась data в кэше - скачиваем по ссылке
                 Api.shared.loadData(urlString: arrayPopularGifsLinks[indexPath.row]) { [weak self] (dataImage) in
                     // кэширование data
-                    self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularGifsLinks[indexPath.row])! as NSString)
+                    CachData.shared.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularGifsLinks[indexPath.row])! as NSString)
                     gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)
                     self?.mainView.popularGifCollection.reloadData()
                 }
@@ -40,13 +40,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == mainView.popularStickerCollection {
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
             //если нашлась data в кэше
-            if let dataImage = imageCachData.object(forKey: arrayPopularStickersLinks[indexPath.row] as NSString) {
+            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularStickersLinks[indexPath.row] as NSString) {
                 stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
             } else {
                 //если не нашлась data в кэше - скачиваем по ссылке
                 Api.shared.loadData(urlString: arrayPopularStickersLinks[indexPath.row]) { [weak self] (dataImage) in
                     // кэширование data
-                    self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularStickersLinks[indexPath.row])! as NSString)
+                    CachData.shared.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularStickersLinks[indexPath.row])! as NSString)
                     stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)
                     self?.mainView.popularStickerCollection.reloadData()
                 }
@@ -57,13 +57,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let dataImage = imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
-            let imageGIF = UIImage.gifImageWithData(dataImage as Data)
-            let ratio: CGFloat = ((imageGIF?.size.width)!) / ((imageGIF?.size.height)!)
-            return CGSize(width: 120 * ratio, height: 120)
+        
+        if !arrayPopularGifsLinks.isEmpty {
+            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
+                let imageGIF = UIImage.gifImageWithData(dataImage as Data)
+                let ratio: CGFloat = ((imageGIF?.size.width)!) / ((imageGIF?.size.height)!)
+                return CGSize(width: 120 * ratio, height: 120)
+            }
         }
         return CGSize()
     }
+    
+
     
     //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     //        let transition = CATransition()
@@ -79,3 +84,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     //        present(vc, animated: false, completion: nil)
     //    }
 }
+
+
+

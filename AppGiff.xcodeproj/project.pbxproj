@@ -44,6 +44,7 @@
 		10999FBD24DB51D8005A803A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FBC24DB51D8005A803A /* SearchView.swift */; };
 		10999FBF24DDF60E005A803A /* MainViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FBE24DDF60E005A803A /* MainViewDelegates.swift */; };
 		10999FC124DDFFD9005A803A /* SearchDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC024DDFFD9005A803A /* SearchDelegates.swift */; };
+		10999FC324DF2048005A803A /* CachData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC224DF2048005A803A /* CachData.swift */; };
 		10B5C25F24072EBE00EA6686 /* FullScreenGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B5C25E24072EBE00EA6686 /* FullScreenGoogleAds.swift */; };
 		10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D582403FD4F002A3F95 /* SearchViewController.swift */; };
 		10C06D5E2403FE77002A3F95 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */; };
@@ -126,6 +127,7 @@
 		10999FBC24DB51D8005A803A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		10999FBE24DDF60E005A803A /* MainViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDelegates.swift; sourceTree = "<group>"; };
 		10999FC024DDFFD9005A803A /* SearchDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegates.swift; sourceTree = "<group>"; };
+		10999FC224DF2048005A803A /* CachData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachData.swift; sourceTree = "<group>"; };
 		10B5C25E24072EBE00EA6686 /* FullScreenGoogleAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenGoogleAds.swift; sourceTree = "<group>"; };
 		10C06D582403FD4F002A3F95 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -181,8 +183,8 @@
 				109199E32401360D00613388 /* Main */,
 				10C06D5A2403FD55002A3F95 /* Search */,
 				1023DE6A2402BF9C00A5590F /* Detail */,
-				1074A88023FC89DE008E5300 /* AllGif */,
-				10C06D6124048DD9002A3F95 /* Api.swift */,
+				1074A88023FC89DE008E5300 /* AllPopular */,
+				10999FC424DF20E8005A803A /* Network */,
 				10C06D572403FD3B002A3F95 /* HelpClasses */,
 				1002E39023FC63A1008EF322 /* Assets.xcassets */,
 				10442CA82401BAE800A97E10 /* back.gif */,
@@ -250,13 +252,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		1074A88023FC89DE008E5300 /* AllGif */ = {
+		1074A88023FC89DE008E5300 /* AllPopular */ = {
 			isa = PBXGroup;
 			children = (
 				1074A87C23FC8930008E5300 /* AllPopularViewController.swift */,
 				10999FB424D77245005A803A /* AllPopularGoogleAds.swift */,
 			);
-			path = AllGif;
+			path = AllPopular;
 			sourceTree = "<group>";
 		};
 		109199E32401360D00613388 /* Main */ = {
@@ -269,9 +271,18 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		10999FC424DF20E8005A803A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				10C06D6124048DD9002A3F95 /* Api.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		10C06D572403FD3B002A3F95 /* HelpClasses */ = {
 			isa = PBXGroup;
 			children = (
+				10999FC224DF2048005A803A /* CachData.swift */,
 				10999FBA24DB3E9C005A803A /* ColorSet.swift */,
 				1002E3AF23FC7AF6008EF322 /* GIFAnimation.swift */,
 				1002E3B323FC811B008EF322 /* PinterestLayout.swift */,
@@ -491,6 +502,7 @@
 				1071199424D750BA00AC39E8 /* AllPopularView.swift in Sources */,
 				1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */,
 				1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */,
+				10999FC324DF2048005A803A /* CachData.swift in Sources */,
 				1002E38723FC639E008EF322 /* AppDelegate.swift in Sources */,
 				1002E3B423FC811B008EF322 /* PinterestLayout.swift in Sources */,
 				10C06D6224048DD9002A3F95 /* Api.swift in Sources */,

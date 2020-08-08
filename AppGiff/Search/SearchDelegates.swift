@@ -10,14 +10,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCollectionViewCell
         
         //если нашлась data в кэше
-        if let dataImage = imageCachData.object(forKey: arrayLinks[indexPath.row] as NSString) {
+        if let dataImage = CachData.shared.imageCachData.object(forKey: arrayLinks[indexPath.row] as NSString) {
             searchCell.imageGif.image = UIImage.gifImageWithData(dataImage as Data)
         } else {
             //если не нашлась data в кэше
             //скачиваем по ссылке
             Api.shared.loadData(urlString: arrayLinks[indexPath.row]) { [weak self] (dataImage) in
                 // кэширование data
-                self?.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayLinks[indexPath.row])! as NSString)
+                CachData.shared.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayLinks[indexPath.row])! as NSString)
                 searchCell.imageGif.image = UIImage.gifImageWithData(dataImage)
             }
         }

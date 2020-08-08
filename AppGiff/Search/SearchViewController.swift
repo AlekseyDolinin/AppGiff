@@ -15,18 +15,27 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
         return (view as! SearchView)
     }
     
+    var dataTransition = [String: Any]()
+
     var arrayLinks = [String]()
-    
     var bannerView: GADBannerView!
     var typeSearch = String()
     var searchText = String()
-    var imageCachData = NSCache<NSString, NSData>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if dataTransition["tagString"] != nil {
+            searchText = dataTransition["tagString"] as! String
+        }
+        
+        if dataTransition["typeSearch"] != nil {
+            typeSearch = dataTransition["typeSearch"] as! String
+        }
+        
         searchView.configure(typeSearch: typeSearch, searchText: searchText)
         
-        if typeSearch == "tag" {
+        if typeSearch == TypeSearch.searchGifs && searchText != "" {
             request(searchText: searchText, typeSearch: TypeSearch.searchGifs)
         }
         
