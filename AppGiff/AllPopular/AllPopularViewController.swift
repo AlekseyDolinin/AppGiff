@@ -1,10 +1,8 @@
 import UIKit
-import SwiftyJSON
 import GoogleMobileAds
-import Alamofire
 
-class AllPopularViewController: UIViewController, GADBannerViewDelegate {
-        
+class AllPopularViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
+    
     var allPopularView: AllPopularView! {
         guard isViewLoaded else {return nil}
         return (view as! AllPopularView)
@@ -24,16 +22,9 @@ class AllPopularViewController: UIViewController, GADBannerViewDelegate {
         allPopularView.allPopularCollectionView.dataSource = self
         
         allPopularView.configure(typeContent)
-        setGestureBack()
         getPopular(typeContent: typeContent)
         setGadBanner()
-    }
-    
-    func setGestureBack() {
-        var swipeRight = UISwipeGestureRecognizer()
-        swipeRight.direction = .right
-        swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(backAction))
-        self.view.addGestureRecognizer(swipeRight)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func getPopular(typeContent: String) {

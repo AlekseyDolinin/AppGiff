@@ -15,12 +15,6 @@ class StartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "MainViewController")
         navigationController?.pushViewController(vc!, animated: true)
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [weak self] in
-//            let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MainNC")
-//            vc?.modalPresentationStyle = .fullScreen
-//            self?.present(vc!, animated: false, completion: nil)
-//        }
     }
 
     // получение номера версии приложения

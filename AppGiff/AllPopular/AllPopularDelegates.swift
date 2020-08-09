@@ -11,36 +11,28 @@ extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let link: String = arrayPopularLinks[indexPath.row]
         if Array(storage.keys).contains(link) {
-            allCell.imageGif.image = storage[link] as? UIImage
+            allCell.imageGif.image = storage[link]
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 allCell.imageGif.image = image
-                storage = [link: image]
+                storage[link] = image
             }
         }
         return allCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthCell = collectionView.frame.size.width / 2 - 12
-        return CGSize(width: widthCell, height: widthCell)
+        let value = collectionView.frame.size.width / 2 - 12
+        return CGSize(width: value, height: value)
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        let transition = CATransition()
-    //        transition.duration = 0.3
-    //        transition.type = CATransitionType.push
-    //        transition.subtype = CATransitionSubtype.fromRight
-    //        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-    //        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-    //        vc.currentIndex = indexPath.row
-    //        vc.nameCurrentCollection = "popular"
-    //        vc.currentData = currentCollection
-    //        view.window!.layer.add(transition, forKey: kCATransition)
-    //        vc.modalPresentationStyle = .fullScreen
-    //        present(vc, animated: false, completion: nil)
-    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
+        vc.linkCurrentImage = arrayPopularLinks[indexPath.row]
+        vc.arrayLinks = arrayPopularLinks
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 

@@ -12,12 +12,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let link: String = arrayLinks[indexPath.row]
         
         if Array(storage.keys).contains(link) {
-            searchCell.imageGif.image = storage[link] as? UIImage
+            searchCell.imageGif.image = storage[link]
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 searchCell.imageGif.image = image
-                storage = [link: image]
+                storage[link] = image
             }
         }
         
@@ -30,20 +30,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: value, height: value)
     }
     
-    //    // Did Select Item
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        let transition = CATransition()
-    //        transition.duration = 0.3
-    //        transition.type = CATransitionType.push
-    //        transition.subtype = CATransitionSubtype.fromRight
-    //        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-    //        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-    //        vc.currentIndex = indexPath.row
-    //        vc.nameCurrentCollection = collectionView.restorationIdentifier!
-    //        view.window!.layer.add(transition, forKey: kCATransition)
-    //        vc.modalPresentationStyle = .fullScreen
-    //        present(vc, animated: false, completion: nil)
-    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
+        vc.linkCurrentImage = arrayLinks[indexPath.row]
+        vc.arrayLinks = arrayLinks
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {

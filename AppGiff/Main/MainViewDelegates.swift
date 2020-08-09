@@ -17,12 +17,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularGifsLinks[indexPath.row]
             if Array(storage.keys).contains(link) {
-                gifCell.imageForGIF.image = storage[link] as? UIImage
+                gifCell.imageForGIF.image = storage[link]
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     gifCell.imageForGIF.image = image
-                    storage = [link: image]
+                    storage[link] = image
                 }
             }
             return gifCell
@@ -32,12 +32,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularStickersLinks[indexPath.row]
             if Array(storage.keys).contains(link) {
-                stickerCell.imageForGIF.image = storage[link] as? UIImage
+                stickerCell.imageForGIF.image = storage[link] 
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     stickerCell.imageForGIF.image = image
-                    storage = [link: image]
+                    storage[link] = image
                 }
             }
             return stickerCell
@@ -49,21 +49,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return CGSize(width: 120, height: 120)
     }
     
-
-    
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        let transition = CATransition()
-    //        transition.duration = 0.3
-    //        transition.type = CATransitionType.push
-    //        transition.subtype = CATransitionSubtype.fromRight
-    //        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-    //        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-    //        vc.currentIndex = indexPath.row
-    //        vc.nameCurrentCollection = collectionView.restorationIdentifier!
-    //        view.window!.layer.add(transition, forKey: kCATransition)
-    //        vc.modalPresentationStyle = .fullScreen
-    //        present(vc, animated: false, completion: nil)
-    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
+        if collectionView == mainView.popularGifCollection {
+            vc.linkCurrentImage = arrayPopularGifsLinks[indexPath.row]
+            vc.arrayLinks = arrayPopularGifsLinks
+            
+        } else if collectionView == mainView.popularStickerCollection {
+            vc.linkCurrentImage = arrayPopularStickersLinks[indexPath.row]
+            vc.arrayLinks = arrayPopularStickersLinks
+        }
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 

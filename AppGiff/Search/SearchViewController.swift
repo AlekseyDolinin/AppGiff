@@ -8,7 +8,7 @@ struct TypeSearch {
     static let searchStickers = "stickers"
 }
 
-class SearchViewController: UIViewController, GADBannerViewDelegate {
+class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
     
     var searchView: SearchView! {
         guard isViewLoaded else {return nil}
@@ -40,20 +40,13 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
         }
         
         setGadBanner()
-        setGestureBack()
-    }
-    
-    // MARK: - setGestureBack
-    func setGestureBack() {
-        var swipeRight = UISwipeGestureRecognizer()
-        swipeRight.direction = .right
-        swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(back))
-        self.view.addGestureRecognizer(swipeRight)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
     }
     
     func request(searchText: String, typeSearch: String) {
         searchView.hideCollectionForSearch()
-        Api.shared.search(searchText: searchText, count: "80", type: typeSearch) { [weak self] (arrayLinks) in
+        Api.shared.search(searchText: searchText, type: typeSearch) { [weak self] (arrayLinks) in
             
             self?.arrayLinks = arrayLinks
             self?.searchView.setAfterRequest()
@@ -74,12 +67,8 @@ class SearchViewController: UIViewController, GADBannerViewDelegate {
         return inputText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    @objc func back() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     @IBAction func backAction(_ sender: UIButton) {
-        back()
+        navigationController?.popViewController(animated: true)
     }
 }
 

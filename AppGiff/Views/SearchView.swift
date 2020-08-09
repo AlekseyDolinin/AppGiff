@@ -48,17 +48,15 @@ class SearchView: UIView {
     
     // MARK: - setCollection
     func setCollection() {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.searchCollectionView.alpha = 0
-            let widthCell = (self?.frame.size.width)! / 2 - 12
-            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: 150, left: 8, bottom: 70, right: 8)
-            layout.itemSize = CGSize(width: widthCell, height: widthCell / 2 * 3)
-            layout.minimumInteritemSpacing = 8
-            layout.minimumLineSpacing = 8
-            self?.searchCollectionView!.collectionViewLayout = layout
-            self?.searchCollectionView.keyboardDismissMode = .onDrag
-        }
+        searchCollectionView.alpha = 0
+        let widthCell = frame.size.width / 2 - 12
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 150, left: 8, bottom: 70, right: 8)
+        layout.itemSize = CGSize(width: widthCell, height: widthCell / 2 * 3)
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        searchCollectionView!.collectionViewLayout = layout
+        searchCollectionView.keyboardDismissMode = .onDrag
     }
     
     // MARK: - setSearchBar

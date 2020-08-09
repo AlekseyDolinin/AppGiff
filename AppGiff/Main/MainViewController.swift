@@ -1,7 +1,7 @@
 import UIKit
 import GoogleMobileAds
 
-var storage = [String: UIImage?]()
+var storage = [String: UIImage]()
 
 class MainViewController: UIViewController, GADBannerViewDelegate {
     

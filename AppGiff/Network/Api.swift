@@ -6,14 +6,10 @@ class Api {
     
     static let shared = Api()
     
-    let metod = "https://"
-    let path = "api.giphy.com/v1/gifs/"
-    let endPoint = "search?"
-    let apiKey = "wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz"
-    let rating = "&rating=G"
+    let count = 100
     
     func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
-        let stringURL = metod + path + "random?api_key=" + apiKey + "&tag=\(randomTitle)" + rating
+        let stringURL = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=\(randomTitle)&rating=G"
         loadJSON(urlString: stringURL) { (json) in
             if let stringUrl = (json["data"]["images"]["fixed_width_downsampled"]["url"].string) {
                 self.loadData(urlString: stringUrl, completion: { (dataGif) in
@@ -23,14 +19,14 @@ class Api {
         }
     }
     
-    func search(searchText: String, count: String, type: String, completion: @escaping ([String]) -> ()) {
-        let stringURL = metod + "api.giphy.com/v1/\(type)/search?" + "api_key=\(apiKey)" + "&q=" + searchText + "&limit=" + count + "&offset=0&rating=G&lang=en"
+    func search(searchText: String, type: String, completion: @escaping ([String]) -> ()) {
+        let stringURL = "https://api.giphy.com/v1/\(type)/search?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&q=\(searchText)&limit=\(count)&offset=0&rating=G&lang=en"
         loadJSON(urlString: stringURL) { (json) in
             if json["meta"]["status"].intValue != 200 {
                 return
             }
             var arrayLinks = [String]()
-            for i in 0...Int(count)! - 1 {
+            for i in 0...Int(self.count) - 1 {
                 let link: String = json["data"][i]["images"]["fixed_width_downsampled"]["url"].stringValue
                 arrayLinks.append(link)
                 completion(arrayLinks)
@@ -58,7 +54,7 @@ class Api {
     }
     
     func loadPopularGifs(completion: @escaping ([String]) -> ()) {
-        let urlGifs = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        let urlGifs = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=\(count)&rating=G"
         loadJSON(urlString: urlGifs) { (json) in
             let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
             completion(arrayUrls)
@@ -66,7 +62,7 @@ class Api {
     }
     
     func loadPopularStickers(completion: @escaping ([String]) -> ()) {
-        let urlStickers = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=75&rating=G"
+        let urlStickers = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=\(count)&rating=G"
         loadJSON(urlString: urlStickers) { (json) in
             let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
             completion(arrayUrls)
