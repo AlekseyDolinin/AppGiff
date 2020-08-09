@@ -3,26 +3,30 @@ import GoogleMobileAds
 
 class DetailViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var detailCollectionView: UICollectionView!
-    @IBOutlet weak var backImage: UIImageView!
+    var detailView: DetailView! {
+        guard isViewLoaded else {return nil}
+        return (view as! DetailView)
+    }
     
     var linkCurrentImage = String()
     var arrayLinks = [String]()
-    var dataGifForSend = Data()
     var interstitial: GADInterstitial!
     var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        detailCollectionView.delegate = self
-        detailCollectionView.dataSource = self
         
+        configure()
         setGadBanner()
         setGadFullView()
         
-        backImage.image = UIImage.gifImageWithName("back")
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
+    func configure() {
+        detailView.detailCollectionView.delegate = self
+        detailView.detailCollectionView.dataSource = self
     }
     
     @objc func sendGifAction() {
@@ -35,7 +39,8 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     }
     
     func showControllerShare() {
-        let shareController = UIActivityViewController(activityItems: [dataGifForSend], applicationActivities: nil)
+        let dataGifForSend = storage[linkCurrentImage]
+        let shareController = UIActivityViewController(activityItems: [dataGifForSend!], applicationActivities: nil)
         shareController.completionWithItemsHandler = {_, bool, _, _ in
             if bool {
                 print("it is done!")
@@ -44,6 +49,12 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
             }
         }
         present(shareController, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func backAction(_ sender: UIButton) {

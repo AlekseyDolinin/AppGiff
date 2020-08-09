@@ -12,12 +12,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let link: String = arrayLinks[indexPath.row]
         
         if Array(storage.keys).contains(link) {
-            searchCell.imageGif.image = storage[link]
+            searchCell.imageGif.image = UIImage.gifImageWithData(storage[link]!)
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 searchCell.imageGif.image = image
-                storage[link] = image
+                storage[link] = dataImage
             }
         }
         
@@ -49,6 +49,8 @@ extension SearchViewController: UISearchBarDelegate {
         if searchBar.text != nil {
             searchText = searchBar.text!
             request(searchText: searchText, typeSearch: typeSearch)
+        } else {
+            searchView.hideAnimateSearch()
         }
     }
 }

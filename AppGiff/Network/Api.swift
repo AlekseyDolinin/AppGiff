@@ -6,7 +6,7 @@ class Api {
     
     static let shared = Api()
     
-    let count = 100
+    let count = 300
     
     func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
         let stringURL = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=\(randomTitle)&rating=G"
@@ -25,11 +25,15 @@ class Api {
             if json["meta"]["status"].intValue != 200 {
                 return
             }
-            var arrayLinks = [String]()
-            for i in 0...Int(self.count) - 1 {
-                let link: String = json["data"][i]["images"]["fixed_width_downsampled"]["url"].stringValue
-                arrayLinks.append(link)
-                completion(arrayLinks)
+            if json["pagination"]["total_count"].intValue == 0 {
+                completion([])
+            } else {
+                var arrayLinks = [String]()
+                for i in 0...Int(self.count) - 1 {
+                    let link: String = json["data"][i]["images"]["fixed_width_downsampled"]["url"].stringValue
+                    arrayLinks.append(link)
+                    completion(arrayLinks)
+                }
             }
         }
     }

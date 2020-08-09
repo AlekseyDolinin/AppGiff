@@ -25,6 +25,7 @@ class AllPopularViewController: UIViewController, GADBannerViewDelegate, UIGestu
         getPopular(typeContent: typeContent)
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func getPopular(typeContent: String) {
@@ -41,6 +42,12 @@ class AllPopularViewController: UIViewController, GADBannerViewDelegate, UIGestu
                 self?.allPopularView.showCollection()
             }
         }
+    }
+    
+    @IBAction func searchAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func backAction(_ sender: UIButton) {

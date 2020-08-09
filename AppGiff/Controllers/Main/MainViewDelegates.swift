@@ -17,12 +17,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularGifsLinks[indexPath.row]
             if Array(storage.keys).contains(link) {
-                gifCell.imageForGIF.image = storage[link]
+                gifCell.imageForGIF.image = UIImage.gifImageWithData(storage[link]!)
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     gifCell.imageForGIF.image = image
-                    storage[link] = image
+                    storage[link] = dataImage
                 }
             }
             return gifCell
@@ -32,12 +32,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularStickersLinks[indexPath.row]
             if Array(storage.keys).contains(link) {
-                stickerCell.imageForGIF.image = storage[link] 
+                stickerCell.imageForGIF.image = UIImage.gifImageWithData(storage[link]!)
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     stickerCell.imageForGIF.image = image
-                    storage[link] = image
+                    storage[link] = dataImage
                 }
             }
             return stickerCell

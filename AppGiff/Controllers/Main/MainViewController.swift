@@ -1,9 +1,9 @@
 import UIKit
 import GoogleMobileAds
 
-var storage = [String: UIImage]()
+var storage = [String: Data]()
 
-class MainViewController: UIViewController, GADBannerViewDelegate {
+class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
     
     var mainView: MainView! {
         guard isViewLoaded else {return nil}
@@ -26,6 +26,11 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         getRndGif()
         getPopular()
         configureCollection()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func configureCollection() {

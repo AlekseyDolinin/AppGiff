@@ -11,12 +11,13 @@ extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let link: String = arrayPopularLinks[indexPath.row]
         if Array(storage.keys).contains(link) {
-            allCell.imageGif.image = storage[link]
+            allCell.imageGif.image = UIImage.gifImageWithData(storage[link]!)
+            
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 allCell.imageGif.image = image
-                storage[link] = image
+                storage[link] = dataImage
             }
         }
         return allCell

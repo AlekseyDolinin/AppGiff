@@ -31,11 +31,18 @@ class SearchView: UIView {
         setRefreshControl()
     }
     
-    func setAfterRequest() {
-        searchCollectionView.isUserInteractionEnabled = true
-        searchCollectionView.alpha = 1
-        hideAnimateSearch()
-        searchCollectionView.reloadData()
+    func setAfterRequest(_ countLink: Int) {
+        print("countLink: \(countLink)")
+        if countLink != 0 {
+            searchCollectionView.isUserInteractionEnabled = true
+            searchCollectionView.alpha = 1
+            hideAnimateSearch()
+            searchCollectionView.reloadData()
+        } else {
+            loadIndicator.stopAnimating()
+            searchCollectionView.alpha = 0
+            searchLabel.text = "NOT FOUND"
+        }
     }
     
     // MARK: - setTabBar

@@ -530,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSC-ZT-7EM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2077.5" y="724.64788732394368"/>
+            <point key="canvasLocation" x="2040" y="725"/>
         </scene>
         <!--All Popular View Controller-->
         <scene sceneID="MQ2-vK-FxW">
@@ -609,14 +609,29 @@
                                             <action selector="backAction:" destination="RPj-CI-Gec" eventType="touchUpInside" id="toe-b9-ilF"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muQ-7K-Ias">
+                                        <rect key="frame" x="270" y="60" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="hWp-jE-dJ0"/>
+                                            <constraint firstAttribute="width" constant="50" id="mwJ-ZU-gqn"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <state key="normal" image="iconSearch"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="43W-hC-26x" eventType="touchUpInside" id="OxV-cN-BZg"/>
+                                            <action selector="searchAction:" destination="RPj-CI-Gec" eventType="touchUpInside" id="TqM-kL-L1Z"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Pink_"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ho4-Wj-9Up" secondAttribute="bottom" constant="15" id="6EL-mC-Ws1"/>
                                     <constraint firstAttribute="trailing" secondItem="Q0g-sG-x1P" secondAttribute="trailing" constant="-5" id="EMT-Kp-Uvy"/>
                                     <constraint firstItem="ho4-Wj-9Up" firstAttribute="centerX" secondItem="5jQ-5M-NDY" secondAttribute="centerX" id="HDc-xm-5wW"/>
+                                    <constraint firstAttribute="bottom" secondItem="muQ-7K-Ias" secondAttribute="bottom" id="PJ5-vi-lc8"/>
                                     <constraint firstItem="Q0g-sG-x1P" firstAttribute="top" secondItem="5jQ-5M-NDY" secondAttribute="top" id="Qqs-vw-NYY"/>
                                     <constraint firstAttribute="height" constant="110" id="Rtw-Cy-ccz"/>
+                                    <constraint firstAttribute="trailing" secondItem="muQ-7K-Ias" secondAttribute="trailing" id="fsq-Kd-frh"/>
                                     <constraint firstItem="qOp-A0-zSB" firstAttribute="leading" secondItem="5jQ-5M-NDY" secondAttribute="leading" id="gcc-LB-YhK"/>
                                     <constraint firstAttribute="bottom" secondItem="Q0g-sG-x1P" secondAttribute="bottom" id="rJ9-mG-RYc"/>
                                     <constraint firstAttribute="bottom" secondItem="qOp-A0-zSB" secondAttribute="bottom" id="sx8-8D-1GL"/>
@@ -677,7 +692,7 @@
         <scene sceneID="ljb-1R-lKT">
             <objects>
                 <viewController storyboardIdentifier="detailVC" id="8Cy-Rp-PHH" customClass="DetailViewController" customModule="AppGiff" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="71p-il-fhk">
+                    <view key="view" contentMode="scaleToFill" id="71p-il-fhk" customClass="DetailView" customModule="AppGiff" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -807,11 +822,26 @@
                                             <action selector="backAction:" destination="8Cy-Rp-PHH" eventType="touchUpInside" id="0L3-ff-mmU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi8-IJ-ORb">
+                                        <rect key="frame" x="270" y="60" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="8Zg-Wj-2PP"/>
+                                            <constraint firstAttribute="width" constant="50" id="tMn-Jt-iv9"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                        <state key="normal" image="iconSearch"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="43W-hC-26x" eventType="touchUpInside" id="Vha-NM-ewj"/>
+                                            <action selector="searchAction:" destination="8Cy-Rp-PHH" eventType="touchUpInside" id="WDK-Lk-yN7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Pink_"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="oi8-IJ-ORb" secondAttribute="bottom" id="JrO-mI-juX"/>
                                     <constraint firstAttribute="bottom" secondItem="LAX-qp-HqB" secondAttribute="bottom" constant="15" id="KLE-SI-MdA"/>
                                     <constraint firstAttribute="trailing" secondItem="5KR-LH-Uwq" secondAttribute="trailing" constant="-5" id="NQ0-Gu-Beu"/>
+                                    <constraint firstAttribute="trailing" secondItem="oi8-IJ-ORb" secondAttribute="trailing" id="QBT-xz-hjv"/>
                                     <constraint firstAttribute="bottom" secondItem="Pf3-qr-UDZ" secondAttribute="bottom" id="W5n-77-YIV"/>
                                     <constraint firstItem="5KR-LH-Uwq" firstAttribute="top" secondItem="5eq-fx-Xib" secondAttribute="top" id="a9t-Oh-MA2"/>
                                     <constraint firstItem="Pf3-qr-UDZ" firstAttribute="leading" secondItem="5eq-fx-Xib" secondAttribute="leading" id="ad0-qa-1vQ"/>
@@ -833,14 +863,14 @@
                             <constraint firstItem="5eq-fx-Xib" firstAttribute="trailing" secondItem="LcL-52-dM4" secondAttribute="trailing" id="YcW-nM-WTZ"/>
                             <constraint firstItem="ax4-77-UZq" firstAttribute="top" secondItem="p7T-K2-4SM" secondAttribute="bottom" id="jxM-DW-b2p"/>
                             <constraint firstItem="ax4-77-UZq" firstAttribute="trailing" secondItem="LcL-52-dM4" secondAttribute="trailing" id="lKt-Wh-Qmq"/>
-                            <constraint firstItem="ax4-77-UZq" firstAttribute="bottom" secondItem="LcL-52-dM4" secondAttribute="bottom" id="x5X-4h-Egf"/>
+                            <constraint firstItem="ax4-77-UZq" firstAttribute="bottom" secondItem="71p-il-fhk" secondAttribute="bottom" id="x5X-4h-Egf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LcL-52-dM4"/>
+                        <connections>
+                            <outlet property="backImage" destination="5KR-LH-Uwq" id="yTV-J9-ZHx"/>
+                            <outlet property="detailCollectionView" destination="ax4-77-UZq" id="yo3-bu-tbg"/>
+                        </connections>
                     </view>
-                    <connections>
-                        <outlet property="backImage" destination="5KR-LH-Uwq" id="PYR-c8-o1g"/>
-                        <outlet property="detailCollectionView" destination="ax4-77-UZq" id="AoK-jG-TDz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXg-X8-kIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -906,8 +936,8 @@
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoG-bn-SDA">
-                                <rect key="frame" x="130.5" y="325.5" width="59.5" height="18"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
+                                <rect key="frame" x="124" y="322.5" width="72.5" height="24"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" name="White_"/>
                                 <nil key="highlightedColor"/>
                             </label>

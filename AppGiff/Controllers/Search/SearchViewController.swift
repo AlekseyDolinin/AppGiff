@@ -16,7 +16,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
     }
     
     var dataTransition = [String: Any]()
-
     var arrayLinks = [String]()
     var bannerView: GADBannerView!
     var typeSearch = String()
@@ -28,28 +27,24 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         if dataTransition["tagString"] != nil {
             searchText = dataTransition["tagString"] as! String
         }
-        
         if dataTransition["typeSearch"] != nil {
             typeSearch = dataTransition["typeSearch"] as! String
         }
-        
         searchView.configure(typeSearch: typeSearch, searchText: searchText)
         
         if typeSearch == TypeSearch.searchGifs && searchText != "" {
             request(searchText: searchText, typeSearch: TypeSearch.searchGifs)
         }
-        
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func request(searchText: String, typeSearch: String) {
         searchView.hideCollectionForSearch()
         Api.shared.search(searchText: searchText, type: typeSearch) { [weak self] (arrayLinks) in
-            
             self?.arrayLinks = arrayLinks
-            self?.searchView.setAfterRequest()
+            self?.searchView.setAfterRequest(arrayLinks.count)
         }
     }
     
