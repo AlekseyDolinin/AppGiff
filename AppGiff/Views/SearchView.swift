@@ -11,16 +11,15 @@ class SearchView: UIView {
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchLabel: UILabel!
     
-    var arraySearchData = [Data]()
-    
-    
     func configure(typeSearch: String, searchText: String) {
         
         backImage.image = UIImage.gifImageWithName("back")
         searchBar.text = searchText
         
+        hideCollectionForSearch()
+        
         if typeSearch == TypeSearch.searchGifs {
-            hideCollectionForSearch()
+            print("поиск")
             hideAnimateSearch()
             searchBar.becomeFirstResponder()
         }
@@ -31,13 +30,15 @@ class SearchView: UIView {
         setRefreshControl()
     }
     
-    func setAfterRequest(_ countLink: Int) {
-        print("countLink: \(countLink)")
+    func setAfterRequest(_ countLink: Int) {        
+        // если нашлась хотя бы 1 анимация
         if countLink != 0 {
             searchCollectionView.isUserInteractionEnabled = true
             searchCollectionView.alpha = 1
             hideAnimateSearch()
             searchCollectionView.reloadData()
+            
+            // если ничего не нашлось
         } else {
             loadIndicator.stopAnimating()
             searchCollectionView.alpha = 0

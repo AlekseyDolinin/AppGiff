@@ -53,8 +53,18 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         searchView.setTab(nameTab: sender.restorationIdentifier!)
         typeSearch = sender.restorationIdentifier!
+        
+        print("searh text: \(searchView.searchBar.text!)")
+        print("searh text: \(searchText)")
+        
+        // если инпут не пустой
         if !trimingText(inputText: searchText).isEmpty {
             request(searchText: searchText, typeSearch: typeSearch)
+            searchView.searchBar.text = searchText
+        } else {
+            // если инпут пустой
+            arrayLinks = []
+            searchView.searchCollectionView.alpha = 0
         }
     }
     

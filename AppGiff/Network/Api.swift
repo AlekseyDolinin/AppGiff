@@ -5,8 +5,7 @@ import Alamofire
 class Api {
     
     static let shared = Api()
-    
-    let count = 300
+    let count = 100
     
     func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
         let stringURL = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=\(randomTitle)&rating=G"
@@ -22,9 +21,7 @@ class Api {
     func search(searchText: String, type: String, completion: @escaping ([String]) -> ()) {
         let stringURL = "https://api.giphy.com/v1/\(type)/search?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&q=\(searchText)&limit=\(count)&offset=0&rating=G&lang=en"
         loadJSON(urlString: stringURL) { (json) in
-            if json["meta"]["status"].intValue != 200 {
-                return
-            }
+            if json["meta"]["status"].intValue != 200 {return}
             if json["pagination"]["total_count"].intValue == 0 {
                 completion([])
             } else {
@@ -40,9 +37,7 @@ class Api {
     
     func loadJSON(urlString: String, completion: @escaping (JSON) -> ()) {
         request(urlString).responseData { response in
-            if response.error != nil {
-                return
-            }
+            if response.error != nil {return}
             let json = JSON(response.value as Any)
             completion(json)
         }
@@ -50,9 +45,7 @@ class Api {
 
     func loadData(urlString: String, completion: @escaping (Data) -> ()) {
         request(urlString).responseData { response in
-            if response.error != nil {
-                return
-            }
+            if response.error != nil {return}
             completion(response.data!)
         }
     }
