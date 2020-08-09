@@ -39,7 +39,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     }
     
     func showControllerShare() {
-        let dataGifForSend = storage[linkCurrentImage]
+        let dataGifForSend = Storage.storage[linkCurrentImage]
         let shareController = UIActivityViewController(activityItems: [dataGifForSend!], applicationActivities: nil)
         shareController.completionWithItemsHandler = {_, bool, _, _ in
             if bool {

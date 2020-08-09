@@ -16,13 +16,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == mainView.popularGifCollection {
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularGifsLinks[indexPath.row]
-            if Array(storage.keys).contains(link) {
-                gifCell.imageForGIF.image = UIImage.gifImageWithData(storage[link]!)
+            if Array(Storage.storage.keys).contains(link) {
+                gifCell.imageForGIF.image = UIImage.gifImageWithData(Storage.storage[link]!)
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     gifCell.imageForGIF.image = image
-                    storage[link] = dataImage
+                    Storage.storage[link] = dataImage
                 }
             }
             return gifCell
@@ -31,13 +31,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == mainView.popularStickerCollection {
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
             let link: String = arrayPopularStickersLinks[indexPath.row]
-            if Array(storage.keys).contains(link) {
-                stickerCell.imageForGIF.image = UIImage.gifImageWithData(storage[link]!)
+            if Array(Storage.storage.keys).contains(link) {
+                stickerCell.imageForGIF.image = UIImage.gifImageWithData(Storage.storage[link]!)
             } else {
                 Api.shared.loadData(urlString: link) { (dataImage) in
                     let image: UIImage = UIImage.gifImageWithData(dataImage)!
                     stickerCell.imageForGIF.image = image
-                    storage[link] = dataImage
+                    Storage.storage[link] = dataImage
                 }
             }
             return stickerCell

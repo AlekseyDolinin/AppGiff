@@ -10,5 +10,7 @@ class HeaderView: UICollectionReusableView {
         
         imgView.layer.cornerRadius = 5
         imgView.clipsToBounds = true
+        sendButton.layer.cornerRadius = 25
+        sendButton.clipsToBounds = true
     }
 }

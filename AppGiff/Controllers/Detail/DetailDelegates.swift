@@ -9,13 +9,13 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! DetailCollectionViewCell
         let link: String = arrayLinks[indexPath.row]
-        if Array(storage.keys).contains(link) {
-            detailCell.imageGif.image = UIImage.gifImageWithData(storage[link]!)
+        if Array(Storage.storage.keys).contains(link) {
+            detailCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 detailCell.imageGif.image = image
-                storage[link] = dataImage
+                Storage.storage[link] = dataImage
             }
         }
         return detailCell
@@ -36,14 +36,14 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerViewCell", for: indexPath) as? HeaderView else {
             fatalError("Invalid view type")
         }
-        headerView.imgView.image = UIImage.gifImageWithData(storage[linkCurrentImage]!)
+        headerView.imgView.image = UIImage.gifImageWithData(Storage.storage[linkCurrentImage]!)
         headerView.sendButton.addTarget(self, action: #selector(sendGifAction), for: .touchUpInside)
         return headerView
     }
     
     // Height Header
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let image = UIImage.gifImageWithData(storage[linkCurrentImage]!)
+        let image = UIImage.gifImageWithData(Storage.storage[linkCurrentImage]!)
         let ratio: CGFloat = (image?.size.width)! / (image?.size.height)!
         let newWidthImage = self.view.frame.width - 16
         let newHeightImage = newWidthImage / ratio

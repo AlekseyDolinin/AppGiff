@@ -10,14 +10,14 @@ extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDa
         let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllPopularCollectionViewCell
         
         let link: String = arrayPopularLinks[indexPath.row]
-        if Array(storage.keys).contains(link) {
-            allCell.imageGif.image = UIImage.gifImageWithData(storage[link]!)
+        if Array(Storage.storage.keys).contains(link) {
+            allCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
             
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 allCell.imageGif.image = image
-                storage[link] = dataImage
+                Storage.storage[link] = dataImage
             }
         }
         return allCell

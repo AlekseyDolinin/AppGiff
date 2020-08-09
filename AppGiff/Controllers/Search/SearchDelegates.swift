@@ -11,13 +11,13 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let link: String = arrayLinks[indexPath.row]
         
-        if Array(storage.keys).contains(link) {
-            searchCell.imageGif.image = UIImage.gifImageWithData(storage[link]!)
+        if Array(Storage.storage.keys).contains(link) {
+            searchCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
                 searchCell.imageGif.image = image
-                storage[link] = dataImage
+                Storage.storage[link] = dataImage
             }
         }
         
