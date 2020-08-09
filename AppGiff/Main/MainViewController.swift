@@ -1,6 +1,8 @@
 import UIKit
 import GoogleMobileAds
 
+var storage = [String: UIImage?]()
+
 class MainViewController: UIViewController, GADBannerViewDelegate {
     
     var mainView: MainView! {
@@ -24,6 +26,13 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         getRndGif()
         getPopular()
         configureCollection()
+    }
+    
+    func configureCollection() {
+        mainView.popularGifCollection.delegate = self
+        mainView.popularGifCollection.dataSource = self
+        mainView.popularStickerCollection.delegate = self
+        mainView.popularStickerCollection.dataSource = self
     }
     
     func setTransition() {
@@ -60,17 +69,13 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     @IBAction func searchAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
         vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
-        view.window!.layer.add(transition, forKey: kCATransition)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: false, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func seeAll(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
         vc.dataTransition = ["typeContent": sender.restorationIdentifier!]
-        view.window!.layer.add(transition, forKey: kCATransition)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: false, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func selectTag(_ sender: UIButton) {
@@ -78,8 +83,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         tagString.removeFirst()
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
         vc.dataTransition = ["typeSearch": TypeSearch.searchGifs, "tagString": tagString]
-        view.window!.layer.add(transition, forKey: kCATransition)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: false, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

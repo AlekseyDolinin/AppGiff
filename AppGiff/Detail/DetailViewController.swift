@@ -50,18 +50,8 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         self.view.addGestureRecognizer(swipeRight)
     }
     
-    
-    
-    
-    
     @objc func back() {
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromLeft
-        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-        view.window!.layer.add(transition, forKey: kCATransition)
-        dismiss(animated: false, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func addToFavoritesAction() {

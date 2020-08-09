@@ -2,13 +2,6 @@ import UIKit
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func configureCollection() {
-        mainView.popularGifCollection.delegate = self
-        mainView.popularGifCollection.dataSource = self
-        mainView.popularStickerCollection.delegate = self
-        mainView.popularStickerCollection.dataSource = self
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == mainView.popularGifCollection {
             return arrayPopularGifsLinks.count
@@ -22,16 +15,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == mainView.popularGifCollection {
             let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
-            //если нашлась data в кэше
-            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
-                gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
+            let link: String = arrayPopularGifsLinks[indexPath.row]
+            if Array(storage.keys).contains(link) {
+                gifCell.imageForGIF.image = storage[link] as? UIImage
             } else {
-                //если не нашлась data в кэше - скачиваем по ссылке
-                Api.shared.loadData(urlString: arrayPopularGifsLinks[indexPath.row]) { [weak self] (dataImage) in
-                    // кэширование data
-                    CachData.shared.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularGifsLinks[indexPath.row])! as NSString)
-                    gifCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)
-                    self?.mainView.popularGifCollection.reloadData()
+                Api.shared.loadData(urlString: link) { (dataImage) in
+                    let image: UIImage = UIImage.gifImageWithData(dataImage)!
+                    gifCell.imageForGIF.image = image
+                    storage = [link: image]
                 }
             }
             return gifCell
@@ -39,16 +30,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == mainView.popularStickerCollection {
             let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
-            //если нашлась data в кэше
-            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularStickersLinks[indexPath.row] as NSString) {
-                stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage as Data)
+            let link: String = arrayPopularStickersLinks[indexPath.row]
+            if Array(storage.keys).contains(link) {
+                stickerCell.imageForGIF.image = storage[link] as? UIImage
             } else {
-                //если не нашлась data в кэше - скачиваем по ссылке
-                Api.shared.loadData(urlString: arrayPopularStickersLinks[indexPath.row]) { [weak self] (dataImage) in
-                    // кэширование data
-                    CachData.shared.imageCachData.setObject(dataImage as NSData, forKey: (self?.arrayPopularStickersLinks[indexPath.row])! as NSString)
-                    stickerCell.imageForGIF.image = UIImage.gifImageWithData(dataImage)
-                    self?.mainView.popularStickerCollection.reloadData()
+                Api.shared.loadData(urlString: link) { (dataImage) in
+                    let image: UIImage = UIImage.gifImageWithData(dataImage)!
+                    stickerCell.imageForGIF.image = image
+                    storage = [link: image]
                 }
             }
             return stickerCell
@@ -57,15 +46,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if !arrayPopularGifsLinks.isEmpty {
-            if let dataImage = CachData.shared.imageCachData.object(forKey: arrayPopularGifsLinks[indexPath.row] as NSString) {
-                let imageGIF = UIImage.gifImageWithData(dataImage as Data)
-                let ratio: CGFloat = ((imageGIF?.size.width)!) / ((imageGIF?.size.height)!)
-                return CGSize(width: 120 * ratio, height: 120)
-            }
-        }
-        return CGSize()
+        return CGSize(width: 120, height: 120)
     }
     
 

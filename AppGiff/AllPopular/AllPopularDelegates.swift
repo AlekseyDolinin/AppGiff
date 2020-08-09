@@ -1,36 +1,32 @@
 import UIKit
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayLinks.count
+        return arrayPopularLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCollectionViewCell
+        let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllPopularCollectionViewCell
         
-        let link: String = arrayLinks[indexPath.row]
-        
+        let link: String = arrayPopularLinks[indexPath.row]
         if Array(storage.keys).contains(link) {
-            searchCell.imageGif.image = storage[link] as? UIImage
+            allCell.imageGif.image = storage[link] as? UIImage
         } else {
             Api.shared.loadData(urlString: link) { (dataImage) in
                 let image: UIImage = UIImage.gifImageWithData(dataImage)!
-                searchCell.imageGif.image = image
+                allCell.imageGif.image = image
                 storage = [link: image]
             }
         }
-        
-        searchCell.loadIndicator.stopAnimating()
-        return searchCell
+        return allCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let value = (searchView.searchCollectionView.frame.width - 24) / 2
-        return CGSize(width: value, height: value)
+        let widthCell = collectionView.frame.size.width / 2 - 12
+        return CGSize(width: widthCell, height: widthCell)
     }
     
-    //    // Did Select Item
     //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     //        let transition = CATransition()
     //        transition.duration = 0.3
@@ -39,24 +35,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     //        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
     //        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
     //        vc.currentIndex = indexPath.row
-    //        vc.nameCurrentCollection = collectionView.restorationIdentifier!
+    //        vc.nameCurrentCollection = "popular"
+    //        vc.currentData = currentCollection
     //        view.window!.layer.add(transition, forKey: kCATransition)
     //        vc.modalPresentationStyle = .fullScreen
     //        present(vc, animated: false, completion: nil)
     //    }
 }
 
-extension SearchViewController: UISearchBarDelegate {
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchView.hideCollectionForSearch()
-        if searchBar.text != nil {
-            searchText = searchBar.text!
-            request(searchText: searchText, typeSearch: typeSearch)
-        }
-    }
-}
+
