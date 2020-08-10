@@ -29,9 +29,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         linkCurrentImage = arrayLinks[indexPath.row]
         detailView.updateTopImage()
-        
-        detailView.detailCollectionView.collectionViewLayout.invalidateLayout()
-        print("reload header")
     }
     
     // HeaderView
@@ -50,6 +47,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let ratio: CGFloat = (image?.size.width)! / (image?.size.height)!
         let newWidthImage = self.view.frame.width - 16
         let newHeightImage = newWidthImage / ratio
-        return CGSize(width: newWidthImage, height: newHeightImage + 200)
+        return CGSize(width: newWidthImage, height: newHeightImage + 116)
     }
 }

@@ -9,6 +9,7 @@ class DetailView: UIView {
     }
     
     func updateTopImage() {
+        detailCollectionView.reloadData()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5, options: .curveEaseInOut, animations: { [weak self] in
             self?.detailCollectionView.contentOffset.y = 0
         })
