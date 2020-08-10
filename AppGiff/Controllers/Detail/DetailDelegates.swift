@@ -29,6 +29,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         linkCurrentImage = arrayLinks[indexPath.row]
         detailView.updateTopImage()
+        
+        detailView.detailCollectionView.collectionViewLayout.invalidateLayout()
+        print("reload header")
     }
     
     // HeaderView

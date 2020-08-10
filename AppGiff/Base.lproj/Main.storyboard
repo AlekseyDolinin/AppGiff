@@ -735,7 +735,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9NX-fg-6ei">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9NX-fg-6ei">
                                             <rect key="frame" x="8" y="16" width="304" height="84"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
@@ -743,7 +743,7 @@
                                             <rect key="frame" x="30" y="132" width="260" height="50"/>
                                             <color key="backgroundColor" name="Pink_"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="260" id="cN1-Jv-RPZ"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="cN1-Jv-RPZ"/>
                                                 <constraint firstAttribute="height" constant="50" id="iKo-ks-8vC"/>
                                             </constraints>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
@@ -753,12 +753,18 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="9NX-fg-6ei" secondAttribute="bottom" constant="100" id="3b0-5W-vX8"/>
+                                        <constraint firstAttribute="bottom" secondItem="Xiu-YZ-7JD" secondAttribute="bottom" constant="18" id="4dB-av-c5d"/>
                                         <constraint firstItem="Xiu-YZ-7JD" firstAttribute="top" secondItem="9NX-fg-6ei" secondAttribute="bottom" constant="32" id="AZg-GF-i3j"/>
                                         <constraint firstItem="Xiu-YZ-7JD" firstAttribute="centerX" secondItem="aMi-rx-lF9" secondAttribute="centerX" id="JUy-AT-LLS"/>
                                         <constraint firstAttribute="trailing" secondItem="9NX-fg-6ei" secondAttribute="trailing" constant="8" id="Ozh-xY-A1S"/>
                                         <constraint firstItem="9NX-fg-6ei" firstAttribute="top" secondItem="aMi-rx-lF9" secondAttribute="top" constant="16" id="Uad-QY-WpC"/>
                                         <constraint firstItem="9NX-fg-6ei" firstAttribute="leading" secondItem="aMi-rx-lF9" secondAttribute="leading" constant="8" id="gwF-jy-tEm"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="3b0-5W-vX8"/>
+                                        </mask>
+                                    </variation>
                                     <connections>
                                         <outlet property="imgView" destination="9NX-fg-6ei" id="Rmf-I7-AAV"/>
                                         <outlet property="sendButton" destination="Xiu-YZ-7JD" id="5Er-3k-3Az"/>
