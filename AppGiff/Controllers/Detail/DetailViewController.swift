@@ -12,6 +12,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     var arrayLinks = [String]()
     var interstitial: GADInterstitial!
     var bannerView: GADBannerView!
+    var countShowFullViewAds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     }
     
     @objc func sendGifAction() {
-        if interstitial.isReady == true {
+        if interstitial.isReady == true && countShowFullViewAds % 2 == 0 {
             print("ролик готов")
             interstitial.present(fromRootViewController: self)
         } else {
@@ -48,6 +49,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
                 print("error send")
             }
         }
+        countShowFullViewAds = countShowFullViewAds + 1
         present(shareController, animated: true, completion: nil)
     }
     
