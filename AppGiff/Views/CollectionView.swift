@@ -9,7 +9,13 @@ class CollectionView: UIView {
     
     func configure(_ titleString: String) {
         backImage.image = UIImage.gifImageWithName("back")
-        titleLabel.text = "Trending \(titleString)"
+        
+        if titleString != "Favorite" {
+            titleLabel.text = "Trending \(titleString)"
+        } else {
+            titleLabel.text = "Favorite"
+        }
+        
         collection.alpha = 0
         setCollection()
     }

@@ -466,13 +466,16 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoSmall" translatesAutoresizingMaskIntoConstraints="NO" id="tcv-UT-g7E">
                                         <rect key="frame" x="115" y="74" width="90" height="20"/>
                                     </imageView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYh-Nc-4NF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYh-Nc-4NF">
                                         <rect key="frame" x="0.0" y="60" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="bRE-tq-IHb"/>
                                             <constraint firstAttribute="width" constant="50" id="xYq-cX-LOB"/>
                                         </constraints>
                                         <state key="normal" image="iconLike"/>
+                                        <connections>
+                                            <action selector="favoriteAction:" destination="43W-hC-26x" eventType="touchUpInside" id="ZrA-08-1SN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdF-YN-xeq">
                                         <rect key="frame" x="270" y="60" width="50" height="50"/>
@@ -749,23 +752,30 @@
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                             <state key="normal" title="SHARE"/>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMb-9e-6DH">
+                                            <rect key="frame" x="262" y="50" width="50" height="50"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Y6s-LA-D3L"/>
+                                                <constraint firstAttribute="width" constant="50" id="zi2-YF-Ijz"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                            <state key="normal" image="iconLike"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="9NX-fg-6ei" secondAttribute="bottom" constant="100" id="3b0-5W-vX8"/>
                                         <constraint firstAttribute="bottom" secondItem="Xiu-YZ-7JD" secondAttribute="bottom" constant="18" id="4dB-av-c5d"/>
                                         <constraint firstItem="Xiu-YZ-7JD" firstAttribute="top" secondItem="9NX-fg-6ei" secondAttribute="bottom" constant="32" id="AZg-GF-i3j"/>
                                         <constraint firstItem="Xiu-YZ-7JD" firstAttribute="centerX" secondItem="aMi-rx-lF9" secondAttribute="centerX" id="JUy-AT-LLS"/>
                                         <constraint firstAttribute="trailing" secondItem="9NX-fg-6ei" secondAttribute="trailing" constant="8" id="Ozh-xY-A1S"/>
                                         <constraint firstItem="9NX-fg-6ei" firstAttribute="top" secondItem="aMi-rx-lF9" secondAttribute="top" constant="16" id="Uad-QY-WpC"/>
+                                        <constraint firstItem="zMb-9e-6DH" firstAttribute="trailing" secondItem="9NX-fg-6ei" secondAttribute="trailing" id="cUz-Y2-y7U"/>
+                                        <constraint firstItem="zMb-9e-6DH" firstAttribute="bottom" secondItem="9NX-fg-6ei" secondAttribute="bottom" id="gvj-GA-3BM"/>
                                         <constraint firstItem="9NX-fg-6ei" firstAttribute="leading" secondItem="aMi-rx-lF9" secondAttribute="leading" constant="8" id="gwF-jy-tEm"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="3b0-5W-vX8"/>
-                                        </mask>
-                                    </variation>
                                     <connections>
+                                        <outlet property="favoriteButtton" destination="zMb-9e-6DH" id="62g-xG-34P"/>
                                         <outlet property="imgView" destination="9NX-fg-6ei" id="Rmf-I7-AAV"/>
                                         <outlet property="sendButton" destination="Xiu-YZ-7JD" id="5Er-3k-3Az"/>
                                     </connections>

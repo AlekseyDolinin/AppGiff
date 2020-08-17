@@ -77,6 +77,12 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func favoriteAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
+        vc.dataTransition = ["typeContent": "Favorite"]
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func seeAll(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
         vc.dataTransition = ["typeContent": sender.restorationIdentifier!]

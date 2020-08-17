@@ -6,6 +6,8 @@ class DetailView: UIView {
     
     func configure() {
         backImage.image = UIImage.gifImageWithName("back")
+        
+        
     }
     
     func updateTopImage() {
