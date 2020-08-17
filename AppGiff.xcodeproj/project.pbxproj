@@ -23,7 +23,7 @@
 		102DBB932405C4E2004B80D2 /* SearchControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */; };
 		102DBBB72405E61C004B80D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */; };
 		10442CA92401BAE900A97E10 /* back.gif in Resources */ = {isa = PBXBuildFile; fileRef = 10442CA82401BAE800A97E10 /* back.gif */; };
-		1071199424D750BA00AC39E8 /* AllPopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1071199324D750BA00AC39E8 /* AllPopularView.swift */; };
+		1071199424D750BA00AC39E8 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1071199324D750BA00AC39E8 /* CollectionView.swift */; };
 		1074A87D23FC8930008E5300 /* AllPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87C23FC8930008E5300 /* AllPopularViewController.swift */; };
 		1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */; };
 		109154CE23FC990F0007702E /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1074A86E23FC860E008E5300 /* SF-Pro-Display-Black.otf */; };
@@ -107,7 +107,7 @@
 		102DBBB52405CAEA004B80D2 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10442CA82401BAE800A97E10 /* back.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = back.gif; sourceTree = "<group>"; };
-		1071199324D750BA00AC39E8 /* AllPopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPopularView.swift; sourceTree = "<group>"; };
+		1071199324D750BA00AC39E8 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		1074A86923FC860D008E5300 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		1074A86D23FC860D008E5300 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
 		1074A86E23FC860E008E5300 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				10999FB624D88C75005A803A /* StartView.swift */,
 				10999FB824D88DF5005A803A /* MainView.swift */,
 				10999FBC24DB51D8005A803A /* SearchView.swift */,
-				1071199324D750BA00AC39E8 /* AllPopularView.swift */,
+				1071199324D750BA00AC39E8 /* CollectionView.swift */,
 				10999FC924E088AD005A803A /* DetailView.swift */,
 			);
 			path = Views;
@@ -252,14 +252,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		1074A88023FC89DE008E5300 /* AllPopular */ = {
+		1074A88023FC89DE008E5300 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
 				1074A87C23FC8930008E5300 /* AllPopularViewController.swift */,
 				10999FC524E05D3B005A803A /* AllPopularDelegates.swift */,
 				10999FB424D77245005A803A /* AllPopularGoogleAds.swift */,
 			);
-			path = AllPopular;
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		109199E32401360D00613388 /* Main */ = {
@@ -286,7 +286,7 @@
 				102DBB8F2405C327004B80D2 /* Start */,
 				109199E32401360D00613388 /* Main */,
 				10C06D5A2403FD55002A3F95 /* Search */,
-				1074A88023FC89DE008E5300 /* AllPopular */,
+				1074A88023FC89DE008E5300 /* Collection */,
 				1023DE6A2402BF9C00A5590F /* Detail */,
 			);
 			path = Controllers;
@@ -511,7 +511,7 @@
 				10999FBF24DDF60E005A803A /* MainViewDelegates.swift in Sources */,
 				1074A87D23FC8930008E5300 /* AllPopularViewController.swift in Sources */,
 				1002E38F23FC639E008EF322 /* Gifty.xcdatamodeld in Sources */,
-				1071199424D750BA00AC39E8 /* AllPopularView.swift in Sources */,
+				1071199424D750BA00AC39E8 /* CollectionView.swift in Sources */,
 				1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */,
 				1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */,
 				10999FC324DF2048005A803A /* Storage.swift in Sources */,

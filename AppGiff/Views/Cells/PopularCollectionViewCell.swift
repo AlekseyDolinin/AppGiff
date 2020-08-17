@@ -1,6 +1,6 @@
 import UIKit
 
-class PopularCollectionViewCell: UICollectionViewCell {
+class TrendingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageForGIF: UIImageView!
     

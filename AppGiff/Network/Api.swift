@@ -19,14 +19,14 @@ class Api {
     }
     
     func search(searchText: String, type: String, completion: @escaping ([String]) -> ()) {
-        let stringURL = "https://api.giphy.com/v1/\(type)/search?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&q=\(searchText)&limit=\(count)&offset=0&rating=G&lang=en"
+        var arrayLinks = [String]()
+        let stringURL = "https://api.giphy.com/v1/\(type)/search?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&q=\(searchText)&limit=25&offset=0&rating=G&lang=en"
         loadJSON(urlString: stringURL) { (json) in
             if json["meta"]["status"].intValue != 200 {return}
             if json["pagination"]["total_count"].intValue == 0 {
                 completion([])
             } else {
-                var arrayLinks = [String]()
-                for i in 0...Int(self.count) - 1 {
+                for i in 0...24 {
                     let link: String = json["data"][i]["images"]["fixed_width_downsampled"]["url"].stringValue
                     arrayLinks.append(link)
                     completion(arrayLinks)
@@ -50,7 +50,7 @@ class Api {
         }
     }
     
-    func loadPopularGifs(completion: @escaping ([String]) -> ()) {
+    func loadTrendingGifs(completion: @escaping ([String]) -> ()) {
         let urlGifs = "https://api.giphy.com/v1/gifs/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=\(count)&rating=G"
         loadJSON(urlString: urlGifs) { (json) in
             let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
@@ -58,7 +58,7 @@ class Api {
         }
     }
     
-    func loadPopularStickers(completion: @escaping ([String]) -> ()) {
+    func loadTrendingStickers(completion: @escaping ([String]) -> ()) {
         let urlStickers = "https://api.giphy.com/v1/stickers/trending?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&limit=\(count)&rating=G"
         loadJSON(urlString: urlStickers) { (json) in
             let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})

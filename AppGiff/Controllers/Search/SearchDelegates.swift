@@ -48,7 +48,7 @@ extension SearchViewController: UISearchBarDelegate {
         searchView.hideCollectionForSearch()
         if searchBar.text != nil {
             searchText = searchBar.text!
-            request(searchText: searchText, typeSearch: typeSearch)
+            requestSearch(searchText: searchText, typeSearch: typeSearch)
         } else {
             searchView.hideAnimateSearch()
         }

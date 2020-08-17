@@ -13,8 +13,8 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     var bannerView: GADBannerView!
     var titles = ["#thumbs up", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
     
-    var arrayPopularGifsLinks = [String]()
-    var arrayPopularStickersLinks = [String]()
+    var arrayTrendingGifsLinks = [String]()
+    var arrayTrendingStickersLinks = [String]()
     let transition = CATransition()
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         setGadBanner()
         mainView.configure()
         getRndGif()
-        getPopular()
+        getTrending()
         configureCollection()
     }
     
@@ -34,10 +34,10 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     }
     
     func configureCollection() {
-        mainView.popularGifCollection.delegate = self
-        mainView.popularGifCollection.dataSource = self
-        mainView.popularStickerCollection.delegate = self
-        mainView.popularStickerCollection.dataSource = self
+        mainView.trendingGifCollection.delegate = self
+        mainView.trendingGifCollection.dataSource = self
+        mainView.trendingStickerCollection.delegate = self
+        mainView.trendingStickerCollection.dataSource = self
     }
     
     func setTransition() {
@@ -54,14 +54,14 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         }
     }
     
-    func getPopular() {
-        Api.shared.loadPopularGifs {(arrayUrlGifs) in
-            self.arrayPopularGifsLinks = arrayUrlGifs
-            self.mainView.popularGifCollection.reloadData()
+    func getTrending() {
+        Api.shared.loadTrendingGifs {(arrayUrlGifs) in
+            self.arrayTrendingGifsLinks = arrayUrlGifs
+            self.mainView.trendingGifCollection.reloadData()
         }
-        Api.shared.loadPopularStickers {(arrayUrlStickers) in
-            self.arrayPopularStickersLinks = arrayUrlStickers
-            self.mainView.popularStickerCollection.reloadData()
+        Api.shared.loadTrendingStickers {(arrayUrlStickers) in
+            self.arrayTrendingStickersLinks = arrayUrlStickers
+            self.mainView.trendingStickerCollection.reloadData()
         }
     }
     
@@ -78,7 +78,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     }
     
     @IBAction func seeAll(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "allPopularVC") as! AllPopularViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
         vc.dataTransition = ["typeContent": sender.restorationIdentifier!]
         navigationController?.pushViewController(vc, animated: true)
     }

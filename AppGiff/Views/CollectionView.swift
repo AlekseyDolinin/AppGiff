@@ -1,16 +1,16 @@
 import UIKit
 
-class AllPopularView: UIView {
+class CollectionView: UIView {
 
-    @IBOutlet weak var allPopularCollectionView: UICollectionView!
+    @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
     func configure(_ titleString: String) {
         backImage.image = UIImage.gifImageWithName("back")
-        titleLabel.text = "Popular \(titleString)"
-        allPopularCollectionView.alpha = 0
+        titleLabel.text = "Trending \(titleString)"
+        collection.alpha = 0
         setCollection()
     }
     
@@ -21,14 +21,14 @@ class AllPopularView: UIView {
         layout.itemSize = CGSize(width: widthCell, height: widthCell / 2 * 3)
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 8
-        allPopularCollectionView!.collectionViewLayout = layout
-        allPopularCollectionView.keyboardDismissMode = .onDrag
+        collection!.collectionViewLayout = layout
+        collection.keyboardDismissMode = .onDrag
     }
     
     func showCollection() {
         loadIndicator.stopAnimating()
         UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.allPopularCollectionView.alpha = 1
+            self?.collection.alpha = 1
         }
     }
 }

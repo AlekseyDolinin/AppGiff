@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        detailView.configure()
+        
         configure()
         setGadBanner()
         setGadFullView()

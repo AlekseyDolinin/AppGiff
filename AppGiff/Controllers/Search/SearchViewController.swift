@@ -33,14 +33,14 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         searchView.configure(typeSearch: typeSearch, searchText: searchText)
         
         if typeSearch == TypeSearch.searchGifs && searchText != "" {
-            request(searchText: searchText, typeSearch: TypeSearch.searchGifs)
+            requestSearch(searchText: searchText, typeSearch: TypeSearch.searchGifs)
         }
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
-    func request(searchText: String, typeSearch: String) {
+    func requestSearch(searchText: String, typeSearch: String) {
         searchView.hideCollectionForSearch()
         Api.shared.search(searchText: searchText, type: typeSearch) { [weak self] (arrayLinks) in
             self?.arrayLinks = arrayLinks
@@ -59,7 +59,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         
         // если инпут не пустой
         if !trimingText(inputText: searchText).isEmpty {
-            request(searchText: searchText, typeSearch: typeSearch)
+            requestSearch(searchText: searchText, typeSearch: typeSearch)
             searchView.searchBar.text = searchText
         } else {
             // если инпут пустой

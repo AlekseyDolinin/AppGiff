@@ -1,8 +1,8 @@
 import UIKit
 
 class MainView: UIView {
-    @IBOutlet weak var popularGifCollection: UICollectionView!
-    @IBOutlet weak var popularStickerCollection: UICollectionView!
+    @IBOutlet weak var trendingGifCollection: UICollectionView!
+    @IBOutlet weak var trendingStickerCollection: UICollectionView!
     @IBOutlet weak var titleIImageGif: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var randomTitleLabel: UILabel!

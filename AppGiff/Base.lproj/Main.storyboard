@@ -41,7 +41,7 @@
                                 <rect key="frame" x="150" y="442" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Af-mz-JEF">
-                                <rect key="frame" x="148.5" y="540" width="23" height="12"/>
+                                <rect key="frame" x="148" y="540" width="24.5" height="12"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="10"/>
                                 <color key="textColor" name="White_"/>
                                 <nil key="highlightedColor"/>
@@ -299,8 +299,8 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular GIF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-b9-lMg">
-                                        <rect key="frame" x="16" y="347" width="87.5" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending GIF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-b9-lMg">
+                                        <rect key="frame" x="16" y="347" width="95.5" height="21.5"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                         <color key="textColor" name="White_"/>
                                         <nil key="highlightedColor"/>
@@ -318,7 +318,7 @@
                                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gifCell" id="M6S-Os-B4X" customClass="PopularCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gifCell" id="M6S-Os-B4X" customClass="TrendingCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -344,8 +344,8 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Popular Stickers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y5-ZF-Zdl">
-                                        <rect key="frame" x="16" y="532.5" width="121.5" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Trending Stickers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y5-ZF-Zdl">
+                                        <rect key="frame" x="16" y="532.5" width="129.5" height="21.5"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                         <color key="textColor" name="White_"/>
                                         <nil key="highlightedColor"/>
@@ -363,7 +363,7 @@
                                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="stickerCell" id="324-iZ-wCQ" customClass="PopularCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="stickerCell" id="324-iZ-wCQ" customClass="TrendingCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="35" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -517,12 +517,12 @@
                         <connections>
                             <outlet property="backImage" destination="XZ2-yX-gwS" id="8fM-G8-sHm"/>
                             <outlet property="loadIndicator" destination="eb0-Ji-LW5" id="Nc2-SE-EZk"/>
-                            <outlet property="popularGifCollection" destination="1m2-xS-mLB" id="z8t-Ui-RDb"/>
-                            <outlet property="popularStickerCollection" destination="tjc-E0-Ukf" id="vs8-IP-nRY"/>
                             <outlet property="randomTitleLabel" destination="UMr-hG-jAx" id="qYz-1I-V8G"/>
                             <outlet property="reloadImageTitle" destination="Rzg-HY-xo5" id="QyW-xa-UK9"/>
                             <outlet property="searchButton" destination="YdF-YN-xeq" id="URl-4l-4Cc"/>
                             <outlet property="titleIImageGif" destination="4oM-Gg-Btp" id="kCd-jw-xqG"/>
+                            <outlet property="trendingGifCollection" destination="1m2-xS-mLB" id="9bZ-87-JrN"/>
+                            <outlet property="trendingStickerCollection" destination="tjc-E0-Ukf" id="hQX-gV-DBG"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="FtZ-1d-9ad"/>
@@ -532,11 +532,11 @@
             </objects>
             <point key="canvasLocation" x="2040" y="725"/>
         </scene>
-        <!--All Popular View Controller-->
+        <!--Collection View Controller-->
         <scene sceneID="MQ2-vK-FxW">
             <objects>
-                <viewController storyboardIdentifier="allPopularVC" id="RPj-CI-Gec" customClass="AllPopularViewController" customModule="AppGiff" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Heb-dq-KC3" customClass="AllPopularView" customModule="AppGiff" customModuleProvider="target">
+                <viewController storyboardIdentifier="collectionVC" id="RPj-CI-Gec" customClass="CollectionViewController" customModule="AppGiff" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Heb-dq-KC3" customClass="CollectionView" customModule="AppGiff" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -560,7 +560,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="allCell" id="hug-oT-aLn" customClass="AllPopularCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="allCell" id="hug-oT-aLn" customClass="AllTrendingCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -580,7 +580,7 @@
                                             <constraint firstItem="Ifg-hl-dJp" firstAttribute="leading" secondItem="hug-oT-aLn" secondAttribute="leading" id="uOX-fN-gGD"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="imageGif" destination="Ifg-hl-dJp" id="58K-Z8-JZd"/>
+                                            <outlet property="imageGif" destination="Ifg-hl-dJp" id="JqR-o7-D6p"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -677,8 +677,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Df-3s-CuT"/>
                         <connections>
-                            <outlet property="allPopularCollectionView" destination="ah8-uq-Qwj" id="iMx-Fx-pDI"/>
                             <outlet property="backImage" destination="Q0g-sG-x1P" id="hsM-nO-DEM"/>
+                            <outlet property="collection" destination="ah8-uq-Qwj" id="n18-28-kZG"/>
                             <outlet property="loadIndicator" destination="uXD-3n-oZp" id="SYn-Rr-cYt"/>
                             <outlet property="titleLabel" destination="KJu-tV-ZbM" id="ai4-uI-u3k"/>
                         </connections>

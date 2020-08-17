@@ -1,45 +1,45 @@
 import UIKit
 import GoogleMobileAds
 
-class AllPopularViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
+class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
     
-    var allPopularView: AllPopularView! {
+    var collectionView: CollectionView! {
         guard isViewLoaded else {return nil}
-        return (view as! AllPopularView)
+        return (view as! CollectionView)
     }
     
     var dataTransition = [String: Any]()
     var bannerView: GADBannerView!
     var typeContent = String()
-    var arrayPopularLinks = [String]()
+    var arrayTrendingLinks = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let typeContent: String = dataTransition["typeContent"] as! String
         
-        allPopularView.allPopularCollectionView.delegate = self
-        allPopularView.allPopularCollectionView.dataSource = self
+        collectionView.collection.delegate = self
+        collectionView.collection.dataSource = self
         
-        allPopularView.configure(typeContent)
-        getPopular(typeContent: typeContent)
+        collectionView.configure(typeContent)
+        getTrending(typeContent: typeContent)
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
-    func getPopular(typeContent: String) {
+    func getTrending(typeContent: String) {
         if typeContent == "gifs" {
-            Api.shared.loadPopularGifs {[weak self] (arrayUrlGifs) in
-                self?.arrayPopularLinks = arrayUrlGifs
-                self?.allPopularView.allPopularCollectionView.reloadData()
-                self?.allPopularView.showCollection()
+            Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
+                self?.arrayTrendingLinks = arrayUrlGifs
+                self?.collectionView.collection.reloadData()
+                self?.collectionView.showCollection()
             }
         } else if typeContent == "stickers" {
-            Api.shared.loadPopularStickers {[weak self] (arrayUrlStickers) in
-                self?.arrayPopularLinks = arrayUrlStickers
-                self?.allPopularView.allPopularCollectionView.reloadData()
-                self?.allPopularView.showCollection()
+            Api.shared.loadTrendingStickers {[weak self] (arrayUrlStickers) in
+                self?.arrayTrendingLinks = arrayUrlStickers
+                self?.collectionView.collection.reloadData()
+                self?.collectionView.showCollection()
             }
         }
     }

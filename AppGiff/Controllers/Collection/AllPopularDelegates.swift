@@ -1,15 +1,15 @@
 import UIKit
 
-extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayPopularLinks.count
+        return arrayTrendingLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllPopularCollectionViewCell
+        let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllTrendingCollectionViewCell
         
-        let link: String = arrayPopularLinks[indexPath.row]
+        let link: String = arrayTrendingLinks[indexPath.row]
         if Array(Storage.storage.keys).contains(link) {
             allCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
             
@@ -30,8 +30,8 @@ extension AllPopularViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-        vc.linkCurrentImage = arrayPopularLinks[indexPath.row]
-        vc.arrayLinks = arrayPopularLinks
+        vc.linkCurrentImage = arrayTrendingLinks[indexPath.row]
+        vc.arrayLinks = arrayTrendingLinks
         navigationController?.pushViewController(vc, animated: true)
     }
 }

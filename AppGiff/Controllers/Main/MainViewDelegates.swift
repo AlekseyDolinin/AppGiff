@@ -3,19 +3,19 @@ import UIKit
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == mainView.popularGifCollection {
-            return arrayPopularGifsLinks.count
-        } else if collectionView == mainView.popularStickerCollection {
-            return arrayPopularStickersLinks.count
+        if collectionView == mainView.trendingGifCollection {
+            return arrayTrendingGifsLinks.count
+        } else if collectionView == mainView.trendingStickerCollection {
+            return arrayTrendingStickersLinks.count
         }
         return Int()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == mainView.popularGifCollection {
-            let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! PopularCollectionViewCell
-            let link: String = arrayPopularGifsLinks[indexPath.row]
+        if collectionView == mainView.trendingGifCollection {
+            let gifCell = collectionView.dequeueReusableCell(withReuseIdentifier: "gifCell", for: indexPath) as! TrendingCollectionViewCell
+            let link: String = arrayTrendingGifsLinks[indexPath.row]
             if Array(Storage.storage.keys).contains(link) {
                 gifCell.imageForGIF.image = UIImage.gifImageWithData(Storage.storage[link]!)
             } else {
@@ -28,9 +28,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return gifCell
         }
         
-        if collectionView == mainView.popularStickerCollection {
-            let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! PopularCollectionViewCell
-            let link: String = arrayPopularStickersLinks[indexPath.row]
+        if collectionView == mainView.trendingStickerCollection {
+            let stickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "stickerCell", for: indexPath) as! TrendingCollectionViewCell
+            let link: String = arrayTrendingStickersLinks[indexPath.row]
             if Array(Storage.storage.keys).contains(link) {
                 stickerCell.imageForGIF.image = UIImage.gifImageWithData(Storage.storage[link]!)
             } else {
@@ -52,13 +52,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-        if collectionView == mainView.popularGifCollection {
-            vc.linkCurrentImage = arrayPopularGifsLinks[indexPath.row]
-            vc.arrayLinks = arrayPopularGifsLinks
+        if collectionView == mainView.trendingGifCollection {
+            vc.linkCurrentImage = arrayTrendingGifsLinks[indexPath.row]
+            vc.arrayLinks = arrayTrendingGifsLinks
             
-        } else if collectionView == mainView.popularStickerCollection {
-            vc.linkCurrentImage = arrayPopularStickersLinks[indexPath.row]
-            vc.arrayLinks = arrayPopularStickersLinks
+        } else if collectionView == mainView.trendingStickerCollection {
+            vc.linkCurrentImage = arrayTrendingStickersLinks[indexPath.row]
+            vc.arrayLinks = arrayTrendingStickersLinks
         }
         navigationController?.pushViewController(vc, animated: true)
     }
