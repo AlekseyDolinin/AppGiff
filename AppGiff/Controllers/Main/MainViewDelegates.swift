@@ -53,11 +53,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
         if collectionView == mainView.trendingGifCollection {
-            vc.linkCurrentImage = arrayTrendingGifsLinks[indexPath.row]
+            DetailViewController.linkCurrentImage = arrayTrendingGifsLinks[indexPath.row]
             vc.arrayLinks = arrayTrendingGifsLinks
             
         } else if collectionView == mainView.trendingStickerCollection {
-            vc.linkCurrentImage = arrayTrendingStickersLinks[indexPath.row]
+            DetailViewController.linkCurrentImage = arrayTrendingStickersLinks[indexPath.row]
             vc.arrayLinks = arrayTrendingStickersLinks
         }
         navigationController?.pushViewController(vc, animated: true)

@@ -9,13 +9,18 @@ class MainView: UIView {
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadImageTitle: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var titleCollectionTrendingGIFLabel: UILabel!
+    @IBOutlet weak var titleCollectionTrendingStickers: UILabel!
     
     func configure() {
         backImage.image = UIImage.gifImageWithName("back")
         hideLabel()
+        
+        titleCollectionTrendingGIFLabel.text = "Trending GIF"
+        titleCollectionTrendingStickers.text = "Trending Stickers"
     }
     
-    func setTitle(title: String, randomDataGif: Data) {
+    func setTitleImage(title: String, randomDataGif: Data) {
         randomTitleLabel.text = title
         titleIImageGif.layer.cornerRadius = 5
         titleIImageGif.clipsToBounds = true

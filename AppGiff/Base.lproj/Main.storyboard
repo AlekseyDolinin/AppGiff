@@ -41,7 +41,7 @@
                                 <rect key="frame" x="150" y="442" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Af-mz-JEF">
-                                <rect key="frame" x="148" y="540" width="24.5" height="12"/>
+                                <rect key="frame" x="148.5" y="540" width="23" height="12"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="10"/>
                                 <color key="textColor" name="White_"/>
                                 <nil key="highlightedColor"/>
@@ -523,6 +523,8 @@
                             <outlet property="randomTitleLabel" destination="UMr-hG-jAx" id="qYz-1I-V8G"/>
                             <outlet property="reloadImageTitle" destination="Rzg-HY-xo5" id="QyW-xa-UK9"/>
                             <outlet property="searchButton" destination="YdF-YN-xeq" id="URl-4l-4Cc"/>
+                            <outlet property="titleCollectionTrendingGIFLabel" destination="b3x-b9-lMg" id="ucp-Gu-Ooy"/>
+                            <outlet property="titleCollectionTrendingStickers" destination="8Y5-ZF-Zdl" id="Qtz-Gc-UfI"/>
                             <outlet property="titleIImageGif" destination="4oM-Gg-Btp" id="kCd-jw-xqG"/>
                             <outlet property="trendingGifCollection" destination="1m2-xS-mLB" id="9bZ-87-JrN"/>
                             <outlet property="trendingStickerCollection" destination="tjc-E0-Ukf" id="hQX-gV-DBG"/>
@@ -557,32 +559,45 @@
                                 <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RLg-Tr-r8B">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="allCell" id="hug-oT-aLn" customClass="AllTrendingCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-hl-dJp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8W-tO-zT3">
+                                                    <rect key="frame" x="110" y="110" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="b0w-wV-Fph"/>
+                                                        <constraint firstAttribute="width" constant="40" id="svr-Wy-ZkT"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                    <state key="normal" image="iconDontLikePink"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="C8W-tO-zT3" secondAttribute="bottom" id="Kes-X2-Fgb"/>
                                             <constraint firstItem="Ifg-hl-dJp" firstAttribute="top" secondItem="hug-oT-aLn" secondAttribute="top" id="fSj-uU-tRm"/>
                                             <constraint firstAttribute="trailing" secondItem="Ifg-hl-dJp" secondAttribute="trailing" id="iDE-cs-n0A"/>
                                             <constraint firstAttribute="bottom" secondItem="Ifg-hl-dJp" secondAttribute="bottom" id="mmg-uZ-n4Q"/>
+                                            <constraint firstAttribute="trailing" secondItem="C8W-tO-zT3" secondAttribute="trailing" id="qnS-Ar-ARF"/>
                                             <constraint firstItem="Ifg-hl-dJp" firstAttribute="leading" secondItem="hug-oT-aLn" secondAttribute="leading" id="uOX-fN-gGD"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="C8W-tO-zT3" id="o1K-fm-YXR"/>
                                             <outlet property="imageGif" destination="Ifg-hl-dJp" id="JqR-o7-D6p"/>
                                         </connections>
                                     </collectionViewCell>
@@ -689,7 +704,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tl0-73-9Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3735" y="555"/>
+            <point key="canvasLocation" x="3735" y="554.57746478873241"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ljb-1R-lKT">
@@ -704,32 +719,45 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="32" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="4" id="Tr3-cw-zRi">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="50" height="200"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="8" minY="32" maxX="8" maxY="70"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailCell" id="EjP-P2-Acx" customClass="DetailCollectionViewCell" customModule="AppGiff" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="232" width="50" height="50"/>
+                                        <rect key="frame" x="8" y="232" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0VT-1L-bV4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L01-7W-JVp">
+                                                    <rect key="frame" x="110" y="110" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="LfC-i6-kCs"/>
+                                                        <constraint firstAttribute="height" constant="40" id="UDT-ds-Puk"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                    <state key="normal" image="iconDontLikePink"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="L01-7W-JVp" secondAttribute="bottom" id="36R-x7-uue"/>
+                                            <constraint firstAttribute="trailing" secondItem="L01-7W-JVp" secondAttribute="trailing" id="GfX-1F-Qff"/>
                                             <constraint firstAttribute="trailing" secondItem="0VT-1L-bV4" secondAttribute="trailing" id="NrM-Ii-fcD"/>
                                             <constraint firstItem="0VT-1L-bV4" firstAttribute="top" secondItem="EjP-P2-Acx" secondAttribute="top" id="YPg-Nr-BOy"/>
                                             <constraint firstItem="0VT-1L-bV4" firstAttribute="leading" secondItem="EjP-P2-Acx" secondAttribute="leading" id="hTE-24-1g4"/>
                                             <constraint firstAttribute="bottom" secondItem="0VT-1L-bV4" secondAttribute="bottom" id="vsj-tN-OPv"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="buttonAddInFavorites" destination="L01-7W-JVp" id="j9g-xD-4rf"/>
                                             <outlet property="imageGif" destination="0VT-1L-bV4" id="IDA-Cq-6TP"/>
                                         </connections>
                                     </collectionViewCell>
@@ -760,7 +788,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="zi2-YF-Ijz"/>
                                             </constraints>
                                             <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                            <state key="normal" image="iconLike"/>
+                                            <state key="normal" image="iconDontLikePink"/>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -775,7 +803,7 @@
                                         <constraint firstItem="9NX-fg-6ei" firstAttribute="leading" secondItem="aMi-rx-lF9" secondAttribute="leading" constant="8" id="gwF-jy-tEm"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="favoriteButtton" destination="zMb-9e-6DH" id="62g-xG-34P"/>
+                                        <outlet property="favoriteButton" destination="zMb-9e-6DH" id="WHW-iS-MJ0"/>
                                         <outlet property="imgView" destination="9NX-fg-6ei" id="Rmf-I7-AAV"/>
                                         <outlet property="sendButton" destination="Xiu-YZ-7JD" id="5Er-3k-3Az"/>
                                     </connections>
@@ -864,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXg-X8-kIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4513" y="555"/>
+            <point key="canvasLocation" x="4511.25" y="554.57746478873241"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="auG-al-SiQ">
@@ -1097,6 +1125,7 @@
     </scenes>
     <resources>
         <image name="iconBack" width="50" height="50"/>
+        <image name="iconDontLikePink" width="50" height="50"/>
         <image name="iconLike" width="50" height="50"/>
         <image name="iconSearch" width="50" height="50"/>
         <image name="logo" width="170" height="100"/>

@@ -8,45 +8,52 @@ class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestu
         return (view as! CollectionView)
     }
     
-    var dataTransition = [String: Any]()
     var bannerView: GADBannerView!
     var typeContent = String()
-    var arrayTrendingLinks = [String]()
+    var arrayLinks = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let typeContent: String = dataTransition["typeContent"] as! String
         
         collectionView.collection.delegate = self
         collectionView.collection.dataSource = self
         
         collectionView.configure(typeContent)
-        getTrending(typeContent: typeContent)
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getTrending(typeContent: typeContent)
+    }
+    
     func getTrending(typeContent: String) {
+        print(typeContent)
         if typeContent == "gifs" {
             Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
-                self?.arrayTrendingLinks = arrayUrlGifs
-                self?.collectionView.collection.reloadData()
-                self?.collectionView.showCollection()
+                self?.arrayLinks = arrayUrlGifs
+                self?.reloadCollection()
             }
         } else if typeContent == "stickers" {
             Api.shared.loadTrendingStickers {[weak self] (arrayUrlStickers) in
-                self?.arrayTrendingLinks = arrayUrlStickers
-                self?.collectionView.collection.reloadData()
-                self?.collectionView.showCollection()
+                self?.arrayLinks = arrayUrlStickers
+                self?.reloadCollection()
             }
+        } else if typeContent == "Favorite" {
+            arrayLinks = arrayFavoritesURL
+            reloadCollection()
         }
+    }
+    
+    func reloadCollection() {
+        collectionView.collection.reloadData()
+        collectionView.showCollection()
     }
     
     @IBAction func searchAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
+        vc.tag = nil
         navigationController?.pushViewController(vc, animated: true)
     }
     

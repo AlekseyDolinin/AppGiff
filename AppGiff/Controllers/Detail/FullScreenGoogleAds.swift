@@ -24,7 +24,7 @@ extension DetailViewController {
     
     /// Tells the delegate an ad request succeeded.
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        print("interstitialDidReceiveAd")
+//        print("interstitialDidReceiveAd")
     }
     
     /// Tells the delegate an ad request failed.

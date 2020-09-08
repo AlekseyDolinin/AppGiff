@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         return (view as! SearchView)
     }
     
-    var dataTransition = [String: Any]()
+    var tag:  String?
     var arrayLinks = [String]()
     var bannerView: GADBannerView!
     var typeSearch = String()
@@ -24,12 +24,12 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if dataTransition["tagString"] != nil {
-            searchText = dataTransition["tagString"] as! String
+        if tag != nil {
+            searchText = tag!
+        } else {
+            selectedTabs("gifs")
         }
-        if dataTransition["typeSearch"] != nil {
-            typeSearch = dataTransition["typeSearch"] as! String
-        }
+        
         searchView.configure(typeSearch: typeSearch, searchText: searchText)
         
         if typeSearch == TypeSearch.searchGifs && searchText != "" {
@@ -48,11 +48,11 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         }
     }
     
-    // MARK: - selectTab
-    @IBAction func selectTab(_ sender: UIButton) {
+    func selectedTabs(_ nameTab: String) {
+        
         searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-        searchView.setTab(nameTab: sender.restorationIdentifier!)
-        typeSearch = sender.restorationIdentifier!
+        searchView.setTab(nameTab: nameTab)
+        typeSearch = nameTab
         
         print("searh text: \(searchView.searchBar.text!)")
         print("searh text: \(searchText)")
@@ -65,6 +65,13 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
             // если инпут пустой
             arrayLinks = []
             searchView.searchCollectionView.alpha = 0
+        }
+    }
+    
+    // MARK: - selectTab
+    @IBAction func selectTab(_ sender: UIButton) {
+        if let nameTab = sender.restorationIdentifier {
+            selectedTabs(nameTab)
         }
     }
     

@@ -8,7 +8,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         return (view as! DetailView)
     }
     
-    var linkCurrentImage = String()
+    static var linkCurrentImage = String()
     var arrayLinks = [String]()
     var interstitial: GADInterstitial!
     var bannerView: GADBannerView!
@@ -42,7 +42,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     }
     
     func showControllerShare() {
-        let dataGifForSend = Storage.storage[linkCurrentImage]
+        let dataGifForSend = Storage.storage[DetailViewController.linkCurrentImage]
         let shareController = UIActivityViewController(activityItems: [dataGifForSend!], applicationActivities: nil)
         shareController.completionWithItemsHandler = {_, bool, _, _ in
             if bool {
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
     
     @IBAction func searchAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
+        vc.tag = nil
         navigationController?.pushViewController(vc, animated: true)
     }
     

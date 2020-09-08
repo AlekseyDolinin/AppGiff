@@ -3,13 +3,13 @@ import UIKit
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayTrendingLinks.count
+        return arrayLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllTrendingCollectionViewCell
         
-        let link: String = arrayTrendingLinks[indexPath.row]
+        let link: String = arrayLinks[indexPath.row]
         if Array(Storage.storage.keys).contains(link) {
             allCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
             
@@ -20,6 +20,13 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
                 Storage.storage[link] = dataImage
             }
         }
+        
+        if typeContent != "Favorite" {
+            allCell.favoriteButton.isHidden = true
+        } else {
+            
+        }
+        
         return allCell
     }
     
@@ -30,8 +37,8 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-        vc.linkCurrentImage = arrayTrendingLinks[indexPath.row]
-        vc.arrayLinks = arrayTrendingLinks
+        DetailViewController.linkCurrentImage = arrayLinks[indexPath.row]
+        vc.arrayLinks = arrayLinks
         navigationController?.pushViewController(vc, animated: true)
     }
 }

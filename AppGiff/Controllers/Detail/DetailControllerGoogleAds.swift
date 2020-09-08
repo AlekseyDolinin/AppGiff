@@ -21,7 +21,7 @@ extension DetailViewController {
     
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("banner Ads Info: \(String(describing: bannerView.responseInfo))")
+//        print("banner Ads Info: \(String(describing: bannerView.responseInfo))")
         showBannerView()
         bannerView.alpha = 0
         UIView.animate(withDuration: 1, animations: {
@@ -65,7 +65,7 @@ extension DetailViewController {
     }
     
     func showBannerView() {
-        print("showAds")
+//        print("showAds")
         UIView.animate(withDuration: 0.2) {
             self.bannerView.transform = .identity
         }

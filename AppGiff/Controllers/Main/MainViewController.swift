@@ -49,7 +49,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     func getRndGif() {
         let randomTitle = titles.randomElement()!
         Api.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
-            self.mainView.setTitle(title: randomTitle, randomDataGif: data)
+            self.mainView.setTitleImage(title: randomTitle, randomDataGif: data)
             self.mainView.showLabel()
         }
     }
@@ -73,19 +73,19 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     
     @IBAction func searchAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs]
+        vc.tag = nil
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func favoriteAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
-        vc.dataTransition = ["typeContent": "Favorite"]
+        vc.typeContent = "Favorite"
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func seeAll(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
-        vc.dataTransition = ["typeContent": sender.restorationIdentifier!]
+        vc.typeContent = sender.restorationIdentifier!
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -93,7 +93,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         var tagString = sender.titleLabel!.text!
         tagString.removeFirst()
         let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.dataTransition = ["typeSearch": TypeSearch.searchGifs, "tagString": tagString]
+        vc.tag = tagString
         navigationController?.pushViewController(vc, animated: true)
     }
 }

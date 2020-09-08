@@ -32,7 +32,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-        vc.linkCurrentImage = arrayLinks[indexPath.row]
+        DetailViewController.linkCurrentImage = arrayLinks[indexPath.row]
         vc.arrayLinks = arrayLinks
         navigationController?.pushViewController(vc, animated: true)
     }

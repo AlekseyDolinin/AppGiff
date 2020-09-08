@@ -13,7 +13,7 @@
 		1002E38F23FC639E008EF322 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1002E38D23FC639E008EF322 /* Gifty.xcdatamodeld */; };
 		1002E39123FC63A1008EF322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1002E39023FC63A1008EF322 /* Assets.xcassets */; };
 		1002E39423FC63A1008EF322 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1002E39223FC63A1008EF322 /* LaunchScreen.storyboard */; };
-		1002E3AE23FC7627008EF322 /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002E3AD23FC7627008EF322 /* PopularCollectionViewCell.swift */; };
+		1002E3AE23FC7627008EF322 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002E3AD23FC7627008EF322 /* CollectionViewCell.swift */; };
 		1002E3B023FC7AF6008EF322 /* GIFAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002E3AF23FC7AF6008EF322 /* GIFAnimation.swift */; };
 		1023DE6C2402BFA600A5590F /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */; };
 		1023DE702402D6F500A5590F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1023DE6F2402D6F500A5590F /* DetailViewController.swift */; };
@@ -23,6 +23,7 @@
 		102DBB932405C4E2004B80D2 /* SearchControllerGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102DBB922405C4E2004B80D2 /* SearchControllerGoogleAds.swift */; };
 		102DBBB72405E61C004B80D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */; };
 		10442CA92401BAE900A97E10 /* back.gif in Resources */ = {isa = PBXBuildFile; fileRef = 10442CA82401BAE800A97E10 /* back.gif */; };
+		106389292508096400FE4680 /* FavoritesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106389282508096400FE4680 /* FavoritesData.swift */; };
 		1071199424D750BA00AC39E8 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1071199324D750BA00AC39E8 /* CollectionView.swift */; };
 		1074A87D23FC8930008E5300 /* AllPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87C23FC8930008E5300 /* AllPopularViewController.swift */; };
 		1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */; };
@@ -63,7 +64,7 @@
 		1002E39023FC63A1008EF322 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1002E39323FC63A1008EF322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1002E39523FC63A1008EF322 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1002E3AD23FC7627008EF322 /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
+		1002E3AD23FC7627008EF322 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		1002E3AF23FC7AF6008EF322 /* GIFAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFAnimation.swift; sourceTree = "<group>"; };
 		1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		1023DE6F2402D6F500A5590F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		102DBBB52405CAEA004B80D2 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		102DBBB62405E61C004B80D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10442CA82401BAE800A97E10 /* back.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = back.gif; sourceTree = "<group>"; };
+		106389282508096400FE4680 /* FavoritesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesData.swift; sourceTree = "<group>"; };
 		1071199324D750BA00AC39E8 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		1074A86923FC860D008E5300 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		1074A86D23FC860D008E5300 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
@@ -230,7 +232,7 @@
 				1023DE772402EAFD00A5590F /* HeaderView.swift */,
 				1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */,
 				10C06D5D2403FE77002A3F95 /* SearchCollectionViewCell.swift */,
-				1002E3AD23FC7627008EF322 /* PopularCollectionViewCell.swift */,
+				1002E3AD23FC7627008EF322 /* CollectionViewCell.swift */,
 				1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -295,6 +297,7 @@
 		10C06D572403FD3B002A3F95 /* HelpClasses */ = {
 			isa = PBXGroup;
 			children = (
+				106389282508096400FE4680 /* FavoritesData.swift */,
 				10999FC224DF2048005A803A /* Storage.swift */,
 				10999FBA24DB3E9C005A803A /* ColorSet.swift */,
 				1002E3AF23FC7AF6008EF322 /* GIFAnimation.swift */,
@@ -491,7 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1002E3AE23FC7627008EF322 /* PopularCollectionViewCell.swift in Sources */,
+				106389292508096400FE4680 /* FavoritesData.swift in Sources */,
+				1002E3AE23FC7627008EF322 /* CollectionViewCell.swift in Sources */,
 				10999FB924D88DF5005A803A /* MainView.swift in Sources */,
 				10999FB724D88C75005A803A /* StartView.swift in Sources */,
 				1002E38923FC639E008EF322 /* StartViewController.swift in Sources */,
