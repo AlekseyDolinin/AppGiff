@@ -10,6 +10,13 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllTrendingCollectionViewCell
         
         let link: String = arrayLinks[indexPath.row]
+        
+        if arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
+            allCell.favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
+        } else {
+            allCell.favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
+        }
+        
         if Array(Storage.storage.keys).contains(link) {
             allCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
             
@@ -26,6 +33,9 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             
         }
+        
+        allCell.favoriteButton.tag = indexPath.row
+        allCell.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
         
         return allCell
     }

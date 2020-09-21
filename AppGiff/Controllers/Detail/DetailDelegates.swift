@@ -11,10 +11,8 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let link: String = arrayLinks[indexPath.row]
         
         if arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
-            print(1)
             detailCell.buttonAddInFavorites.setImage(UIImage(named: "iconLikePink"), for: .normal)
         } else {
-            print(2)
             detailCell.buttonAddInFavorites.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
         }
         
@@ -28,7 +26,8 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
             }
         }
         
-
+        detailCell.buttonAddInFavorites.tag = indexPath.row
+        detailCell.buttonAddInFavorites.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
         
         return detailCell
     }

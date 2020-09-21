@@ -22,10 +22,28 @@ class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestu
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTrandingCollection), name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         getTrending(typeContent: typeContent)
+    }
+    
+    @objc func reloadTrandingCollection() {
+        collectionView.collection.reloadData()
+    }
+    
+    @objc func favoriteAction(sender: UIButton) {
+        // если gif уже в избранном
+        if let indexGIF = arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
+            arrayFavoritesURL.remove(at: indexGIF)
+        } else {
+            // если gif нет в избранном
+            arrayFavoritesURL.append(arrayLinks[sender.tag])
+        }
+        // reload collection
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
     func getTrending(typeContent: String) {

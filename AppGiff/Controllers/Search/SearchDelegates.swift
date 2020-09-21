@@ -11,6 +11,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let link: String = arrayLinks[indexPath.row]
         
+        if arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
+            searchCell.favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
+        } else {
+            searchCell.favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
+        }
+        
         if Array(Storage.storage.keys).contains(link) {
             searchCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
         } else {
@@ -21,7 +27,11 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             }
         }
         
+        searchCell.favoriteButton.tag = indexPath.row
+        searchCell.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
+        
         searchCell.loadIndicator.stopAnimating()
+        
         return searchCell
     }
     

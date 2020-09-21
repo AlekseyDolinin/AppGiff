@@ -25,6 +25,12 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDetailCollection), name: NSNotification.Name(rawValue: "reloadDetailCollection"), object: nil)
+    }
+    
+    @objc func reloadDetailCollection() {
+        detailView.detailCollectionView.reloadData()
     }
     
     func configure() {
@@ -39,6 +45,19 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         } else {
             showControllerShare()
         }
+    }
+    
+    
+    @objc func favoriteAction(sender: UIButton) {
+        // если gif уже в избранном
+        if let indexGIF = arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
+            arrayFavoritesURL.remove(at: indexGIF)
+        } else {
+            // если gif нет в избранном
+            arrayFavoritesURL.append(arrayLinks[sender.tag])
+        }
+        // reload collection
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadDetailCollection"), object: nil)
     }
     
     func showControllerShare() {

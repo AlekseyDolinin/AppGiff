@@ -38,6 +38,25 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRe
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSearchCollection), name: NSNotification.Name(rawValue: "reloadSearchCollection"), object: nil)
+    }
+    
+    @objc func reloadSearchCollection() {
+        searchView.searchCollectionView.reloadData()
+    }
+    
+    
+    @objc func favoriteAction(sender: UIButton) {
+        // если gif уже в избранном
+        if let indexGIF = arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
+            arrayFavoritesURL.remove(at: indexGIF)
+        } else {
+            // если gif нет в избранном
+            arrayFavoritesURL.append(arrayLinks[sender.tag])
+        }
+        // reload collection
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadSearchCollection"), object: nil)
     }
     
     func requestSearch(searchText: String, typeSearch: String) {

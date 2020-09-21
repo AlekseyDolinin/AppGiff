@@ -9,5 +9,6 @@ class DetailCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         imageGif.layer.cornerRadius = 5
         imageGif.clipsToBounds = true
+        
     }
 }
