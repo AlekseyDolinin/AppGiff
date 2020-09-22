@@ -11,7 +11,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let link: String = arrayLinks[indexPath.row]
         
-        if arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
+        if StartViewController.arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
             searchCell.favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
         } else {
             searchCell.favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)

@@ -10,7 +10,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! DetailCollectionViewCell
         let link: String = arrayLinks[indexPath.row]
         
-        if arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
+        if StartViewController.arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
             detailCell.buttonAddInFavorites.setImage(UIImage(named: "iconLikePink"), for: .normal)
         } else {
             detailCell.buttonAddInFavorites.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
@@ -49,7 +49,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         headerView.imgView.image = UIImage.gifImageWithData(Storage.storage[DetailViewController.linkCurrentImage]!)
         
-        if arrayFavoritesURL.contains(DetailViewController.linkCurrentImage) {
+        if StartViewController.arrayFavoritesURL.contains(DetailViewController.linkCurrentImage) {
             headerView.favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
         } else {
             headerView.favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)

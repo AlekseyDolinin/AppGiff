@@ -627,7 +627,7 @@
                                             <action selector="backAction:" destination="RPj-CI-Gec" eventType="touchUpInside" id="toe-b9-ilF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muQ-7K-Ias">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muQ-7K-Ias">
                                         <rect key="frame" x="270" y="60" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="hWp-jE-dJ0"/>

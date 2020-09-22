@@ -47,14 +47,13 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         }
     }
     
-    
     @objc func favoriteAction(sender: UIButton) {
         // если gif уже в избранном
-        if let indexGIF = arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
-            arrayFavoritesURL.remove(at: indexGIF)
+        if let indexGIF = StartViewController.arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
+            StartViewController.removeFromFavorite(index: indexGIF)
         } else {
             // если gif нет в избранном
-            arrayFavoritesURL.append(arrayLinks[sender.tag])
+            StartViewController.addNewFavorite(link: arrayLinks[sender.tag])
         }
         // reload collection
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadDetailCollection"), object: nil)

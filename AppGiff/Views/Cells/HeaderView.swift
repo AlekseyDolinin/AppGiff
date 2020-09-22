@@ -21,13 +21,13 @@ class HeaderView: UICollectionReusableView {
     
     @objc func favoriteAction() {
         // если gif уже в избранном
-        if let indexGIF = arrayFavoritesURL.firstIndex(of: DetailViewController.linkCurrentImage) {
-            arrayFavoritesURL.remove(at: indexGIF)
+        if let indexGIF = StartViewController.arrayFavoritesURL.firstIndex(of: DetailViewController.linkCurrentImage) {
+            StartViewController.removeFromFavorite(index: indexGIF)
             favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
         } else {
             // если gif нет в избранном
             favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
-            arrayFavoritesURL.append(DetailViewController.linkCurrentImage)
+            StartViewController.addNewFavorite(link: DetailViewController.linkCurrentImage)
         }
         
         // reload collection

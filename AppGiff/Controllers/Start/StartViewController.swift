@@ -7,9 +7,18 @@ class StartViewController: UIViewController {
         return (view as! StartView)
     }
     
+    static var arrayFavorites = UserDefaults.standard.array(forKey: "favoriteLinks")
+    
+    static var arrayFavoritesURL: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getVersionApp()
+        
+        if let arrayFavoritesURL = StartViewController.arrayFavorites {
+//            print("arrayFavoritesURL: \(arrayFavoritesURL)")
+            StartViewController.arrayFavoritesURL = arrayFavoritesURL as! [String]
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -17,6 +26,19 @@ class StartViewController: UIViewController {
         navigationController?.pushViewController(vc!, animated: true)
     }
 
+    static func addNewFavorite(link: String) {
+        StartViewController.arrayFavoritesURL.append(link)
+        UserDefaults.standard.set(StartViewController.arrayFavoritesURL, forKey: "favoriteLinks")
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func removeFromFavorite(index: Int) {
+        StartViewController.arrayFavoritesURL.remove(at: index)
+        UserDefaults.standard.set(StartViewController.arrayFavoritesURL, forKey: "favoriteLinks")
+        UserDefaults.standard.synchronize()
+    }
+    
+    
     // получение номера версии приложения
     func getVersionApp() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject

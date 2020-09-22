@@ -10,7 +10,7 @@ class Api {
     func getDataRndGif(randomTitle: String, completion: @escaping (Data) -> ()) {
         let stringURL = "https://api.giphy.com/v1/gifs/random?api_key=wR3NVODE5rYFwyFQJJH38Vvr8Ts73ufz&tag=\(randomTitle)&rating=G"
         loadJSON(urlString: stringURL) { (json) in
-            print(json)
+//            print(json)
             if let stringUrl = (json["data"]["images"]["fixed_width_downsampled"]["url"].string) {
                 self.loadData(urlString: stringUrl, completion: { (dataGif) in
                     completion(dataGif)

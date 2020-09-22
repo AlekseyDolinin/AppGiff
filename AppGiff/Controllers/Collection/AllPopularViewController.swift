@@ -28,6 +28,7 @@ class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestu
     
     override func viewDidAppear(_ animated: Bool) {
         getTrending(typeContent: typeContent)
+        print(arrayLinks)
     }
     
     @objc func reloadTrandingCollection() {
@@ -36,18 +37,18 @@ class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestu
     
     @objc func favoriteAction(sender: UIButton) {
         // если gif уже в избранном
-        if let indexGIF = arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
-            arrayFavoritesURL.remove(at: indexGIF)
+        if let indexGIF = StartViewController.arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
+            StartViewController.removeFromFavorite(index: indexGIF)
         } else {
             // если gif нет в избранном
-            arrayFavoritesURL.append(arrayLinks[sender.tag])
+            StartViewController.addNewFavorite(link: arrayLinks[sender.tag])
         }
         // reload collection
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
     func getTrending(typeContent: String) {
-        print(typeContent)
+//        print(typeContent)
         if typeContent == "gifs" {
             Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
                 self?.arrayLinks = arrayUrlGifs
@@ -59,7 +60,7 @@ class CollectionViewController: UIViewController, GADBannerViewDelegate, UIGestu
                 self?.reloadCollection()
             }
         } else if typeContent == "Favorite" {
-            arrayLinks = arrayFavoritesURL
+            arrayLinks = StartViewController.arrayFavoritesURL
             reloadCollection()
         }
     }
