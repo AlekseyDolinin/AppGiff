@@ -1,105 +1,93 @@
 import UIKit
 import GoogleMobileAds
+import PinterestLayout
 
-struct TypeSearch {
-    /// value = gifs
-    static let searchGifs = "gifs"
-    /// value = stickers
-    static let searchStickers = "stickers"
-}
-
-class SearchViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
+class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLayoutDelegate {
     
     var searchView: SearchView! {
         guard isViewLoaded else {return nil}
         return (view as! SearchView)
     }
     
-    var tag:  String?
-    var arrayLinks = [String]()
     var bannerView: GADBannerView!
-    var typeSearch = String()
-    var searchText = String()
+//    var arrayLinks = [String]()
+    var searchText: String!
+    var offset = 0
+    var arrayAllGifsData = [GifImageData]()
+    var totalCountSearchGif: Int!
+    
+    let layout = PinterestLayout()
+    
+    var typeContent = TypeContent.gifs
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if tag != nil {
-            searchText = tag!
-        } else {
-            selectedTabs("gifs")
-        }
-        
-        searchView.configure(typeSearch: typeSearch, searchText: searchText)
-        
-        if typeSearch == TypeSearch.searchGifs && searchText != "" {
-            requestSearch(searchText: searchText, typeSearch: TypeSearch.searchGifs)
-        }
+        searchView.searchText = self.searchText
+        searchView.configure()
         setGadBanner()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadSearchCollection), name: NSNotification.Name(rawValue: "reloadSearchCollection"), object: nil)
-    }
-    
-    @objc func reloadSearchCollection() {
-        searchView.searchCollectionView.reloadData()
-    }
-    
-    
-    @objc func favoriteAction(sender: UIButton) {
-        // если gif уже в избранном
-        if let indexGIF = StartViewController.arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
-            StartViewController.removeFromFavorite(index: indexGIF)
-        } else {
-            // если gif нет в избранном
-            StartViewController.addNewFavorite(link: arrayLinks[sender.tag])
+        /// поиск выбранного тэга
+        if searchText != nil {
+            searchRequest(offset: 0)
         }
-        // reload collection
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadSearchCollection"), object: nil)
+        
+        ///
+        selectedTabs(typeContent.rawValue)
+        
+        setCollection()
     }
     
-    func requestSearch(searchText: String, typeSearch: String) {
-        searchView.hideCollectionForSearch()
-        Api.shared.search(searchText: searchText, type: typeSearch) { [weak self] (arrayLinks) in
-            self?.arrayLinks = arrayLinks
-            self?.searchView.setAfterRequest(arrayLinks.count)
-        }
+    func setCollection() {
+        searchView.searchCollectionView.delegate = self
+        searchView.searchCollectionView.dataSource = self
+        searchView.searchCollectionView.collectionViewLayout = layout
+        layout.delegate = self
+        layout.cellPadding = 6
+        layout.numberOfColumns = 2
+        searchView.searchCollectionView.contentInset = .init(top: 180, left: 0, bottom: 120, right: 0)
     }
     
+    ///
     func selectedTabs(_ nameTab: String) {
+
         
-        searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        
         searchView.setTab(nameTab: nameTab)
-        typeSearch = nameTab
+        typeContent = nameTab == TypeContent.gifs.rawValue ? TypeContent.gifs : TypeContent.stickers
         
-        print("searh text: \(searchView.searchBar.text!)")
-        print("searh text: \(searchText)")
+        arrayAllGifsData = []
+        offset = 0
+        totalCountSearchGif = 0
         
-        // если инпут не пустой
-        if !trimingText(inputText: searchText).isEmpty {
-            requestSearch(searchText: searchText, typeSearch: typeSearch)
-            searchView.searchBar.text = searchText
-        } else {
-            // если инпут пустой
-            arrayLinks = []
-            searchView.searchCollectionView.alpha = 0
-        }
+        searchRequest(offset: offset)
+        
+        
+        
+//        /// если инпут не пустой
+//        if searchText != nil && searchText != "" {
+//            requestSearch(searchText: searchText, typeSearch: typeSearch)
+//            searchView.searchBar.text = searchText
+//        } else {
+//            // если инпут пустой
+//            arrayLinks = []
+//            searchView.searchCollectionView.alpha = 0
+//        }
     }
     
-    // MARK: - selectTab
+    /// selectTab
     @IBAction func selectTab(_ sender: UIButton) {
         if let nameTab = sender.restorationIdentifier {
             selectedTabs(nameTab)
+            //        searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: -180), animated: true)
+            //        searchView.searchCollectionView.scrollRectToVisible(CGRect.zero, animated: true)
+//            searchView.searchCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
     }
     
-    func trimingText(inputText: String) -> String {
-        return inputText.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    
+    ///
     @IBAction func backAction(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
 }
 

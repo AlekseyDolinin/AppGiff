@@ -73,12 +73,6 @@ class DetailViewController: UIViewController, GADBannerViewDelegate, GADIntersti
         present(shareController, animated: true, completion: nil)
     }
     
-    @IBAction func searchAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.tag = nil
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction func backAction(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }

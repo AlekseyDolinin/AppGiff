@@ -72,6 +72,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - PinterestLayout (1.0.3)
   - PromisesObjC (1.2.8)
   - SwiftyJSON (4.3.0)
 
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Firebase/Analytics
   - Google-Mobile-Ads-SDK
+  - PinterestLayout
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -97,6 +99,7 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
+    - PinterestLayout
     - PromisesObjC
     - SwiftyJSON
 
@@ -115,9 +118,10 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PinterestLayout: f1c7ec0254ffa842d69f1b43e4436c8ded4359b9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 81245d906b46a563413b2f452f7f7a5c71ba0a2e
+PODFILE CHECKSUM: e4b9ae83887fe50a52e75f94fc6364700c604f33
 
 COCOAPODS: 1.8.4

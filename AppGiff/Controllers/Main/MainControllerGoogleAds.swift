@@ -3,8 +3,14 @@ import GoogleMobileAds
 extension MainViewController {
     
     func setGadBanner() {
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        
+        #if DEBUG
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        #else
         bannerView.adUnitID = "ca-app-pub-8093774413708674/3125868704"
+        #endif
+        
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
@@ -13,9 +19,9 @@ extension MainViewController {
         
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         bannerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         bannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        bannerView.widthAnchor.constraint(equalToConstant: 320).isActive = true
+        bannerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+        bannerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
     }
     
     /// Tells the delegate an ad request loaded an ad.

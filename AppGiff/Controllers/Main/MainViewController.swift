@@ -1,8 +1,6 @@
 import UIKit
 import GoogleMobileAds
 
-//var storage = [String: Data]()
-
 class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureRecognizerDelegate {
     
     var mainView: MainView! {
@@ -22,7 +20,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         
         setTransition()
         setGadBanner()
-        mainView.configure()
         getRndGif()
         getTrending()
         configureCollection()
@@ -71,29 +68,24 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         getRndGif()
     }
     
-    @IBAction func searchAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.tag = nil
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction func favoriteAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
         vc.typeContent = "Favorite"
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func seeAll(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
-        vc.typeContent = sender.restorationIdentifier!
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func selectTag(_ sender: UIButton) {
         var tagString = sender.titleLabel!.text!
         tagString.removeFirst()
-        let vc = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        vc.tag = tagString
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        vc.searchText = tagString
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
+    }
+    
+    @IBAction func openSearchVC(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
     }
 }

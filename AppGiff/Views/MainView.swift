@@ -8,16 +8,13 @@ class MainView: UIView {
     @IBOutlet weak var randomTitleLabel: UILabel!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadImageTitle: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var titleCollectionTrendingGIFLabel: UILabel!
-    @IBOutlet weak var titleCollectionTrendingStickers: UILabel!
+    @IBOutlet weak var searchBackView: UIView!
     
-    func configure() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         backImage.image = UIImage.gifImageWithName("back")
         hideLabel()
-        
-        titleCollectionTrendingGIFLabel.text = "Trending GIF"
-        titleCollectionTrendingStickers.text = "Trending Stickers"
+        searchBackView.layer.cornerRadius = 8
     }
     
     func setTitleImage(title: String, randomDataGif: Data) {
