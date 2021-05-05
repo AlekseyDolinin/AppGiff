@@ -8,4 +8,9 @@ extension SearchViewController: UITextFieldDelegate {
             print(self.searchText)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        search()
+        return true
+    }
 }

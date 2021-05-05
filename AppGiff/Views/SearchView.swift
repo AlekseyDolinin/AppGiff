@@ -40,7 +40,7 @@ class SearchView: UIView {
     
     
     func configure() {
-        if searchText == nil {
+        if searchText == nil || searchText == "" {
             searchInput.becomeFirstResponder()
         } else {
             searchInput.text = searchText

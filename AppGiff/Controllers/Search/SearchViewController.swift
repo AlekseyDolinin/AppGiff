@@ -59,6 +59,18 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         }
     }
     
+    ///
+    func search() {
+        if self.searchText != "" {
+            print(self.searchText)
+            arrayAllGifsData = []
+            offset = 0
+            totalCountSearchGif = 0
+            searchView.searchCollectionView.reloadData()
+            searchRequest(offset: 0)
+        }
+    }
+    
     /// selectTab
     @IBAction func selectTab(_ sender: UIButton) {
         if let nameTab = sender.restorationIdentifier {
@@ -72,14 +84,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     }
     
     @IBAction func searchAction(_ sender: UIButton) {
-        if self.searchText != "" {
-            print(self.searchText)
-            arrayAllGifsData = []
-            offset = 0
-            totalCountSearchGif = 0
-            searchView.searchCollectionView.reloadData()
-            searchRequest(offset: 0)
-        }
+        search()
     }
     
     ///
