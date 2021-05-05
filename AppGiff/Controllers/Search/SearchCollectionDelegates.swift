@@ -39,11 +39,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     ///
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailTVC") as! DetailTableViewController
-        
         let storiesVC = StoriesNavigationController()
         storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
-        
         vc.dataGif = arrayAllGifsData[indexPath.row].dataImage
+        vc.modalPresentationStyle = .fullScreen
         present(storiesVC, animated: true, completion: nil)
     }
     
