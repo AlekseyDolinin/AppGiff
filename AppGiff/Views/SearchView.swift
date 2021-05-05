@@ -18,6 +18,7 @@ class SearchView: UIView {
         super.awakeFromNib()
         
 //        UIApplication.shared.statusBarView?.backgroundColor = .Pink_
+        loader.stopAnimating()
         
         tabButtonGif.layer.cornerRadius = 20
         tabButtonGif.clipsToBounds = true
@@ -34,13 +35,11 @@ class SearchView: UIView {
                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         searchInput.keyboardType = .asciiCapable
         searchInput.returnKeyType = .search
-        
 
     }
     
     
     func configure() {
-        
         if searchText == nil {
             searchInput.becomeFirstResponder()
         } else {

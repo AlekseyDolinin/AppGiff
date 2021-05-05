@@ -11,7 +11,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     
     var bannerView: GADBannerView!
 //    var arrayLinks = [String]()
-    var searchText: String!
+    var searchText = ""
     var offset = 0
     var arrayAllGifsData = [GifImageData]()
     var totalCountSearchGif: Int!
@@ -27,11 +27,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         searchView.configure()
         setGadBanner()
         
-        /// поиск выбранного тэга
-        if searchText != nil {
-            searchRequest(offset: 0)
-        }
-        
         ///
         selectedTabs(typeContent.rawValue)
         
@@ -41,6 +36,10 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     func setCollection() {
         searchView.searchCollectionView.delegate = self
         searchView.searchCollectionView.dataSource = self
+        searchView.searchInput.delegate = self
+        
+        searchView.searchInput.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: .editingChanged)
+        
         searchView.searchCollectionView.collectionViewLayout = layout
         layout.delegate = self
         layout.cellPadding = 6
@@ -50,38 +49,36 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     
     ///
     func selectedTabs(_ nameTab: String) {
-
-        
         
         searchView.setTab(nameTab: nameTab)
         typeContent = nameTab == TypeContent.gifs.rawValue ? TypeContent.gifs : TypeContent.stickers
         
-        arrayAllGifsData = []
-        offset = 0
-        totalCountSearchGif = 0
-        
-        searchRequest(offset: offset)
-        
-        
-        
-//        /// если инпут не пустой
-//        if searchText != nil && searchText != "" {
-//            requestSearch(searchText: searchText, typeSearch: typeSearch)
-//            searchView.searchBar.text = searchText
-//        } else {
-//            // если инпут пустой
-//            arrayLinks = []
-//            searchView.searchCollectionView.alpha = 0
-//        }
+        /// поиск выбранного тэга
+        if searchText != "" {
+            searchRequest(offset: offset)
+        }
     }
     
     /// selectTab
     @IBAction func selectTab(_ sender: UIButton) {
         if let nameTab = sender.restorationIdentifier {
+            
+            arrayAllGifsData = []
+            offset = 0
+            totalCountSearchGif = 0
+            searchView.searchCollectionView.reloadData()
             selectedTabs(nameTab)
-            //        searchView.searchCollectionView.setContentOffset(CGPoint(x: 0, y: -180), animated: true)
-            //        searchView.searchCollectionView.scrollRectToVisible(CGRect.zero, animated: true)
-//            searchView.searchCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        }
+    }
+    
+    @IBAction func searchAction(_ sender: UIButton) {
+        if self.searchText != "" {
+            print(self.searchText)
+            arrayAllGifsData = []
+            offset = 0
+            totalCountSearchGif = 0
+            searchView.searchCollectionView.reloadData()
+            searchRequest(offset: 0)
         }
     }
     
