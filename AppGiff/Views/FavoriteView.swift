@@ -1,36 +1,15 @@
 import UIKit
 
 class FavoriteView: UIView {
-
-    @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var backImage: UIImageView!
-    @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet weak var collectionFavoriteGifs: UICollectionView!
+    @IBOutlet weak var nothingWasFoundLabel: UILabel!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
+    func configure() {
         
-        backImage.image = UIImage.gifImageWithName("back")
-        collection.alpha = 0
-
-        /// setCollection
-        let widthCell = frame.size.width / 2 - 12
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 80, left: 8, bottom: 70, right: 8)
-        layout.itemSize = CGSize(width: widthCell, height: widthCell / 2 * 3)
-        layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
-        collection!.collectionViewLayout = layout
-        collection.keyboardDismissMode = .onDrag
+        nothingWasFoundLabel.isHidden = true
+        
     }
     
-//    func configure() {
-//
-//    }
-    
-    func showCollection() {
-        loadIndicator.stopAnimating()
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.collection.alpha = 1
-        }
-    }
 }

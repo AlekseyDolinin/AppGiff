@@ -7,10 +7,22 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        searchCell.gifData = arrayAllGifsData[indexPath.row]
+        let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! GifCell
+
+        searchCell.imageGif.image = UIImage.gifImageWithData(arrayAllGifsData[indexPath.row].dataImage )
+        let link: String = arrayAllGifsData[indexPath.row].linkImage
+        
+        if SearchViewController.arrayFavoritesLink.contains(link) {
+            searchCell.buttonAddInFavorites.setImage(UIImage(named: "iconLikePink"), for: .normal)
+        } else {
+            searchCell.buttonAddInFavorites.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
+        }
+        
         searchCell.buttonAddInFavorites.tag = indexPath.row
-        searchCell.setCell()
+        searchCell.buttonAddInFavorites.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
+        
+        
+        
         
         /// подзагрузка
         if indexPath.row == arrayAllGifsData.count - 1 { // last cell

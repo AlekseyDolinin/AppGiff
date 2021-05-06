@@ -9,16 +9,16 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         return (view as! SearchView)
     }
     
-    var bannerView: GADBannerView!
-//    var arrayLinks = [String]()
+    static var arrayFavoritesLink = [String]()
+    
     var searchText = ""
     var offset = 0
     var arrayAllGifsData = [GifImageData]()
     var totalCountSearchGif: Int!
-    
     let layout = PinterestLayout()
-    
     var typeContent = TypeContent.gifs
+    
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,17 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         selectedTabs(typeContent.rawValue)
         
         setCollection()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if UserDefaults.standard.array(forKey: "favoritesLinks") != nil {
+            /// если есть записаные линки достаём их
+            SearchViewController.arrayFavoritesLink = UserDefaults.standard.array(forKey: "favoritesLinks") as! [String]
+        }
+        print(SearchViewController.arrayFavoritesLink.count)
+        searchView.searchCollectionView.reloadData()
     }
     
     func setCollection() {
@@ -70,6 +81,32 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
             searchView.searchCollectionView.reloadData()
             searchRequest(offset: 0)
         }
+    }
+    
+    // MARK:- работа с избранным
+    @objc func favoriteAction(sender: UIButton) {
+        
+        let link = arrayAllGifsData[sender.tag].linkImage
+        
+        /// проверяем есть ли ссылка в избранном
+        let index = SearchViewController.arrayFavoritesLink.firstIndex(of: link)
+        
+        if index == nil {
+            /// ссылки нет в избранном
+            /// добавление ссылки в избранное
+            print("ссылки нет в избранном (добавление ссылки в избранное)")
+            SearchViewController.arrayFavoritesLink.append(link)
+        } else {
+            /// ссылка есть в избранном
+            /// удаление ссылки из избранного
+            print("ссылка есть в избранном (удаление ссылки из избранного)")
+            SearchViewController.arrayFavoritesLink.remove(at: index!)
+        }
+        
+        searchView.searchCollectionView.reloadData()
+        /// запись нового массива с линками
+        print("запись нового массива с линками (количество: \(SearchViewController.arrayFavoritesLink.count)")
+        UserDefaults.standard.set(SearchViewController.arrayFavoritesLink, forKey: "favoritesLinks")
     }
     
     /// selectTab

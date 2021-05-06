@@ -1,51 +1,37 @@
 import UIKit
 
-extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayLinks.count
+        return imagesDataFavoriteGifs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let allCell = collectionView.dequeueReusableCell(withReuseIdentifier: "allCell", for: indexPath) as! AllTrendingCollectionViewCell
-        
-        let link: String = arrayLinks[indexPath.row]
-        
-        if StartViewController.arrayFavoritesURL.contains(arrayLinks[indexPath.row]) {
-            allCell.favoriteButton.setImage(UIImage(named: "iconLikePink"), for: .normal)
-        } else {
-            allCell.favoriteButton.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
-        }
-        
-        if Array(Storage.storage.keys).contains(link) {
-            allCell.imageGif.image = UIImage.gifImageWithData(Storage.storage[link]!)
-            
-        } else {
-            Api.shared.loadData(urlString: link) { (dataImage) in
-                let image: UIImage = UIImage.gifImageWithData(dataImage)!
-                allCell.imageGif.image = image
-                Storage.storage[link] = dataImage
-            }
-        }
-        
-        allCell.favoriteButton.isHidden = true
-        
-        allCell.favoriteButton.tag = indexPath.row
-        allCell.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
-        
-        return allCell
+        let favoriteCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as! GifCell
+        favoriteCell.imageGif.image = UIImage.gifImageWithData(imagesDataFavoriteGifs[indexPath.row])!
+        favoriteCell.buttonAddInFavorites.tag = indexPath.row
+        favoriteCell.buttonAddInFavorites.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
+        favoriteCell.buttonAddInFavorites.setImage(UIImage(named: "iconLikePink"), for: .normal)
+        return favoriteCell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let value = collectionView.frame.size.width / 2 - 12
-        return CGSize(width: value, height: value)
+    func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        let image: UIImage = UIImage.gifImageWithData(imagesDataFavoriteGifs[indexPath.row])!
+        return image.height(forWidth: withWidth)
+    }
+    
+    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        return CGFloat()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailTVC") as! DetailTableViewController
+        let storiesVC = StoriesNavigationController()
+        storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
+        vc.dataGif = imagesDataFavoriteGifs[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+        present(storiesVC, animated: true, completion: nil)
+    
     }
 }
-
-

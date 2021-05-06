@@ -34,7 +34,6 @@
 		1086C68926426F3B0093DE20 /* DetailFullScreenGoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C68626426F330093DE20 /* DetailFullScreenGoogleAds.swift */; };
 		1086C68A26426F3D0093DE20 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C68726426F330093DE20 /* DetailTableViewController.swift */; };
 		1086C6912642708D0093DE20 /* StoriesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C68C264270850093DE20 /* StoriesNavigationController.swift */; };
-		1086C692264270900093DE20 /* StoriesNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C690264270850093DE20 /* StoriesNavigationViewModel.swift */; };
 		1086C693264270930093DE20 /* StoriesNavigationDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C68E264270850093DE20 /* StoriesNavigationDismissAnimator.swift */; };
 		1086C694264270950093DE20 /* StoriesNavigationPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C68F264270850093DE20 /* StoriesNavigationPresentAnimator.swift */; };
 		1086C696264347920093DE20 /* PreviewStoryViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1086C695264347920093DE20 /* PreviewStoryViewProtocol.swift */; };
@@ -51,7 +50,7 @@
 		10999FC624E05D3C005A803A /* FavoriteDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC524E05D3B005A803A /* FavoriteDelegates.swift */; };
 		10999FCA24E088AD005A803A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC924E088AD005A803A /* DetailView.swift */; };
 		10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D582403FD4F002A3F95 /* SearchViewController.swift */; };
-		10C06D5E2403FE77002A3F95 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* SearchCell.swift */; };
+		10C06D5E2403FE77002A3F95 /* GifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* GifCell.swift */; };
 		10C06D6224048DD9002A3F95 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D6124048DD9002A3F95 /* Api.swift */; };
 		10EB43C2263B35E700B51A58 /* SF-Compact-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10EB43B9263B35E500B51A58 /* SF-Compact-Rounded-Semibold.otf */; };
 		10EB43C3263B35E700B51A58 /* SF-Compact-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10EB43BA263B35E500B51A58 /* SF-Compact-Rounded-Medium.otf */; };
@@ -131,7 +130,6 @@
 		1086C68C264270850093DE20 /* StoriesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesNavigationController.swift; sourceTree = "<group>"; };
 		1086C68E264270850093DE20 /* StoriesNavigationDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesNavigationDismissAnimator.swift; sourceTree = "<group>"; };
 		1086C68F264270850093DE20 /* StoriesNavigationPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesNavigationPresentAnimator.swift; sourceTree = "<group>"; };
-		1086C690264270850093DE20 /* StoriesNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesNavigationViewModel.swift; sourceTree = "<group>"; };
 		1086C695264347920093DE20 /* PreviewStoryViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStoryViewProtocol.swift; sourceTree = "<group>"; };
 		108F233F264488E9006058F9 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		109199E124011B6100613388 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +144,7 @@
 		10999FC524E05D3B005A803A /* FavoriteDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDelegates.swift; sourceTree = "<group>"; };
 		10999FC924E088AD005A803A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		10C06D582403FD4F002A3F95 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		10C06D5D2403FE77002A3F95 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		10C06D5D2403FE77002A3F95 /* GifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCell.swift; sourceTree = "<group>"; };
 		10C06D6124048DD9002A3F95 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		10EB43B9263B35E500B51A58 /* SF-Compact-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		10EB43BA263B35E500B51A58 /* SF-Compact-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Medium.otf"; sourceTree = "<group>"; };
@@ -260,7 +258,7 @@
 			children = (
 				1023DE772402EAFD00A5590F /* HeaderView.swift */,
 				1023DE6B2402BFA600A5590F /* DetailCollectionViewCell.swift */,
-				10C06D5D2403FE77002A3F95 /* SearchCell.swift */,
+				10C06D5D2403FE77002A3F95 /* GifCell.swift */,
 				1002E3AD23FC7627008EF322 /* CollectionViewCell.swift */,
 				1074A87E23FC89D5008E5300 /* AllPopularCollectionViewCell.swift */,
 			);
@@ -308,7 +306,6 @@
 			children = (
 				1086C68C264270850093DE20 /* StoriesNavigationController.swift */,
 				1086C68D264270850093DE20 /* Animators */,
-				1086C690264270850093DE20 /* StoriesNavigationViewModel.swift */,
 				1086C695264347920093DE20 /* PreviewStoryViewProtocol.swift */,
 			);
 			path = StoriesScreenVC;
@@ -565,11 +562,10 @@
 				1002E38923FC639E008EF322 /* StartViewController.swift in Sources */,
 				102DBB932405C4E2004B80D2 /* SearchGoogleAds.swift in Sources */,
 				1002E3B023FC7AF6008EF322 /* GIFAnimation.swift in Sources */,
-				1086C692264270900093DE20 /* StoriesNavigationViewModel.swift in Sources */,
 				105D8A9C263B582500340C96 /* TextFieldDelegates.swift in Sources */,
 				105D8A9E263B691F00340C96 /* GetData.swift in Sources */,
 				1086C693264270930093DE20 /* StoriesNavigationDismissAnimator.swift in Sources */,
-				10C06D5E2403FE77002A3F95 /* SearchCell.swift in Sources */,
+				10C06D5E2403FE77002A3F95 /* GifCell.swift in Sources */,
 				10999FC124DDFFD9005A803A /* SearchCollectionDelegates.swift in Sources */,
 				10999FB524D77245005A803A /* FavoriteGoogleAds.swift in Sources */,
 				1086C6912642708D0093DE20 /* StoriesNavigationController.swift in Sources */,

@@ -69,7 +69,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     }
     
     @IBAction func favoriteAction(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteVC") as! FavoriteViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
