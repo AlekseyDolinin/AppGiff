@@ -25,7 +25,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         
         searchView.searchText = self.searchText
         searchView.configure()
-//        setGadBanner()
+        setGadBanner()
         ///
         selectedTabs(typeContent.rawValue)
         setCollection()
