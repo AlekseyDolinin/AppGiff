@@ -28,11 +28,11 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
             }
         }
         
-        if typeContent != "Favorite" {
+//        if typeContent != "Favorite" {
             allCell.favoriteButton.isHidden = true
-        } else {
-            
-        }
+//        } else {
+//        
+//        }
         
         allCell.favoriteButton.tag = indexPath.row
         allCell.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)

@@ -10,8 +10,6 @@ extension SearchViewController {
         searchView.loader.startAnimating()
         
         Api.shared.search(searchText: self.searchText, typeContent: typeContent, offset: offset) { (json) in
-            
-            print(json)
             /// обработка пришедших данных
             self.completionHandlerSearch(json: json, completion: { (completion) in
                 self.searchView.loader.stopAnimating()

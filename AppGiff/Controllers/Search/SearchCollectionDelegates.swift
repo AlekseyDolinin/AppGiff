@@ -8,9 +8,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        
-        print("\(arrayAllGifsData.count)==\(indexPath.row)")
-        
         searchCell.gifData = arrayAllGifsData[indexPath.row]
         searchCell.buttonAddInFavorites.tag = indexPath.row
         searchCell.setCell()
@@ -45,5 +42,4 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         vc.modalPresentationStyle = .fullScreen
         present(storiesVC, animated: true, completion: nil)
     }
-    
 }

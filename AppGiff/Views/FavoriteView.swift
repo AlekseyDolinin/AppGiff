@@ -6,7 +6,7 @@ class FavoriteView: UIView {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
-    func configure(_ titleString: String) {
+    func configure() {
         backImage.image = UIImage.gifImageWithName("back")
         collection.alpha = 0
         setCollection()

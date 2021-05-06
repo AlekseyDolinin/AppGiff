@@ -9,7 +9,7 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
     }
     
     var bannerView: GADBannerView!
-    var typeContent = String()
+//    var typeContent = String()
     var arrayLinks = [String]()
     
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         favoriteView.collection.delegate = self
         favoriteView.collection.dataSource = self
         
-        favoriteView.configure(typeContent)
+        favoriteView.configure()
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -26,10 +26,10 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTrandingCollection), name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        getTrending(typeContent: typeContent)
-        print(arrayLinks)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        getTrending(typeContent: typeContent)
+//        print(arrayLinks)
+//    }
     
     @objc func reloadTrandingCollection() {
         favoriteView.collection.reloadData()
@@ -48,21 +48,24 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
     }
     
     func getTrending(typeContent: String) {
-//        print(typeContent)
-        if typeContent == "gifs" {
-            Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
-                self?.arrayLinks = arrayUrlGifs
-                self?.reloadCollection()
-            }
-        } else if typeContent == "stickers" {
-            Api.shared.loadTrendingStickers {[weak self] (arrayUrlStickers) in
-                self?.arrayLinks = arrayUrlStickers
-                self?.reloadCollection()
-            }
-        } else if typeContent == "Favorite" {
-            arrayLinks = StartViewController.arrayFavoritesURL
-            reloadCollection()
-        }
+////        print(typeContent)
+//        if typeContent == "gifs" {
+//            Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
+//                self?.arrayLinks = arrayUrlGifs
+//                self?.reloadCollection()
+//            }
+//        } else if typeContent == "stickers" {
+//            Api.shared.loadTrendingStickers {[weak self] (arrayUrlStickers) in
+//                self?.arrayLinks = arrayUrlStickers
+//                self?.reloadCollection()
+//            }
+//        } else if typeContent == "Favorite" {
+//            arrayLinks = StartViewController.arrayFavoritesURL
+//            reloadCollection()
+//        }
+        
+        arrayLinks = StartViewController.arrayFavoritesURL
+        reloadCollection()
     }
     
     func reloadCollection() {

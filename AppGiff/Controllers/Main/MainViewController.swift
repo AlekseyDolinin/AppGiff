@@ -52,11 +52,11 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     }
     
     func getTrending() {
-        Api.shared.loadTrendingGifs {(arrayUrlGifs) in
+        Api.shared.loadTrending(typeContent: "gifs") {(arrayUrlGifs) in
             self.arrayTrendingGifsLinks = arrayUrlGifs
             self.mainView.trendingGifCollection.reloadData()
         }
-        Api.shared.loadTrendingStickers {(arrayUrlStickers) in
+        Api.shared.loadTrending(typeContent: "stickers"){(arrayUrlStickers) in
             self.arrayTrendingStickersLinks = arrayUrlStickers
             self.mainView.trendingStickerCollection.reloadData()
         }
@@ -70,7 +70,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     
     @IBAction func favoriteAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
-        vc.typeContent = "Favorite"
         navigationController?.pushViewController(vc, animated: true)
     }
     

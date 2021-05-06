@@ -62,6 +62,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     ///
     func search() {
         if self.searchText != "" {
+            searchView.searchInput.resignFirstResponder()
             print(self.searchText)
             arrayAllGifsData = []
             offset = 0
@@ -74,7 +75,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     /// selectTab
     @IBAction func selectTab(_ sender: UIButton) {
         if let nameTab = sender.restorationIdentifier {
-            
             arrayAllGifsData = []
             offset = 0
             totalCountSearchGif = 0
