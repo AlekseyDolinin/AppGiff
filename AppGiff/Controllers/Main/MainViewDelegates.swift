@@ -51,17 +51,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailTVC") as! DetailTableViewController
-        let storiesVC = StoriesNavigationController()
-        storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
-        if collectionView == mainView.trendingGifCollection {
-            vc.link = arrayTrendingGifsLinks[indexPath.row]
-        } else if collectionView == mainView.trendingStickerCollection {
-            vc.link = arrayTrendingStickersLinks[indexPath.row]
-        }
         vc.modalPresentationStyle = .fullScreen
-        present(storiesVC, animated: true, completion: nil)
+        ///
+        if collectionView == mainView.trendingGifCollection {
+            Api.shared.loadData(urlString: arrayTrendingGifsLinks[indexPath.row], completion: { (data) in
+                vc.dataGif = data
+                self.present(vc, animated: true, completion: nil)
+            })
+            ///
+        } else if collectionView == mainView.trendingStickerCollection {
+            Api.shared.loadData(urlString: arrayTrendingStickersLinks[indexPath.row], completion: { (data) in
+                vc.dataGif = data
+                self.present(vc, animated: true, completion: nil)
+            })
+        }
     }
 }
-
-
-

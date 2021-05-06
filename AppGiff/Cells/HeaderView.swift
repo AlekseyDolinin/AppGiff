@@ -2,20 +2,20 @@ import UIKit
 
 class HeaderView: UICollectionReusableView {
     
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var favoriteButton: UIButton!
+//    @IBOutlet weak var imgView: UIImageView!
+//    @IBOutlet weak var sendButton: UIButton!
+//    @IBOutlet weak var favoriteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imgView.layer.cornerRadius = 5
-        imgView.clipsToBounds = true
-        sendButton.layer.cornerRadius = 25
-        sendButton.clipsToBounds = true
-        
-        favoriteButton.layer.cornerRadius = 25
-        favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
+//        imgView.layer.cornerRadius = 5
+//        imgView.clipsToBounds = true
+//        sendButton.layer.cornerRadius = 25
+//        sendButton.clipsToBounds = true
+//
+//        favoriteButton.layer.cornerRadius = 25
+//        favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
 
     }
     

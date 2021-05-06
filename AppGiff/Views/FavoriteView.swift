@@ -6,13 +6,13 @@ class FavoriteView: UIView {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
-    func configure() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
         backImage.image = UIImage.gifImageWithName("back")
         collection.alpha = 0
-        setCollection()
-    }
-    
-    func setCollection() {
+
+        /// setCollection
         let widthCell = frame.size.width / 2 - 12
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 80, left: 8, bottom: 70, right: 8)
@@ -22,6 +22,10 @@ class FavoriteView: UIView {
         collection!.collectionViewLayout = layout
         collection.keyboardDismissMode = .onDrag
     }
+    
+//    func configure() {
+//
+//    }
     
     func showCollection() {
         loadIndicator.stopAnimating()

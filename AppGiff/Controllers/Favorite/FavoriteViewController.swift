@@ -9,7 +9,6 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
     }
     
     var bannerView: GADBannerView!
-//    var typeContent = String()
     var arrayLinks = [String]()
     
     override func viewDidLoad() {
@@ -18,15 +17,13 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         favoriteView.collection.delegate = self
         favoriteView.collection.dataSource = self
         
-        favoriteView.configure()
+//        favoriteView.configure()
         setGadBanner()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTrandingCollection), name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
-    @objc func reloadTrandingCollection() {
+    @objc func reloadFavoriteCollection() {
         favoriteView.collection.reloadData()
     }
     
@@ -39,12 +36,7 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
             StartViewController.addNewFavorite(link: arrayLinks[sender.tag])
         }
         /// reload collection
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
-    }
-    
-    func getTrending(typeContent: String) {
-        arrayLinks = StartViewController.arrayFavoritesURL
-        reloadCollection()
+        favoriteView.collection.reloadData()
     }
     
     func reloadCollection() {

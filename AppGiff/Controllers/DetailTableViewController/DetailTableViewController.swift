@@ -9,7 +9,7 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     @IBOutlet weak var headerView: UIView!
     
     var dataGif: Data? = nil
-    var link: String!
+    
     var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
     var countShowFullViewAds = 0
@@ -22,12 +22,8 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         
-        var imageGif: UIImage!
-        if link != nil {
-            imageGif = UIImage.gifImageWithURL(link)
-        } else {
-            imageGif = UIImage.gifImageWithData(dataGif!)
-        }
+        let imageGif = UIImage.gifImageWithData(dataGif!)
+        
         imageView.image = imageGif
         let ratio: CGFloat = (imageGif?.size.width)! / (imageGif?.size.height)!
         let newWidthImage = self.view.frame.width - 48
@@ -62,7 +58,6 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
             print("ролик готов")
             interstitial.present(fromRootViewController: self)
         } else {
-            print("showControllerShare")
             showControllerShare()
         }
     }
