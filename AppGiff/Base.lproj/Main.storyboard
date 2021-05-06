@@ -85,7 +85,7 @@
                                         <rect key="frame" x="115" y="74" width="90" height="20"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYh-Nc-4NF">
-                                        <rect key="frame" x="0.0" y="60" width="50" height="50"/>
+                                        <rect key="frame" x="270" y="60" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="bRE-tq-IHb"/>
                                             <constraint firstAttribute="width" constant="50" id="xYq-cX-LOB"/>
@@ -104,9 +104,9 @@
                                     <constraint firstAttribute="height" constant="110" id="95W-NV-AFf"/>
                                     <constraint firstItem="XZ2-yX-gwS" firstAttribute="leading" secondItem="e4g-qe-eg5" secondAttribute="leading" id="BCb-Si-jl7"/>
                                     <constraint firstItem="XZ2-yX-gwS" firstAttribute="top" secondItem="e4g-qe-eg5" secondAttribute="top" id="DPe-d2-9vN"/>
+                                    <constraint firstAttribute="trailing" secondItem="LYh-Nc-4NF" secondAttribute="trailing" id="Hf5-t4-mBJ"/>
                                     <constraint firstAttribute="bottom" secondItem="tcv-UT-g7E" secondAttribute="bottom" constant="16" id="PlN-ao-N2i"/>
                                     <constraint firstAttribute="trailing" secondItem="XZ2-yX-gwS" secondAttribute="trailing" id="coS-dY-kwL"/>
-                                    <constraint firstItem="LYh-Nc-4NF" firstAttribute="leading" secondItem="e4g-qe-eg5" secondAttribute="leading" id="fG1-l9-ghi"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="pJG-c7-YU9">
@@ -875,7 +875,7 @@
         <!--Detail Table View Controller-->
         <scene sceneID="YHC-WY-0Qn">
             <objects>
-                <tableViewController storyboardIdentifier="DetailTVC" id="n4E-Ps-vo6" customClass="DetailTableViewController" customModule="AppGiffLight" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DetailTVC" id="n4E-Ps-vo6" customClass="DetailTableViewController" customModule="AppGiff" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Prp-7g-rfa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -35,9 +35,6 @@ class SearchCell: UICollectionViewCell, PreviewStoryViewProtocol {
         }
     }
 
-
-
-
     /// работа с избранным
     @objc func favoriteAction(sender: UIButton) {
 

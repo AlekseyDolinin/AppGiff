@@ -26,44 +26,23 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTrandingCollection), name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        getTrending(typeContent: typeContent)
-//        print(arrayLinks)
-//    }
-    
     @objc func reloadTrandingCollection() {
         favoriteView.collection.reloadData()
     }
     
     @objc func favoriteAction(sender: UIButton) {
-        // если gif уже в избранном
+        /// если gif уже в избранном
         if let indexGIF = StartViewController.arrayFavoritesURL.firstIndex(of: arrayLinks[sender.tag]) {
             StartViewController.removeFromFavorite(index: indexGIF)
         } else {
-            // если gif нет в избранном
+            /// если gif нет в избранном
             StartViewController.addNewFavorite(link: arrayLinks[sender.tag])
         }
-        // reload collection
+        /// reload collection
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTrandingCollection"), object: nil)
     }
     
     func getTrending(typeContent: String) {
-////        print(typeContent)
-//        if typeContent == "gifs" {
-//            Api.shared.loadTrendingGifs {[weak self] (arrayUrlGifs) in
-//                self?.arrayLinks = arrayUrlGifs
-//                self?.reloadCollection()
-//            }
-//        } else if typeContent == "stickers" {
-//            Api.shared.loadTrendingStickers {[weak self] (arrayUrlStickers) in
-//                self?.arrayLinks = arrayUrlStickers
-//                self?.reloadCollection()
-//            }
-//        } else if typeContent == "Favorite" {
-//            arrayLinks = StartViewController.arrayFavoritesURL
-//            reloadCollection()
-//        }
-        
         arrayLinks = StartViewController.arrayFavoritesURL
         reloadCollection()
     }

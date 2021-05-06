@@ -54,10 +54,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let storiesVC = StoriesNavigationController()
         storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
         if collectionView == mainView.trendingGifCollection {
-            DetailViewController.linkCurrentImage = arrayTrendingGifsLinks[indexPath.row]
             vc.link = arrayTrendingGifsLinks[indexPath.row]
         } else if collectionView == mainView.trendingStickerCollection {
-            DetailViewController.linkCurrentImage = arrayTrendingStickersLinks[indexPath.row]
             vc.link = arrayTrendingStickersLinks[indexPath.row]
         }
         vc.modalPresentationStyle = .fullScreen

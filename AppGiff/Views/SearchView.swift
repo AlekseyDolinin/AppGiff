@@ -26,9 +26,7 @@ class SearchView: UIView {
         tabButtonSticker.clipsToBounds = true
         
         searchBackView.layer.cornerRadius = 8
-//        hideCollectionForSearch()
         setCollection()
-//        setRefreshControl()
         
         searchButton.alpha = 0.75
         searchInput.attributedPlaceholder = NSAttributedString(string: "Search",
@@ -38,7 +36,6 @@ class SearchView: UIView {
 
     }
     
-    
     func configure() {
         if searchText == nil || searchText == "" {
             searchInput.becomeFirstResponder()
@@ -46,20 +43,6 @@ class SearchView: UIView {
             searchInput.text = searchText
         }
     }
-    
-//    func setAfterRequest(_ countLink: Int) {
-//        // если нашлась хотя бы 1 анимация
-//        if countLink != 0 {
-//            searchCollectionView.isUserInteractionEnabled = true
-//            hideAnimateSearch()
-//            searchCollectionView.reloadData()
-//
-//            // если ничего не нашлось
-//        } else {
-//            loadIndicator.stopAnimating()
-//            searchLabel.text = "NOT FOUND"
-//        }
-//    }
     
     
     // MARK: - setCollection
@@ -73,18 +56,6 @@ class SearchView: UIView {
         searchCollectionView!.collectionViewLayout = layout
     }
     
-//    // MARK: - refresh collection
-//    func setRefreshControl() {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
-//        searchCollectionView.refreshControl = refreshControl
-//    }
-    
-//    @objc func doSomething(refreshControl: UIRefreshControl) {
-//        searchCollectionView.reloadData()
-//        refreshControl.endRefreshing()
-//    }
-    
     func setTab(nameTab: String) {
         if nameTab == TypeContent.gifs.rawValue {
             tabButtonGif.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
@@ -95,20 +66,4 @@ class SearchView: UIView {
         }
 
     }
-    
-//    func hideCollectionForSearch() {
-//        showAnimateSearch()
-//        searchCollectionView.isUserInteractionEnabled = false
-//        searchCollectionView.reloadData()
-//    }
-    
-//    func hideAnimateSearch() {
-//        loadIndicator.stopAnimating()
-//        searchLabel.isHidden = true
-//    }
-    
-//    func showAnimateSearch() {
-//        loadIndicator.startAnimating()
-//        searchLabel.isHidden = false
-//    }
 }

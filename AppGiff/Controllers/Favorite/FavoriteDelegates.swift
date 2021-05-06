@@ -28,11 +28,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
             }
         }
         
-//        if typeContent != "Favorite" {
-            allCell.favoriteButton.isHidden = true
-//        } else {
-//        
-//        }
+        allCell.favoriteButton.isHidden = true
         
         allCell.favoriteButton.tag = indexPath.row
         allCell.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
@@ -46,10 +42,9 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
-        DetailViewController.linkCurrentImage = arrayLinks[indexPath.row]
-        vc.arrayLinks = arrayLinks
-        navigationController?.pushViewController(vc, animated: true)
+
+        
+        
     }
 }
 

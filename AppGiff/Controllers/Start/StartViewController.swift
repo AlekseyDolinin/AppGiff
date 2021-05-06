@@ -39,7 +39,7 @@ class StartViewController: UIViewController {
     }
     
     
-    // получение номера версии приложения
+    /// получение номера версии приложения
     func getVersionApp() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         let version = nsObject as! String

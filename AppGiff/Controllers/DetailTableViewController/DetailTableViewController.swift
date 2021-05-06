@@ -10,10 +10,8 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     
     var dataGif: Data? = nil
     var link: String!
-    
     var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
-    
     var countShowFullViewAds = 0
     
     override func viewDidLoad() {
@@ -21,39 +19,25 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
 
         shareButton.layer.cornerRadius = 8
         shareButton.clipsToBounds = true
-        
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         
-        // если dataGif есть и imageGif = nil
-        // пришли из поиска
-//        if dataGif != nil && imageGif == nil {
-//            imageGif = UIImage.gifImageWithData(dataGif!)
-//        }
-        
         var imageGif: UIImage!
-        
         if link != nil {
             imageGif = UIImage.gifImageWithURL(link)
         } else {
             imageGif = UIImage.gifImageWithData(dataGif!)
         }
-        
-//        let imageGif = UIImage.gifImageWithData(dataGif!)
-        
         imageView.image = imageGif
-        
         let ratio: CGFloat = (imageGif?.size.width)! / (imageGif?.size.height)!
         let newWidthImage = self.view.frame.width - 48
         let newHeightImage = newWidthImage / ratio
         headerView.frame.size.height = newHeightImage + 93
-
         setGadBanner()
         setGadFullView()
     }
 
     func showControllerShare() {
-        
         if let dataGifForSend = dataGif {
             let shareController = UIActivityViewController(activityItems: [dataGifForSend], applicationActivities: nil)
             shareController.completionWithItemsHandler = {_, bool, _, _ in
@@ -91,5 +75,4 @@ extension DetailTableViewController {
             doneAction(UIButton())
         }
     }
-    
 }

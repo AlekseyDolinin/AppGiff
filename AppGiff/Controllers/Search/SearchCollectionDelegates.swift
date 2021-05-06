@@ -12,7 +12,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         searchCell.buttonAddInFavorites.tag = indexPath.row
         searchCell.setCell()
         
-        //подзагрузка
+        /// подзагрузка
         if indexPath.row == arrayAllGifsData.count - 1 { // last cell
             if totalCountSearchGif > arrayAllGifsData.count { // more items to fetch
                 offset = offset + 10
