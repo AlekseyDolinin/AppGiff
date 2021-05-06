@@ -25,11 +25,9 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         
         searchView.searchText = self.searchText
         searchView.configure()
-        setGadBanner()
-        
+//        setGadBanner()
         ///
         selectedTabs(typeContent.rawValue)
-        
         setCollection()
     }
     
@@ -60,10 +58,8 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     
     ///
     func selectedTabs(_ nameTab: String) {
-        
         searchView.setTab(nameTab: nameTab)
         typeContent = nameTab == TypeContent.gifs.rawValue ? TypeContent.gifs : TypeContent.stickers
-        
         /// поиск выбранного тэга
         if searchText != "" {
             searchRequest(offset: offset)

@@ -20,13 +20,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         searchCell.buttonAddInFavorites.tag = indexPath.row
         searchCell.buttonAddInFavorites.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
-        
-        
-        
-        
+
         /// подзагрузка
-        if indexPath.row == arrayAllGifsData.count - 1 { // last cell
-            if totalCountSearchGif > arrayAllGifsData.count { // more items to fetch
+        if indexPath.row == arrayAllGifsData.count - 1 {
+            if totalCountSearchGif > arrayAllGifsData.count {
                 offset = offset + 10
                 searchRequest(offset: offset)
             }
