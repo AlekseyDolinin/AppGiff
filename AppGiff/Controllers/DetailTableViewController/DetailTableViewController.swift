@@ -9,7 +9,7 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     @IBOutlet weak var headerView: UIView!
     
     var dataGif: Data? = nil
-//    var imageGif: UIImage? = nil
+    var link: String!
     
     var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
@@ -31,7 +31,15 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
 //            imageGif = UIImage.gifImageWithData(dataGif!)
 //        }
         
-        let imageGif = UIImage.gifImageWithData(dataGif!)
+        var imageGif: UIImage!
+        
+        if link != nil {
+            imageGif = UIImage.gifImageWithURL(link)
+        } else {
+            imageGif = UIImage.gifImageWithData(dataGif!)
+        }
+        
+//        let imageGif = UIImage.gifImageWithData(dataGif!)
         
         imageView.image = imageGif
         

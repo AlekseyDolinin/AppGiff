@@ -3,19 +3,11 @@ import UIKit
 class FavoriteView: UIView {
 
     @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
     func configure(_ titleString: String) {
         backImage.image = UIImage.gifImageWithName("back")
-        
-        if titleString != "Favorite" {
-            titleLabel.text = "Trending \(titleString)"
-        } else {
-            titleLabel.text = "Favorite"
-        }
-        
         collection.alpha = 0
         setCollection()
     }

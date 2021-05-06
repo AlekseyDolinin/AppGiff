@@ -50,17 +50,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailTVC") as! DetailTableViewController
+        let storiesVC = StoriesNavigationController()
+        storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
         if collectionView == mainView.trendingGifCollection {
             DetailViewController.linkCurrentImage = arrayTrendingGifsLinks[indexPath.row]
-            vc.arrayLinks = arrayTrendingGifsLinks
-            
+            vc.link = arrayTrendingGifsLinks[indexPath.row]
         } else if collectionView == mainView.trendingStickerCollection {
             DetailViewController.linkCurrentImage = arrayTrendingStickersLinks[indexPath.row]
-            vc.arrayLinks = arrayTrendingStickersLinks
+            vc.link = arrayTrendingStickersLinks[indexPath.row]
         }
-        navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        present(storiesVC, animated: true, completion: nil)
     }
 }
 
