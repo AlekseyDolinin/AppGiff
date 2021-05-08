@@ -7,6 +7,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return arrayTrendingGifsLinks.count
         } else if collectionView == mainView.trendingStickerCollection {
             return arrayTrendingStickersLinks.count
+        } else if collectionView == mainView.tagCollection {
+            return arrayTags.count
         }
         return Int()
     }
@@ -42,10 +44,28 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             return stickerCell
         }
+        
+        if collectionView == mainView.tagCollection {
+            if let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.reuseIdentifier, for: indexPath) as? TagCell {
+                tagCell.tagLabel.text = "#\(arrayTags[indexPath.row])"
+                return tagCell
+            }
+        }
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == mainView.tagCollection {
+            guard let cell: TagCell = Bundle.main.loadNibNamed(TagCell.nibName, owner: self, options: nil)?.first as? TagCell else {
+                return CGSize.zero
+            }
+            cell.configureCell(textTag: arrayTags[indexPath.row])
+            let size: CGSize = cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+            return CGSize(width: size.width, height: 36)
+        }
         return CGSize(width: 120, height: 120)
     }
     
@@ -60,9 +80,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             Api.shared.loadData(urlString: arrayTrendingStickersLinks[indexPath.row], completion: { (data) in
                 self.openDetail(dataGif: data)
             })
+        } else if collectionView == mainView.tagCollection {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+            vc.searchText = arrayTags[indexPath.row]
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
-    
     
     func openDetail(dataGif: Data) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailTVC") as! DetailTableViewController

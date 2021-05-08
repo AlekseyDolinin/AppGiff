@@ -9,36 +9,24 @@ class MainView: UIView {
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadImageTitle: UIButton!
     @IBOutlet weak var searchBackView: UIView!
+    @IBOutlet weak var stackTags: UIStackView!
+    @IBOutlet weak var tagCollection: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backImage.image = UIImage.gifImageWithName("back")
-        hideLabel()
         searchBackView.layer.cornerRadius = 8
     }
     
-    func setTitleImage(title: String, randomDataGif: Data) {
-        randomTitleLabel.text = title
+    func setTitleImage(randomDataGif: Data) {
         titleIImageGif.layer.cornerRadius = 5
         titleIImageGif.clipsToBounds = true
         titleIImageGif.image = UIImage.gifImageWithData(randomDataGif)
         loadIndicator.stopAnimating()
     }
     
-    func clearTitleGif() {
+    func clearImageGif() {
         titleIImageGif.image = nil
         loadIndicator.startAnimating()
-    }
-    
-    func hideLabel() {
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.randomTitleLabel.alpha = 0
-        }
-    }
-    
-    func showLabel() {
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.randomTitleLabel.alpha = 1
-        }
     }
 }

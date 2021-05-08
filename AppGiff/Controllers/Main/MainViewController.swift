@@ -9,8 +9,8 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     }
     
     var bannerView: GADBannerView!
-    var titles = ["#thumbs up", "#shrug", "#yes", "#no", "#wow", "#mad", "#excited", "#bye", "#happy", "#hello", "#love"]
     
+    var arrayTags = [String]()
     var arrayTrendingGifsLinks = [String]()
     var arrayTrendingStickersLinks = [String]()
     let transition = CATransition()
@@ -20,13 +20,14 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         
         setTransition()
         setGadBanner()
-        getRndGif()
         getTrending()
         getTrendingSearch()
         configureCollection()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        mainView.tagCollection.reloadData()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -36,6 +37,9 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         mainView.trendingGifCollection.dataSource = self
         mainView.trendingStickerCollection.delegate = self
         mainView.trendingStickerCollection.dataSource = self
+        mainView.tagCollection.delegate = self
+        mainView.tagCollection.dataSource = self
+        registerNib()
     }
     
     func setTransition() {
@@ -44,11 +48,19 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         transition.subtype = CATransitionSubtype.fromRight
     }
     
+    func registerNib() {
+        let nib = UINib(nibName: TagCell.nibName, bundle: nil)
+        mainView.tagCollection?.register(nib, forCellWithReuseIdentifier: TagCell.reuseIdentifier)
+        if let flowLayout = mainView.tagCollection?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
+    }
+    
     func getRndGif() {
-        let randomTitle = titles.randomElement()!
-        Api.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
-            self.mainView.setTitleImage(title: randomTitle, randomDataGif: data)
-            self.mainView.showLabel()
+        let randomTitle = (arrayTags.randomElement()!)
+        mainView.randomTitleLabel.text = "#\(randomTitle)"
+        Api.shared.getDataRndGif(randomTitle: randomTitle.removeWhitespace()) {(data) in
+            self.mainView.setTitleImage(randomDataGif: data)
         }
     }
     
@@ -63,33 +75,30 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         }
     }
     
+    ///
     func getTrendingSearch() {
         Api.shared.getTrendingSearch { (json) in
-            print(json)
+            let arrayTrendingSearch = (json["data"].arrayValue).reversed()
+            for tag in arrayTrendingSearch {
+                let textTag = tag.stringValue
+                self.arrayTags.append(textTag)
+            }
+            if self.arrayTags.count == arrayTrendingSearch.count {
+                self.mainView.tagCollection.reloadData()
+                self.getRndGif()
+            }
         }
-        
-        
-        
     }
     
+    ///
     @IBAction func reloadImageTitleAction(_ sender: UIButton) {
-        mainView.hideLabel()
-        mainView.clearTitleGif()
+        mainView.clearImageGif()
         getRndGif()
     }
     
     @IBAction func favoriteAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteVC") as! FavoriteViewController
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func selectTag(_ sender: UIButton) {
-        var tagString = sender.titleLabel!.text!
-        tagString.removeFirst()
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        vc.searchText = tagString
-        vc.modalPresentationStyle = .pageSheet
-        present(vc, animated: true)
     }
     
     @IBAction func openSearchVC(_ sender: UIButton) {
