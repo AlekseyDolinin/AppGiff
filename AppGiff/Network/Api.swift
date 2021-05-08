@@ -37,6 +37,38 @@ class Api {
         }
     }
     
+    /// список самых популярных поисковых запросов
+    func getTrendingSearch(completion: @escaping (JSON) -> ()) {
+        let stringURL = host + "trending/searches?api_key=\(api_key)"
+        request(stringURL, method: .get).debugLog().LogRequest().responseJSON { response in
+            if response.result.isSuccess == false {
+                print("ERROR GET JSON Pagination")
+                return
+            } else {
+                if let data = response.data {
+                    let json = JSON(data)
+                    completion(json)
+                }
+            }
+        }
+    }
+    
+//    ///
+//    func searchChannel(searchText: String, completion: @escaping (JSON) -> ()) {
+//        let stringURLChannel = host + "channels/search?api_key=\(api_key)&q=\(searchText)&limit=50&offset=0"
+//        request(stringURLChannel, method: .get).debugLog().LogRequest().responseJSON { response in
+//            if response.result.isSuccess == false {
+//                print("ERROR GET JSON stringURLChannel")
+//                return
+//            } else {
+//                if let data = response.data {
+//                    let json = JSON(data)
+//                    completion(json)
+//                }
+//            }
+//        }
+//    }
+    
     ///
     func loadJSON(urlString: String, completion: @escaping (JSON) -> ()) {
         request(urlString).debugLog().LogRequest().responseData { response in

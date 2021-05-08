@@ -38,7 +38,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
             /// если есть записаные линки достаём их
             SearchViewController.arrayFavoritesLink = UserDefaults.standard.array(forKey: "favoritesLinks") as! [String]
         }
-        print(SearchViewController.arrayFavoritesLink.count)
         searchView.searchCollectionView.reloadData()
     }
     
@@ -46,9 +45,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         searchView.searchCollectionView.delegate = self
         searchView.searchCollectionView.dataSource = self
         searchView.searchInput.delegate = self
-        
         searchView.searchInput.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: .editingChanged)
-        
         searchView.searchCollectionView.collectionViewLayout = layout
         layout.delegate = self
         layout.cellPadding = 6
@@ -70,7 +67,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     func search() {
         if self.searchText != "" {
             searchView.searchInput.resignFirstResponder()
-            print(self.searchText)
             arrayAllGifsData = []
             offset = 0
             totalCountSearchGif = 0
@@ -81,12 +77,9 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     
     // MARK:- работа с избранным
     @objc func favoriteAction(sender: UIButton) {
-        
         let link = arrayAllGifsData[sender.tag].linkImage
-        
         /// проверяем есть ли ссылка в избранном
         let index = SearchViewController.arrayFavoritesLink.firstIndex(of: link)
-        
         if index == nil {
             /// ссылки нет в избранном
             /// добавление ссылки в избранное
@@ -98,7 +91,6 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
             print("ссылка есть в избранном (удаление ссылки из избранного)")
             SearchViewController.arrayFavoritesLink.remove(at: index!)
         }
-        
         searchView.searchCollectionView.reloadData()
         /// запись нового массива с линками
         print("запись нового массива с линками (количество: \(SearchViewController.arrayFavoritesLink.count)")

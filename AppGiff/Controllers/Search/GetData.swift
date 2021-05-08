@@ -4,23 +4,32 @@ import SwiftyJSON
 extension SearchViewController {
     
     func searchRequest(offset: Int) {
-        
-        print("поиск: \(self.searchText)")
-        
         searchView.loader.startAnimating()
         
-        Api.shared.search(searchText: self.searchText, typeContent: typeContent, offset: offset) { (json) in
-            /// обработка пришедших данных
-            self.completionHandlerSearch(json: json, completion: { (completion) in
+        let searchTextForSearch = self.searchText.removeWhitespace()
+
+        print("searchTextForSearch: \(searchTextForSearch)")
+        Api.shared.search(searchText: searchTextForSearch, typeContent: typeContent, offset: offset) { (json) in
+            /// обработка пришедших данных по поиску
+            self.completionHandlerSearch(json: json, completion: { (arrayGifsOffSet) in
                 self.searchView.loader.stopAnimating()
-                self.arrayAllGifsData += completion
+                self.arrayAllGifsData += arrayGifsOffSet
                 self.searchView.searchCollectionView.reloadData()
             })
         }
+        
+//        Api.shared.searchChannel(searchText: self.searchText) { (json) in
+//            /// обработка пришедших данных по каналу
+//            self.completionHandlerChannel(json: json, completion: { (arrayChannels) in
+//                print(arrayChannels)
+//                for i in arrayChannels {
+//                    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+//                    print(i.type)
+//                    print(i.linkImage)
+//                }
+//            })
+//        }
     }
-}
-
-extension SearchViewController {
     
     func completionHandlerSearch(json: JSON, completion: @escaping ([GifImageData]) -> ()) {
         self.totalCountSearchGif = json["pagination"]["total_count"].intValue
@@ -35,8 +44,8 @@ extension SearchViewController {
             let data = i.1
             Api().loadData(urlString: data["images"]["fixed_width_downsampled"]["url"].stringValue) { (dataGif) in
                 let imageGIf = GifImageData(id: data["id"].stringValue,
-                                        dataImage: dataGif,
-                                        linkImage: data["images"]["fixed_width_downsampled"]["url"].stringValue)
+                                            dataImage: dataGif,
+                                            linkImage: data["images"]["fixed_width_downsampled"]["url"].stringValue)
                 arrayGifsOffSet.append(imageGIf)
                 if arrayGifsOffSet.count == dataLinksGifs.count {
                     completion(arrayGifsOffSet)
@@ -45,3 +54,38 @@ extension SearchViewController {
         }
     }
 }
+
+
+
+
+//extension SearchViewController {
+//
+//    func completionHandlerChannel(json: JSON, completion: @escaping ([Channel]) -> ()) {
+//        print("всего найдено каналов: \(json["pagination"]["total_count"].intValue)")
+//        var arrayChannels: [Channel] = []
+//        let dataChannels = json["data"]
+//        if dataChannels.isEmpty {
+//            print("НИЧЕГО НЕ НАЙДЕНО")
+//        }
+//
+//        for i in dataChannels {
+//            let data = i.1
+//
+//            print(data["type"])
+//            print(data["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue)
+//
+//
+//            Api().loadData(urlString: data["type"]["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue) { (dataGif) in
+//                let channel = Channel(id: data["id"].stringValue,
+//                                      type: data["type"].stringValue,
+//                                      linkImage: data["type"]["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue,
+//                                      dataImage: dataGif)
+//                arrayChannels.append(channel)
+//                if arrayChannels.count == data.count {
+//                    completion(arrayChannels)
+//                }
+//            }
+//        }
+//    }
+//
+//}

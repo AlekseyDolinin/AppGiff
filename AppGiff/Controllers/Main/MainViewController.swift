@@ -22,6 +22,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         setGadBanner()
         getRndGif()
         getTrending()
+        getTrendingSearch()
         configureCollection()
     }
     
@@ -60,6 +61,15 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
             self.arrayTrendingStickersLinks = arrayUrlStickers
             self.mainView.trendingStickerCollection.reloadData()
         }
+    }
+    
+    func getTrendingSearch() {
+        Api.shared.getTrendingSearch { (json) in
+            print(json)
+        }
+        
+        
+        
     }
     
     @IBAction func reloadImageTitleAction(_ sender: UIButton) {
