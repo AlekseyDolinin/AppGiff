@@ -18,17 +18,9 @@ extension SearchViewController {
             })
         }
         
-//        Api.shared.searchChannel(searchText: self.searchText) { (json) in
-//            /// обработка пришедших данных по каналу
-//            self.completionHandlerChannel(json: json, completion: { (arrayChannels) in
-//                print(arrayChannels)
-//                for i in arrayChannels {
-//                    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-//                    print(i.type)
-//                    print(i.linkImage)
-//                }
-//            })
-//        }
+        Api.shared.searchSuggestions(searchText: searchTextForSearch) { (json) in
+            print(json)
+        }
     }
     
     func completionHandlerSearch(json: JSON, completion: @escaping ([GifImageData]) -> ()) {
