@@ -6,6 +6,8 @@ class TagCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+//        tagLabel.textColor = .Pink_
     }
 
     class var reuseIdentifier: String {
@@ -16,8 +18,7 @@ class TagCell: UICollectionViewCell {
         return "TagCell"
     }
     
-    func configureCell(textTag: String) {
-        tagLabel.text = textTag
+    func setCell(textTag: String) {
+        tagLabel.text = "#\(textTag)"
     }
-
 }

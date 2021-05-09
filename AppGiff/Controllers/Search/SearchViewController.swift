@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     var searchText = ""
     var offset = 0
     var arrayAllGifsData = [GifImageData]()
+    var arrayTags = [String]()
     var totalCountSearchGif: Int!
     let layout = PinterestLayout()
     var typeContent = TypeContent.gifs
@@ -39,11 +40,15 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
             SearchViewController.arrayFavoritesLink = UserDefaults.standard.array(forKey: "favoritesLinks") as! [String]
         }
         searchView.searchCollectionView.reloadData()
+        searchView.tagsCollectionView.reloadData()
     }
     
     func setCollection() {
         searchView.searchCollectionView.delegate = self
         searchView.searchCollectionView.dataSource = self
+        searchView.tagsCollectionView.delegate = self
+        searchView.tagsCollectionView.dataSource = self
+        
         searchView.searchInput.delegate = self
         searchView.searchInput.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: .editingChanged)
         searchView.searchCollectionView.collectionViewLayout = layout
@@ -51,6 +56,16 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         layout.cellPadding = 6
         layout.numberOfColumns = 2
         searchView.searchCollectionView.contentInset = .init(top: 180, left: 0, bottom: 120, right: 0)
+        registerNib()
+    }
+    
+    ///
+    func registerNib() {
+        let nib = UINib(nibName: TagCell.nibName, bundle: nil)
+        searchView.tagsCollectionView?.register(nib, forCellWithReuseIdentifier: TagCell.reuseIdentifier)
+        if let flowLayout = searchView.tagsCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
     
     ///

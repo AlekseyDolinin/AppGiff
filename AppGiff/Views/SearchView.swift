@@ -3,6 +3,7 @@ import UIKit
 class SearchView: UIView {
     
     @IBOutlet weak var searchCollectionView: UICollectionView!
+    @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var viewForTabBar: UIView!
     @IBOutlet weak var tabButtonGif: UIButton!
     @IBOutlet weak var tabButtonSticker: UIButton!

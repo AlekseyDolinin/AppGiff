@@ -5,8 +5,7 @@ extension SearchViewController {
     
     func searchRequest(offset: Int) {
         searchView.loader.startAnimating()
-        let searchTextForSearch = self.searchText.removeWhitespace()
-        Api.shared.search(searchText: searchTextForSearch, typeContent: typeContent, offset: offset) { (json) in
+        Api.shared.search(searchText: self.searchText, typeContent: typeContent, offset: offset) { (json) in
             /// обработка пришедших данных по поиску
             self.completionHandlerSearch(json: json, completion: { (arrayGifsOffSet) in
                 self.searchView.loader.stopAnimating()
@@ -41,27 +40,29 @@ extension SearchViewController {
     
     /// -----------------------------------------------------------------------------------------
     func searchSuggestions() {
-        let searchTextForSearch = self.searchText.removeWhitespace()
-        Api.shared.searchSuggestions(searchText: searchTextForSearch) { (json) in
-            self.completionHandlerSearchSuggestionsTags(json: json, completion: { (arraySuggestionsTags) in
-                print(arraySuggestionsTags)
+        Api.shared.searchSuggestions(searchText: self.searchText) { (json) in
+            self.completionHandlerSearchSuggestionsTags(json: json, completion: { (boolResault) in
+                if boolResault == true {
+                    self.searchView.tagsCollectionView.isHidden = false
+                    self.searchView.tagsCollectionView.reloadData()
+                }
             })
         }
     }
     
-    func completionHandlerSearchSuggestionsTags(json: JSON, completion: @escaping ([String]) -> ()) {
+    func completionHandlerSearchSuggestionsTags(json: JSON, completion: @escaping (Bool) -> ()) {
         print("всего найдено похожих тегов: \(String(describing: json["data"].count))")
-        var arraySuggestionsTags: [String] = []
+        self.arrayTags = []
         let dataSuggestionsTags = json["data"]
         if arrayAllGifsData.isEmpty {
             print("ПОХОЖИХ ТЕГОВ НЕ НАЙДЕНО")
+            searchView.tagsCollectionView.isHidden = true
         }
         for tagJsonData in dataSuggestionsTags {
             let tagString = (tagJsonData.1)["name"].stringValue
-            arraySuggestionsTags.append(tagString)
-            
-            if arraySuggestionsTags.count == dataSuggestionsTags.count {
-                completion(arraySuggestionsTags)
+            self.arrayTags.append(tagString)
+            if self.arrayTags.count == dataSuggestionsTags.count {
+                completion(true)
             }
         }
     }

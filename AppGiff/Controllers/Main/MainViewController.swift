@@ -42,12 +42,14 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         registerNib()
     }
     
+    ///
     func setTransition() {
         transition.duration = 0.3
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromRight
     }
     
+    ///
     func registerNib() {
         let nib = UINib(nibName: TagCell.nibName, bundle: nil)
         mainView.tagCollection?.register(nib, forCellWithReuseIdentifier: TagCell.reuseIdentifier)
@@ -56,14 +58,16 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         }
     }
     
+    ///
     func getRndGif() {
         let randomTitle = (arrayTags.randomElement()!)
         mainView.randomTitleLabel.text = "#\(randomTitle)"
-        Api.shared.getDataRndGif(randomTitle: randomTitle.removeWhitespace()) {(data) in
+        Api.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
             self.mainView.setTitleImage(randomDataGif: data)
         }
     }
     
+    ///
     func getTrending() {
         Api.shared.loadTrending(typeContent: "gifs") {(arrayUrlGifs) in
             self.arrayTrendingGifsLinks = arrayUrlGifs
