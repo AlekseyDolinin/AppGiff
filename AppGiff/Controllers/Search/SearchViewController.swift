@@ -12,6 +12,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     static var arrayFavoritesLink = [String]()
     
     var searchText = ""
+    var searchTextLanguage = ""
     var offset = 0
     var arrayAllGifsData = [GifImageData]()
     var arrayTags = [String]()
@@ -41,6 +42,15 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         }
         searchView.searchCollectionView.reloadData()
         searchView.tagsCollectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func setCollection() {

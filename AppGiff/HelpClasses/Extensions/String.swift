@@ -1,12 +1,20 @@
 import UIKit
 
-/// удаление всех пробелов
+/// удаление пробелов и спецсимволов
 extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    var alphanumeric: String {
+        return self.components(separatedBy: CharacterSet.alphanumerics.inverted).joined().lowercased()
+    }
+}
+
+///
+extension String {
+    
+    func encodeUrl() -> String? {
+        return self.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
     }
     
-    func removeWhitespace() -> String {
-        return self.replace(string: " ", replacement: "")
+    func decodeUrl() -> String? {
+        return self.removingPercentEncoding
     }
 }

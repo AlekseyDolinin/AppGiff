@@ -32,7 +32,7 @@ class SearchView: UIView {
         searchButton.alpha = 0.75
         searchInput.attributedPlaceholder = NSAttributedString(string: "Search",
                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        searchInput.keyboardType = .asciiCapable
+//        searchInput.keyboardType = .asciiCapable
         searchInput.returnKeyType = .search
 
     }

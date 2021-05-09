@@ -5,7 +5,7 @@ extension SearchViewController {
     
     func searchRequest(offset: Int) {
         searchView.loader.startAnimating()
-        Api.shared.search(searchText: self.searchText, typeContent: typeContent, offset: offset) { (json) in
+        Api.shared.search(searchText: self.searchText, typeContent: typeContent, language: self.searchTextLanguage, offset: offset) { (json) in
             /// обработка пришедших данных по поиску
             self.completionHandlerSearch(json: json, completion: { (arrayGifsOffSet) in
                 self.searchView.loader.stopAnimating()
@@ -40,7 +40,7 @@ extension SearchViewController {
     
     /// -----------------------------------------------------------------------------------------
     func searchSuggestions() {
-        Api.shared.searchSuggestions(searchText: self.searchText) { (json) in
+        Api.shared.searchSuggestions(searchText: self.searchText, language: searchTextLanguage) { (json) in
             self.completionHandlerSearchSuggestionsTags(json: json, completion: { (boolResault) in
                 if boolResault == true {
                     self.searchView.tagsCollectionView.isHidden = false
@@ -54,7 +54,7 @@ extension SearchViewController {
         print("всего найдено похожих тегов: \(String(describing: json["data"].count))")
         self.arrayTags = []
         let dataSuggestionsTags = json["data"]
-        if arrayAllGifsData.isEmpty {
+        if arrayTags.isEmpty {
             print("ПОХОЖИХ ТЕГОВ НЕ НАЙДЕНО")
             searchView.tagsCollectionView.isHidden = true
         }

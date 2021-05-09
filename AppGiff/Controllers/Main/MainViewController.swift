@@ -14,15 +14,19 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     var arrayTrendingGifsLinks = [String]()
     var arrayTrendingStickersLinks = [String]()
     let transition = CATransition()
+    var systemtLanguage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        systemtLanguage = String(Locale.current.languageCode!.prefix(2))
         
         setTransition()
         setGadBanner()
         getTrending()
         getTrendingSearch()
         configureCollection()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +66,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     func getRndGif() {
         let randomTitle = (arrayTags.randomElement()!)
         mainView.randomTitleLabel.text = "#\(randomTitle)"
-        Api.shared.getDataRndGif(randomTitle: randomTitle) {(data) in
+        Api.shared.getDataRndGif(randomTitle: randomTitle, language: systemtLanguage) {(data) in
             self.mainView.setTitleImage(randomDataGif: data)
         }
     }
@@ -81,7 +85,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     
     ///
     func getTrendingSearch() {
-        Api.shared.getTrendingSearch { (json) in
+        Api.shared.getTrendingSearch(language: systemtLanguage) { (json) in
             let arrayTrendingSearch = (json["data"].arrayValue).reversed()
             for tag in arrayTrendingSearch {
                 let textTag = tag.stringValue
