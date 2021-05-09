@@ -5,10 +5,7 @@ extension SearchViewController {
     
     func searchRequest(offset: Int) {
         searchView.loader.startAnimating()
-        
         let searchTextForSearch = self.searchText.removeWhitespace()
-
-        print("searchTextForSearch: \(searchTextForSearch)")
         Api.shared.search(searchText: searchTextForSearch, typeContent: typeContent, offset: offset) { (json) in
             /// обработка пришедших данных по поиску
             self.completionHandlerSearch(json: json, completion: { (arrayGifsOffSet) in
@@ -16,10 +13,6 @@ extension SearchViewController {
                 self.arrayAllGifsData += arrayGifsOffSet
                 self.searchView.searchCollectionView.reloadData()
             })
-        }
-        
-        Api.shared.searchSuggestions(searchText: searchTextForSearch) { (json) in
-            print(json)
         }
     }
     
@@ -45,39 +38,31 @@ extension SearchViewController {
             }
         }
     }
+    
+    /// -----------------------------------------------------------------------------------------
+    func searchSuggestions() {
+        let searchTextForSearch = self.searchText.removeWhitespace()
+        Api.shared.searchSuggestions(searchText: searchTextForSearch) { (json) in
+            self.completionHandlerSearchSuggestionsTags(json: json, completion: { (arraySuggestionsTags) in
+                print(arraySuggestionsTags)
+            })
+        }
+    }
+    
+    func completionHandlerSearchSuggestionsTags(json: JSON, completion: @escaping ([String]) -> ()) {
+        print("всего найдено похожих тегов: \(String(describing: json["data"].count))")
+        var arraySuggestionsTags: [String] = []
+        let dataSuggestionsTags = json["data"]
+        if arrayAllGifsData.isEmpty {
+            print("ПОХОЖИХ ТЕГОВ НЕ НАЙДЕНО")
+        }
+        for tagJsonData in dataSuggestionsTags {
+            let tagString = (tagJsonData.1)["name"].stringValue
+            arraySuggestionsTags.append(tagString)
+            
+            if arraySuggestionsTags.count == dataSuggestionsTags.count {
+                completion(arraySuggestionsTags)
+            }
+        }
+    }
 }
-
-
-
-
-//extension SearchViewController {
-//
-//    func completionHandlerChannel(json: JSON, completion: @escaping ([Channel]) -> ()) {
-//        print("всего найдено каналов: \(json["pagination"]["total_count"].intValue)")
-//        var arrayChannels: [Channel] = []
-//        let dataChannels = json["data"]
-//        if dataChannels.isEmpty {
-//            print("НИЧЕГО НЕ НАЙДЕНО")
-//        }
-//
-//        for i in dataChannels {
-//            let data = i.1
-//
-//            print(data["type"])
-//            print(data["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue)
-//
-//
-//            Api().loadData(urlString: data["type"]["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue) { (dataGif) in
-//                let channel = Channel(id: data["id"].stringValue,
-//                                      type: data["type"].stringValue,
-//                                      linkImage: data["type"]["featured_gif"]["images"]["fixed_width_downsampled"]["url"].stringValue,
-//                                      dataImage: dataGif)
-//                arrayChannels.append(channel)
-//                if arrayChannels.count == data.count {
-//                    completion(arrayChannels)
-//                }
-//            }
-//        }
-//    }
-//
-//}

@@ -60,6 +60,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         /// поиск выбранного тэга
         if searchText != "" {
             searchRequest(offset: offset)
+            searchSuggestions()
         }
     }
     
@@ -72,6 +73,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
             totalCountSearchGif = 0
             searchView.searchCollectionView.reloadData()
             searchRequest(offset: 0)
+            searchSuggestions()
         }
     }
     
