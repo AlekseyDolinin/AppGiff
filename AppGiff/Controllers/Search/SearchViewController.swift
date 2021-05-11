@@ -104,7 +104,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
     
     // MARK:- работа с избранным
     @objc func favoriteAction(sender: UIButton) {
-        let link = arrayAllGifsData[sender.tag].linkImage
+        let link = arrayAllGifsData[sender.tag].linkGifImage
         /// проверяем есть ли ссылка в избранном
         let index = SearchViewController.arrayFavoritesLink.firstIndex(of: link)
         if index == nil {

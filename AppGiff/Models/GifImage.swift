@@ -4,15 +4,19 @@ class GifImageData {
     
     var id: String
     var dataImage: Data
-    var linkImage: String
+    var linkGifImage: String
+    var linkLoopVideo: String
     
     init(id: String,
          dataImage: Data,
-         linkImage: String) {
+         linkGifImage: String,
+         linkLoopVideo: String
+        ) {
         
         self.id = id
         self.dataImage = dataImage
-        self.linkImage = linkImage
+        self.linkGifImage = linkGifImage
+        self.linkLoopVideo = linkLoopVideo
     }
 }
 

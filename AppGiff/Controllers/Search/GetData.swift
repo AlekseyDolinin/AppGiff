@@ -29,7 +29,10 @@ extension SearchViewController {
             Api().loadData(urlString: data["images"][AppDelegate.sizeGif.rawValue]["url"].stringValue) { (dataGif) in
                 let imageGIf = GifImageData(id: data["id"].stringValue,
                                             dataImage: dataGif,
-                                            linkImage: data["images"][AppDelegate.sizeGif.rawValue]["url"].stringValue)
+                                            linkGifImage: data["images"][AppDelegate.sizeGif.rawValue]["url"].stringValue,
+                                            linkLoopVideo: data["images"][AppDelegate.SizeGif.looping.rawValue]["mp4"].stringValue)
+                print("~~~")
+                print(imageGIf.linkLoopVideo)
                 arrayGifsOffSet.append(imageGIf)
                 if arrayGifsOffSet.count == dataLinksGifs.count {
                     completion(arrayGifsOffSet)

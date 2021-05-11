@@ -17,8 +17,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if collectionView == searchView.searchCollectionView {
             let searchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! GifCell
             searchCell.imageGif.image = UIImage.gifImageWithData(arrayAllGifsData[indexPath.row].dataImage )
-            let link: String = arrayAllGifsData[indexPath.row].linkImage
-            if SearchViewController.arrayFavoritesLink.contains(link) {
+            let linkGifImage: String = arrayAllGifsData[indexPath.row].linkGifImage
+            if SearchViewController.arrayFavoritesLink.contains(linkGifImage) {
                 searchCell.buttonAddInFavorites.setImage(UIImage(named: "iconLikePink"), for: .normal)
             } else {
                 searchCell.buttonAddInFavorites.setImage(UIImage(named: "iconDontLikePink"), for: .normal)
