@@ -12,7 +12,7 @@ extension SearchViewController: UIScrollViewDelegate {
             }
         } else if translationY < -120 {
             UIView.animate(withDuration: 0.4) {
-                self.searchView.viewForTabBar.transform = CGAffineTransform(translationX: 0, y: -220)
+                self.searchView.viewForTabBar.transform = CGAffineTransform(translationX: 0, y: -250)
             }
         }
     }

@@ -65,7 +65,7 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         layout.delegate = self
         layout.cellPadding = 6
         layout.numberOfColumns = 2
-        searchView.searchCollectionView.contentInset = .init(top: 180, left: 0, bottom: 120, right: 0)
+        searchView.searchCollectionView.contentInset = .init(top: 218, left: 0, bottom: 120, right: 0)
         registerNib()
     }
     

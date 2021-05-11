@@ -160,7 +160,7 @@
                                                     <constraint firstItem="yJu-uh-8RB" firstAttribute="top" secondItem="L3u-cD-vEK" secondAttribute="top" constant="16" id="sxl-b2-km4"/>
                                                 </constraints>
                                             </scrollView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-FL-mIL">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-FL-mIL">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mSH-Oc-Jat">
@@ -546,7 +546,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="o6c-Ww-S36" secondAttribute="trailing" id="woc-oT-Awa"/>
                                                         </constraints>
                                                     </view>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7AW-dF-VLw">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7AW-dF-VLw">
                                                         <rect key="frame" x="0.0" y="60" width="288" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
