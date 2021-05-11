@@ -1,5 +1,7 @@
 import UIKit
 import GoogleMobileAds
+import AVKit
+import AVFoundation
 
 class DetailTableViewController: UITableViewController, GADBannerViewDelegate, GADInterstitialDelegate {
 
@@ -9,6 +11,7 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     @IBOutlet weak var headerView: UIView!
     
     var dataGif: Data? = nil
+    var linkVideo: String!
     
     var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
@@ -48,8 +51,19 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
         }
     }
     
+    func getVideo(){
+        
+        let player = AVPlayer(url: URL(string: linkVideo)!)
+        let vc = AVPlayerViewController()
+        vc.player = player
+        present(vc, animated: true) {
+            vc.player?.play()
+        }
+    }
+    
     @IBAction func doneAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+//        getVideo()
     }
     
     @IBAction func sendGifAction() {

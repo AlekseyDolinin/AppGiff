@@ -76,6 +76,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let storiesVC = StoriesNavigationController()
             storiesVC.setup(viewController: vc, previewFrame: collectionView.cellForItem(at: indexPath) as? PreviewStoryViewProtocol)
             vc.dataGif = arrayAllGifsData[indexPath.row].dataImage
+            vc.linkVideo = arrayAllGifsData[indexPath.row].linkLoopVideo
             vc.modalPresentationStyle = .fullScreen
             present(storiesVC, animated: true, completion: nil)
         }
