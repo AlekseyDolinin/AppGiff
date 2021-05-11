@@ -18,7 +18,10 @@ class Api {
         let stringURL = (host + "gifs/random?api_key=\(api_key)&tag=\(checkingText)&rating=G&lang=\(language)").encodeUrl()
         
         loadJSON(urlString: stringURL!) { (json) in
-            if let stringUrl = (json["data"]["images"]["fixed_width_downsampled"]["url"].string) {
+
+            print(json["data"]["images"])
+            
+            if let stringUrl = (json["data"]["images"][AppDelegate.sizeGif.rawValue]["url"].string) {
                 self.loadData(urlString: stringUrl, completion: { (dataGif) in
                     completion(dataGif)
                 })
@@ -30,7 +33,7 @@ class Api {
     func loadTrending(typeContent: String, completion: @escaping ([String]) -> ()) {
         let urlGifs = host + "\(typeContent)/trending?api_key=\(api_key)&limit=\(100)&rating=G"
         loadJSON(urlString: urlGifs) { (json) in
-            let arrayUrls = json["data"].arrayValue.map({$0["images"]["fixed_width_downsampled"]["url"].string!})
+            let arrayUrls = json["data"].arrayValue.map({$0["images"][AppDelegate.sizeGif.rawValue]["url"].string!})
             completion(arrayUrls)
         }
     }

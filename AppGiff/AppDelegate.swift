@@ -89,3 +89,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+/// размеры GIF, Still и mp4(looping)
+extension AppDelegate {
+    enum SizeGif: String {
+        case fixedWidthDownsampled  = "fixed_width_downsampled" ///25479
+        case fixedWidthStill        = "fixed_width_still"       ///6647
+        case looping                = "looping"                 ///2215130
+
+    }
+    static let sizeGif: SizeGif = .fixedWidthDownsampled
+}

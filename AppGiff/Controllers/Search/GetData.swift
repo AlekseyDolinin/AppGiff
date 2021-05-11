@@ -26,10 +26,10 @@ extension SearchViewController {
         }
         for i in dataLinksGifs {
             let data = i.1
-            Api().loadData(urlString: data["images"]["fixed_width_downsampled"]["url"].stringValue) { (dataGif) in
+            Api().loadData(urlString: data["images"][AppDelegate.sizeGif.rawValue]["url"].stringValue) { (dataGif) in
                 let imageGIf = GifImageData(id: data["id"].stringValue,
                                             dataImage: dataGif,
-                                            linkImage: data["images"]["fixed_width_downsampled"]["url"].stringValue)
+                                            linkImage: data["images"][AppDelegate.sizeGif.rawValue]["url"].stringValue)
                 arrayGifsOffSet.append(imageGIf)
                 if arrayGifsOffSet.count == dataLinksGifs.count {
                     completion(arrayGifsOffSet)
