@@ -11,6 +11,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return Int()
     }
     
+    ///
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == searchView.searchCollectionView {
@@ -56,7 +57,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     ///
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         guard let cell: TagCell = Bundle.main.loadNibNamed(TagCell.nibName, owner: self, options: nil)?.first as? TagCell else {
             return CGSize.zero
         }
@@ -64,7 +65,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let size: CGSize = cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
-        return CGSize(width: size.width, height: 50)
+        return CGSize(width: size.width, height: 40)
     }
     
     ///

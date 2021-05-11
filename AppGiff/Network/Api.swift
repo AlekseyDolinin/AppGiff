@@ -2,8 +2,6 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-
-
 class Api {
     
     static let shared = Api()
@@ -18,9 +16,6 @@ class Api {
         let stringURL = (host + "gifs/random?api_key=\(api_key)&tag=\(checkingText)&rating=G&lang=\(language)").encodeUrl()
         
         loadJSON(urlString: stringURL!) { (json) in
-
-            print(json["data"]["images"])
-            
             if let stringUrl = (json["data"]["images"][AppDelegate.sizeGif.rawValue]["url"].string) {
                 self.loadData(urlString: stringUrl, completion: { (dataGif) in
                     completion(dataGif)
