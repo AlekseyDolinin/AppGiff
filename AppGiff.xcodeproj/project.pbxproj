@@ -53,6 +53,8 @@
 		10999FC324DF2048005A803A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC224DF2048005A803A /* Storage.swift */; };
 		10999FC624E05D3C005A803A /* FavoriteDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC524E05D3B005A803A /* FavoriteDelegates.swift */; };
 		10999FCA24E088AD005A803A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10999FC924E088AD005A803A /* DetailView.swift */; };
+		10A076D22650E3FD00AAF0A7 /* AppTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A076D12650E3FD00AAF0A7 /* AppTracking.swift */; };
+		10A076D32650E43400AAF0A7 /* AppTrackingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A076D02650DEBD00AAF0A7 /* AppTrackingModalViewController.swift */; };
 		10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D582403FD4F002A3F95 /* SearchViewController.swift */; };
 		10C06D5E2403FE77002A3F95 /* GifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D5D2403FE77002A3F95 /* GifCell.swift */; };
 		10C06D6224048DD9002A3F95 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C06D6124048DD9002A3F95 /* Api.swift */; };
@@ -151,6 +153,8 @@
 		10999FC224DF2048005A803A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		10999FC524E05D3B005A803A /* FavoriteDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDelegates.swift; sourceTree = "<group>"; };
 		10999FC924E088AD005A803A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		10A076D02650DEBD00AAF0A7 /* AppTrackingModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTrackingModalViewController.swift; sourceTree = "<group>"; };
+		10A076D12650E3FD00AAF0A7 /* AppTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTracking.swift; sourceTree = "<group>"; };
 		10C06D582403FD4F002A3F95 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		10C06D5D2403FE77002A3F95 /* GifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCell.swift; sourceTree = "<group>"; };
 		10C06D6124048DD9002A3F95 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				1002E38823FC639E008EF322 /* StartViewController.swift */,
+				10A076D12650E3FD00AAF0A7 /* AppTracking.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -359,8 +364,17 @@
 				1074A88023FC89DE008E5300 /* Favorite */,
 				1086C68426426F330093DE20 /* DetailTableViewController */,
 				1086C68B264270850093DE20 /* StoriesScreenVC */,
+				10A076CF2650DE9300AAF0A7 /* AppTrackingModal */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		10A076CF2650DE9300AAF0A7 /* AppTrackingModal */ = {
+			isa = PBXGroup;
+			children = (
+				10A076D02650DEBD00AAF0A7 /* AppTrackingModalViewController.swift */,
+			);
+			path = AppTrackingModal;
 			sourceTree = "<group>";
 		};
 		10C06D572403FD3B002A3F95 /* HelpClasses */ = {
@@ -588,6 +602,7 @@
 				108F2340264488E9006058F9 /* Request.swift in Sources */,
 				109199E224011B6100613388 /* MainViewController.swift in Sources */,
 				1074A87F23FC89D5008E5300 /* AllPopularCollectionViewCell.swift in Sources */,
+				10A076D22650E3FD00AAF0A7 /* AppTracking.swift in Sources */,
 				10999FBB24DB3E9C005A803A /* Color.swift in Sources */,
 				10999FC624E05D3C005A803A /* FavoriteDelegates.swift in Sources */,
 				10999FBF24DDF60E005A803A /* MainViewDelegates.swift in Sources */,
@@ -609,6 +624,7 @@
 				105946E92646621B00B15A9E /* Channel.swift in Sources */,
 				102DBB8E2405C2B7004B80D2 /* MainControllerGoogleAds.swift in Sources */,
 				10C06D592403FD50002A3F95 /* SearchViewController.swift in Sources */,
+				10A076D32650E43400AAF0A7 /* AppTrackingModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Compact-Rounded-Bold.otf">
+            <string>SFCompactRounded-Bold</string>
+        </array>
         <array key="SF-Compact-Rounded-Regular.otf">
             <string>SFCompactRounded-Regular</string>
         </array>
@@ -852,15 +855,137 @@
             </objects>
             <point key="canvasLocation" x="4391" y="555"/>
         </scene>
+        <!--App Tracking Modal View Controller-->
+        <scene sceneID="rne-g8-4gh">
+            <objects>
+                <viewController storyboardIdentifier="AppTrackingModalViewController" id="Sg3-Nd-LKS" customClass="AppTrackingModalViewController" customModule="boop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1XN-pv-OU2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow tracking on the next screen for:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8F-rE-vNm">
+                                <rect key="frame" x="16" y="84" width="288" height="57.5"/>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Bold" family="SF Compact Rounded" pointSize="24"/>
+                                <color key="textColor" name="Pink_"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hdb-lN-dhd">
+                                <rect key="frame" x="16" y="189.5" width="288" height="153"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d65-jb-fRR">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="43"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="hBm-qX-2cL">
+                                                <rect key="frame" x="0.0" y="1.5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Z6p-Ps-O9H"/>
+                                                    <constraint firstAttribute="height" constant="40" id="jOb-4U-OMK"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special ofers and promotions just for you" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQU-Ll-368">
+                                                <rect key="frame" x="56" y="0.0" width="232" height="43"/>
+                                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="18"/>
+                                                <color key="textColor" name="White_"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xsn-bh-fVp">
+                                        <rect key="frame" x="0.0" y="55" width="288" height="43"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tap" translatesAutoresizingMaskIntoConstraints="NO" id="0ca-f2-uCm">
+                                                <rect key="frame" x="0.0" y="1.5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="E6g-Wb-qIE"/>
+                                                    <constraint firstAttribute="width" constant="40" id="bvS-Tw-eAd"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advertisements that match your interests" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-kO-y0S">
+                                                <rect key="frame" x="56" y="0.0" width="232" height="43"/>
+                                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="18"/>
+                                                <color key="textColor" name="White_"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mBl-ty-Csr">
+                                        <rect key="frame" x="0.0" y="110" width="288" height="43"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diagram" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-3X-E7k">
+                                                <rect key="frame" x="0.0" y="1.5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="2Fv-eg-eka"/>
+                                                    <constraint firstAttribute="height" constant="40" id="rbq-0u-hzZ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An improved personalized experience over time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOI-Jv-pRf">
+                                                <rect key="frame" x="56" y="0.0" width="232" height="43"/>
+                                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="18"/>
+                                                <color key="textColor" name="White_"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can change this option later in the Setting app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejb-2q-s51">
+                                <rect key="frame" x="16" y="382.5" width="288" height="43"/>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="18"/>
+                                <color key="textColor" name="White_"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqd-K7-btD">
+                                <rect key="frame" x="60" y="481.5" width="200" height="50"/>
+                                <color key="backgroundColor" name="Pink_"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="DxA-IB-7iO"/>
+                                    <constraint firstAttribute="height" constant="50" id="YKe-gM-gxl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="20"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" name="White_"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueAction:" destination="Sg3-Nd-LKS" eventType="touchUpInside" id="keN-gK-mtq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="Black_"/>
+                        <constraints>
+                            <constraint firstItem="9rP-Sv-PKk" firstAttribute="trailing" secondItem="f8F-rE-vNm" secondAttribute="trailing" constant="16" id="1Ha-Cc-EVQ"/>
+                            <constraint firstItem="Ejb-2q-s51" firstAttribute="leading" secondItem="9rP-Sv-PKk" secondAttribute="leading" constant="16" id="2nG-01-2Yp"/>
+                            <constraint firstItem="f8F-rE-vNm" firstAttribute="leading" secondItem="9rP-Sv-PKk" secondAttribute="leading" constant="16" id="Gho-KL-euF"/>
+                            <constraint firstItem="9rP-Sv-PKk" firstAttribute="trailing" secondItem="Ejb-2q-s51" secondAttribute="trailing" constant="16" id="Jko-rU-Qm9"/>
+                            <constraint firstItem="hdb-lN-dhd" firstAttribute="leading" secondItem="9rP-Sv-PKk" secondAttribute="leading" constant="16" id="MxU-YB-bVA"/>
+                            <constraint firstItem="9rP-Sv-PKk" firstAttribute="trailing" secondItem="hdb-lN-dhd" secondAttribute="trailing" constant="16" id="PPW-vc-zcL"/>
+                            <constraint firstItem="Vqd-K7-btD" firstAttribute="top" secondItem="Ejb-2q-s51" secondAttribute="bottom" constant="56" id="SFb-fi-ICz"/>
+                            <constraint firstItem="Vqd-K7-btD" firstAttribute="centerX" secondItem="1XN-pv-OU2" secondAttribute="centerX" id="cZV-RF-YTe"/>
+                            <constraint firstItem="f8F-rE-vNm" firstAttribute="top" secondItem="9rP-Sv-PKk" secondAttribute="top" constant="64" id="gek-5I-yIm"/>
+                            <constraint firstItem="Ejb-2q-s51" firstAttribute="top" secondItem="hdb-lN-dhd" secondAttribute="bottom" constant="40" id="ptB-xq-fLw"/>
+                            <constraint firstItem="hdb-lN-dhd" firstAttribute="top" secondItem="f8F-rE-vNm" secondAttribute="bottom" constant="48" id="vVI-3X-Ocf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9rP-Sv-PKk"/>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="Vqd-K7-btD" id="9On-96-foh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzc-dS-yxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2040" y="-128"/>
+        </scene>
     </scenes>
     <resources>
         <image name="close" width="40" height="40"/>
+        <image name="diagram" width="50" height="50"/>
+        <image name="heart" width="50" height="50"/>
         <image name="iconBack" width="50" height="50"/>
         <image name="iconDontLikePink" width="50" height="50"/>
         <image name="iconLike" width="50" height="50"/>
         <image name="iconSearch" width="50" height="50"/>
         <image name="logo" width="170" height="100"/>
         <image name="logoSmall" width="90" height="20"/>
+        <image name="tap" width="50" height="50"/>
         <namedColor name="Black_">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

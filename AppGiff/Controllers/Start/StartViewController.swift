@@ -1,4 +1,5 @@
 import UIKit
+//import AdSupport
 
 class StartViewController: UIViewController {
     
@@ -18,6 +19,18 @@ class StartViewController: UIViewController {
         if let arrayFavoritesURL = StartViewController.arrayFavorites {
 //            print("arrayFavoritesURL: \(arrayFavoritesURL)")
             StartViewController.arrayFavoritesURL = arrayFavoritesURL as! [String]
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(requestTrackingAuthorization), name: Notification.Name("requestAppTracking"), object: nil)
+        
+        if let statusATT =  UserDefaults.standard.string(forKey: "statusATTKey") {
+            print("statusATT: \(statusATT)")
+            if statusATT == "notDetermined" {
+                showModalAppTrackingDescription()
+            }
+        } else {
+            /// если статус нил - запроса не было
+            showModalAppTrackingDescription()
         }
     }
     
