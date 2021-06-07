@@ -1,5 +1,4 @@
 import UIKit
-//import AdSupport
 
 class StartViewController: UIViewController {
     
@@ -17,7 +16,6 @@ class StartViewController: UIViewController {
         getVersionApp()
         
         if let arrayFavoritesURL = StartViewController.arrayFavorites {
-//            print("arrayFavoritesURL: \(arrayFavoritesURL)")
             StartViewController.arrayFavoritesURL = arrayFavoritesURL as! [String]
         }
         

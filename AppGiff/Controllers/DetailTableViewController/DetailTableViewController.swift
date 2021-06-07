@@ -15,7 +15,6 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     
     var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
-    var countShowFullViewAds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +45,6 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
                     print("error send")
                 }
             }
-            countShowFullViewAds = countShowFullViewAds + 1
             present(shareController, animated: true, completion: nil)
         }
     }
@@ -68,7 +66,7 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     
     @IBAction func sendGifAction() {
         print("share")
-        if interstitial.isReady == true && countShowFullViewAds % 2 == 0 && countShowFullViewAds > 0 {
+        if interstitial.isReady == true {
             print("ролик готов")
             interstitial.present(fromRootViewController: self)
         } else {
