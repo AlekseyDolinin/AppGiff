@@ -30,6 +30,11 @@ class StartViewController: UIViewController {
             /// если статус нил - запроса не было
             showModalAppTrackingDescription()
         }
+        
+        ///
+        NotificationCenter.default.addObserver(forName: nPricesUpdated, object: nil, queue: nil) { notification in
+            print("Обновление цен:")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,7 +53,6 @@ class StartViewController: UIViewController {
         UserDefaults.standard.set(StartViewController.arrayFavoritesURL, forKey: "favoriteLinks")
         UserDefaults.standard.synchronize()
     }
-    
     
     /// получение номера версии приложения
     func getVersionApp() {
