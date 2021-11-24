@@ -24,7 +24,6 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         
         favoriteView.configure()
         setCollection()
-        setGadBanner()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +43,9 @@ class FavoriteViewController: UIViewController, GADBannerViewDelegate, UIGesture
         if arrayLinkFavoriteGifs.isEmpty {
             favoriteView.nothingWasFoundLabel.isHidden = false
             favoriteView.loader.stopAnimating()
+        }
+        if StoreManager.removeAD() == false {
+            setGadBanner()
         }
     }
     

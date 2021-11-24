@@ -105,7 +105,7 @@
                                             <constraint firstAttribute="height" constant="50" id="HuG-gK-0fC"/>
                                             <constraint firstAttribute="width" constant="50" id="pl4-Ma-deb"/>
                                         </constraints>
-                                        <state key="normal" image="heart"/>
+                                        <state key="normal" image="iconRemoveAd"/>
                                         <connections>
                                             <action selector="removeADS:" destination="43W-hC-26x" eventType="touchUpInside" id="fzw-JG-QZ2"/>
                                         </connections>
@@ -401,6 +401,7 @@
                             <outlet property="loadIndicator" destination="eb0-Ji-LW5" id="Nc2-SE-EZk"/>
                             <outlet property="randomTitleLabel" destination="UMr-hG-jAx" id="qYz-1I-V8G"/>
                             <outlet property="reloadImageTitle" destination="Rzg-HY-xo5" id="QyW-xa-UK9"/>
+                            <outlet property="removeAD" destination="DBa-QI-ItI" id="vmi-pj-fGG"/>
                             <outlet property="searchBackView" destination="PXT-nW-KPu" id="7az-xI-z1t"/>
                             <outlet property="stackTags" destination="yJu-uh-8RB" id="7lM-83-TQR"/>
                             <outlet property="tagCollection" destination="O3A-FL-mIL" id="r4b-Ui-AQo"/>
@@ -993,21 +994,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWg-lK-nSL">
-                                <rect key="frame" x="60" y="259" width="200" height="50"/>
-                                <color key="backgroundColor" name="Pink_"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9ke-Jx-mZm"/>
-                                    <constraint firstAttribute="width" constant="200" id="UaH-I5-wa9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="20"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleColor" name="White_"/>
-                                </state>
-                                <connections>
-                                    <action selector="getFullVersion" destination="VmW-28-Oci" eventType="touchUpInside" id="k4G-Ge-DFw"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-n8-6gd">
+                                <rect key="frame" x="40" y="388" width="240" height="116"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWg-lK-nSL">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                        <color key="backgroundColor" name="Pink_"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="9ke-Jx-mZm"/>
+                                            <constraint firstAttribute="width" constant="240" id="UaH-I5-wa9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="20"/>
+                                        <state key="normal" title="Remove all ads">
+                                            <color key="titleColor" name="White_"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeAD" destination="VmW-28-Oci" eventType="touchUpInside" id="jtt-sm-B1m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gio-yi-XQL">
+                                        <rect key="frame" x="0.0" y="66" width="240" height="50"/>
+                                        <color key="backgroundColor" name="Pink_"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="k5h-Yx-JbH"/>
+                                            <constraint firstAttribute="height" constant="50" id="wLz-cJ-Lxx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="20"/>
+                                        <state key="normal" title="Restore Purchase">
+                                            <color key="titleColor" name="White_"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restorePurchase" destination="VmW-28-Oci" eventType="touchUpInside" id="fEV-YY-sw0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsW-pt-qi9">
                                 <rect key="frame" x="280" y="0.0" width="40" height="40"/>
                                 <constraints>
@@ -1020,16 +1041,38 @@
                                     <action selector="close" destination="VmW-28-Oci" eventType="touchUpInside" id="8Uw-6J-0ra"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove all ads in the app?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CH8-bv-fMc">
+                                <rect key="frame" x="32" y="104" width="256" height="57.5"/>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Bold" family="SF Compact Rounded" pointSize="24"/>
+                                <color key="textColor" name="White_"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RyT-zq-Z9h">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LYd-CI-afV"/>
                         <color key="backgroundColor" name="Black_"/>
                         <constraints>
                             <constraint firstItem="rsW-pt-qi9" firstAttribute="trailing" secondItem="LYd-CI-afV" secondAttribute="trailing" id="0pq-uJ-Hjb"/>
-                            <constraint firstItem="xWg-lK-nSL" firstAttribute="centerY" secondItem="riq-ys-2ec" secondAttribute="centerY" id="Byx-Js-PAF"/>
-                            <constraint firstItem="xWg-lK-nSL" firstAttribute="centerX" secondItem="riq-ys-2ec" secondAttribute="centerX" id="Quz-Oo-g2r"/>
+                            <constraint firstItem="LYd-CI-afV" firstAttribute="trailing" secondItem="CH8-bv-fMc" secondAttribute="trailing" constant="32" id="7aZ-FI-eaq"/>
+                            <constraint firstItem="RyT-zq-Z9h" firstAttribute="centerX" secondItem="riq-ys-2ec" secondAttribute="centerX" id="Sf8-9C-dAK"/>
+                            <constraint firstItem="RyT-zq-Z9h" firstAttribute="centerY" secondItem="riq-ys-2ec" secondAttribute="centerY" id="asl-1f-aHV"/>
                             <constraint firstItem="rsW-pt-qi9" firstAttribute="top" secondItem="LYd-CI-afV" secondAttribute="top" id="cIy-eP-Gp4"/>
+                            <constraint firstItem="LYd-CI-afV" firstAttribute="bottom" secondItem="jUE-n8-6gd" secondAttribute="bottom" constant="64" id="eRr-Ol-cbw"/>
+                            <constraint firstItem="CH8-bv-fMc" firstAttribute="leading" secondItem="LYd-CI-afV" secondAttribute="leading" constant="32" id="j5x-c7-sHh"/>
+                            <constraint firstItem="jUE-n8-6gd" firstAttribute="centerX" secondItem="riq-ys-2ec" secondAttribute="centerX" id="wf4-Qo-kTS"/>
+                            <constraint firstItem="CH8-bv-fMc" firstAttribute="top" secondItem="rsW-pt-qi9" secondAttribute="bottom" constant="64" id="x4r-oE-stE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonStack" destination="jUE-n8-6gd" id="P7G-dN-zpI"/>
+                        <outlet property="cancelButton" destination="rsW-pt-qi9" id="3I9-cF-cba"/>
+                        <outlet property="loader" destination="RyT-zq-Z9h" id="f5o-F7-LqA"/>
+                        <outlet property="removeADButton" destination="xWg-lK-nSL" id="Nbz-8v-Nf8"/>
+                        <outlet property="restorePurchaseButton" destination="gio-yi-XQL" id="yac-br-jRI"/>
+                        <outlet property="titleLabel" destination="CH8-bv-fMc" id="VOL-Jj-exR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3km-YK-7yp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1043,6 +1086,7 @@
         <image name="iconBack" width="50" height="50"/>
         <image name="iconDontLikePink" width="50" height="50"/>
         <image name="iconLike" width="50" height="50"/>
+        <image name="iconRemoveAd" width="60" height="60"/>
         <image name="iconSearch" width="50" height="50"/>
         <image name="logo" width="170" height="100"/>
         <image name="logoSmall" width="90" height="20"/>

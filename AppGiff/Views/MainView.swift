@@ -11,11 +11,13 @@ class MainView: UIView {
     @IBOutlet weak var searchBackView: UIView!
     @IBOutlet weak var stackTags: UIStackView!
     @IBOutlet weak var tagCollection: UICollectionView!
+    @IBOutlet weak var removeAD: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backImage.image = UIImage.gifImageWithName("back")
         searchBackView.layer.cornerRadius = 8
+        removeAD.isHidden = StoreManager.removeAD() == false ? false : true
     }
     
     func setTitleImage(randomDataGif: Data) {

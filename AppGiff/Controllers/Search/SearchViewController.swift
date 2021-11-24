@@ -27,10 +27,14 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         
         searchView.searchText = self.searchText
         searchView.configure()
-        setGadBanner()
         ///
         selectedTabs(typeContent.rawValue)
         setCollection()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,11 +46,10 @@ class SearchViewController: UIViewController, GADBannerViewDelegate, PinterestLa
         }
         searchView.searchCollectionView.reloadData()
         searchView.tagsCollectionView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
+        
+        if StoreManager.removeAD() == false {
+            setGadBanner()
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

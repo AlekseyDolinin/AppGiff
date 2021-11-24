@@ -1,8 +1,6 @@
 import UIKit
 import StoreKit
 
-let nPricesUpdated: NSNotification.Name = NSNotification.Name(rawValue: "nPricesUpdated")
-
 class PriceManager: NSObject {
     
     func getPricesForInApps(inAppsIDs: Set<String>) {
@@ -26,10 +24,9 @@ extension PriceManager: SKProductsRequestDelegate {
             nf.locale = product.priceLocale
             let price: String = String(describing: product.price) + nf.currencySymbol
             print("price: \(price)")
-            UserDefaults.standard.setValue(price, forKeyPath: product.productIdentifier)
-            UserDefaults.standard.synchronize()
+//            UserDefaults.standard.setValue(price, forKeyPath: product.productIdentifier)
+//            UserDefaults.standard.synchronize()
         }
-        NotificationCenter.default.post(name: nPricesUpdated, object: nil)
         print("invalid ID: \(response.invalidProductIdentifiers)")
     }
 }

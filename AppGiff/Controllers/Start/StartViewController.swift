@@ -8,8 +8,8 @@ class StartViewController: UIViewController {
     }
     
     static var arrayFavorites = UserDefaults.standard.array(forKey: "favoriteLinks")
-    
     static var arrayFavoritesURL: [String] = []
+    let priceManager = PriceManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +31,8 @@ class StartViewController: UIViewController {
             showModalAppTrackingDescription()
         }
         
-        ///
-        NotificationCenter.default.addObserver(forName: nPricesUpdated, object: nil, queue: nil) { notification in
-            print("Обновление цен:")
-        }
+        /// получение цен
+        priceManager.getPricesForInApps(inAppsIDs: [appGiffRemoveADSID])
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -5,16 +5,16 @@ let nTransactionComplate: NSNotification.Name = NSNotification.Name(rawValue: "n
 
 class StoreManager: NSObject {
     ///
-    class func isFullVersion() -> Bool {
+    class func removeAD() -> Bool {
         #if DEBUG
-        print("is full version: \(UserDefaults.standard.bool(forKey: "FullVersion"))")
+        print("is RemoveAD: \(UserDefaults.standard.bool(forKey: "RemoveAD"))")
         #endif
-        return UserDefaults.standard.bool(forKey: "FullVersion")
+        return UserDefaults.standard.bool(forKey: "RemoveAD")
     }
     
     /// запись после покупки полной версии
-    class func didBuyFullVersion() {
-        UserDefaults.standard.set(true, forKey: "FullVersion")
+    class func didRemoveAD() {
+        UserDefaults.standard.set(true, forKey: "RemoveAD")
         UserDefaults.standard.synchronize()
         print("Покупка выполнена")
         NotificationCenter.default.post(name: nTransactionComplate, object: nil)
@@ -65,14 +65,14 @@ extension StoreManager: SKPaymentTransactionObserver {
             case .purchased:
                 print("purchased")
                 queue.finishTransaction(transaction)
-                StoreManager.didBuyFullVersion()
+                StoreManager.didRemoveAD()
             case .failed:
                 queue.finishTransaction(transaction)
             case .restored:
                 print("restored")
                 print("модалка благодарности за возврат")
                 queue.finishTransaction(transaction)
-                StoreManager.didBuyFullVersion()
+                StoreManager.didRemoveAD()
             case .deferred:
                 print("deferred")
             default:

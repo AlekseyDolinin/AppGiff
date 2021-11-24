@@ -17,25 +17,11 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         systemtLanguage = String(Locale.current.languageCode!.prefix(2))
-        
         setTransition()
-        setGadBanner()
         getTrending()
         getTrendingSearch()
         configureCollection()
-       
-        ///
-        NotificationCenter.default.addObserver(forName: nTransactionComplate, object: nil, queue: nil) { notification in
-            DispatchQueue.main.async {
-                print("модалка благодарности покупки")
-                self.viewDidLoad()
-//                self.viewSelf.tagCollection.reloadData()
-//                self.viewSelf.trendingGifCollection.reloadData()
-//                self.viewSelf.trendingStickerCollection.reloadData()
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +29,11 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
         mainView.tagCollection.reloadData()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        if StoreManager.removeAD() == false {
+            setGadBanner()
+        } else if bannerView != nil {
+            bannerView.isHidden = true
+        }
     }
     
     func configureCollection() {
@@ -127,7 +118,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate, UIGestureReco
     ///
     @IBAction func removeADS(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PurshaseModalViewController") as! PurshaseModalViewController
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

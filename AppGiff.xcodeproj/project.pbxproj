@@ -213,7 +213,6 @@
 		1002E38523FC639E008EF322 /* AppGiff */ = {
 			isa = PBXGroup;
 			children = (
-				9109E448274D1285006784FC /* Managers */,
 				1002E38623FC639E008EF322 /* AppDelegate.swift */,
 				1002E38A23FC639E008EF322 /* Main.storyboard */,
 				1002E39223FC63A1008EF322 /* LaunchScreen.storyboard */,
@@ -225,6 +224,7 @@
 				10999FCB24E097D1005A803A /* Controllers */,
 				10999FC424DF20E8005A803A /* Network */,
 				10C06D572403FD3B002A3F95 /* HelpClasses */,
+				9109E448274D1285006784FC /* Managers */,
 				1002E39023FC63A1008EF322 /* Images.xcassets */,
 				105D8A99263B552B00340C96 /* Colors.xcassets */,
 				10442CA82401BAE800A97E10 /* back.gif */,
@@ -820,7 +820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MKHF2R38BL;
 				INFOPLIST_FILE = AppGiff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -828,7 +828,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlekseyDolinin.AppGiff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -842,7 +842,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MKHF2R38BL;
 				INFOPLIST_FILE = AppGiff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -850,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlekseyDolinin.AppGiff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

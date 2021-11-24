@@ -31,26 +31,27 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
         let newWidthImage = self.view.frame.width - 48
         let newHeightImage = newWidthImage / ratio
         headerView.frame.size.height = newHeightImage + 93
-        setGadBanner()
-        setGadFullView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if StoreManager.removeAD() == false {
+            setGadBanner()
+            setGadFullView()
+        }
     }
 
     func showControllerShare() {
         if let dataGifForSend = dataGif {
             let shareController = UIActivityViewController(activityItems: [dataGifForSend], applicationActivities: nil)
             shareController.completionWithItemsHandler = {_, bool, _, _ in
-                if bool {
-                    print("it is done!")
-                } else {
-                    print("error send")
-                }
+                bool == true ? print("it is done!") : print("error send")
             }
             present(shareController, animated: true, completion: nil)
         }
     }
     
     func getVideo(){
-        
         let player = AVPlayer(url: URL(string: linkVideo)!)
         let vc = AVPlayerViewController()
         vc.player = player
@@ -61,14 +62,12 @@ class DetailTableViewController: UITableViewController, GADBannerViewDelegate, G
     
     @IBAction func doneAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-//        getVideo()
     }
     
     @IBAction func sendGifAction() {
-        print("share")
-        if interstitial.isReady == true {
-            print("ролик готов")
-            interstitial.present(fromRootViewController: self)
+        if StoreManager.removeAD() == false {
+            /// проверка готов ли рекламный ролик
+            interstitial.isReady == true ? interstitial.present(fromRootViewController: self) : showControllerShare()
         } else {
             showControllerShare()
         }
